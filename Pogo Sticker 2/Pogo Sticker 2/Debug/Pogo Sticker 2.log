@@ -1,11 +1,17 @@
-﻿Build started 2015-03-04 20:01:23.
+﻿Build started 2015-03-06 20:31:51.
      1>Project "C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Pogo Sticker 2\Pogo Sticker 2.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.exe" /INCREMENTAL /NOLOGO /LIBPATH:"..\SDL2\SDL2-2.0.3\lib\x86" /LIBPATH:"..\SDL2\SDL2_ttf-2.0.12\lib\x86" SDL2.lib SDL2main.lib SDL2_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.lib" /MACHINE:X86 Debug\Main.obj
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"..\SDL2\SDL2_ttf-2.0.12\lib\x86" /I"..\SDL2\SDL2-2.0.3\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Highscores.cpp Main.cpp
+         Main.cpp
+         Highscores.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.exe" /INCREMENTAL /NOLOGO /LIBPATH:"..\SDL2\SDL2-2.0.3\lib\x86" /LIBPATH:"..\SDL2\SDL2_ttf-2.0.12\lib\x86" SDL2.lib SDL2main.lib SDL2_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.lib" /MACHINE:X86 Debug\Highscores.obj
+         Debug\Main.obj
      1>MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
          Pogo Sticker 2.vcxproj -> C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.exe
      1>Done Building Project "C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Pogo Sticker 2\Pogo Sticker 2.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.39
+Time Elapsed 00:00:04.28
