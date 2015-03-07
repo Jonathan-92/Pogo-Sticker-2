@@ -2,7 +2,6 @@
 #include <SDL.h>
 #include <string>
 #include <iostream>
-#include "Enemy.h"
 
 using namespace std;
 

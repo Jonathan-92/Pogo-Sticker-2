@@ -1,6 +1,5 @@
 #include "Label.h"
 #include <string>
-#include "Spawner.h"
 #include "Sprite.h"
 #include "GameEngine.h"
 using namespace std;
