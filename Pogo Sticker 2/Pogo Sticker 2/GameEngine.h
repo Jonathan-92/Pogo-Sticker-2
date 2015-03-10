@@ -32,7 +32,6 @@ namespace gameEngine {
 	};
 
 	GameEngine& ge();
-	//extern GameEngine ga;
 	void throwException(std::string, const char* (*errorFunc)());
 }
 

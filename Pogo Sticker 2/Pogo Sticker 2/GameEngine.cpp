@@ -7,8 +7,6 @@ using namespace std;
 
 namespace gameEngine {
 
-	//GameEngine ga;
-
 	void throwException(string msg, const char* (*errorFunc)()) {
 		msg += errorFunc();
 		throw runtime_error(msg.c_str());
@@ -42,14 +40,6 @@ namespace gameEngine {
 	
 	GameEngine::~GameEngine(void)
 	{
-		/*int i = 0;
-		for (itTick = sprites.begin(); itTick != sprites.end();) {
-			++i;
-			delete *itTick++;
-		}
-*/
-		sprites.clear();
-
 		TTF_CloseFont(font);
 		TTF_Quit();
 		SDL_DestroyRenderer(renderer);
@@ -82,7 +72,6 @@ namespace gameEngine {
 	}
 
 	void GameEngine::run() {
-
 		SDL_Surface* bgSurface = SDL_LoadBMP(bgPath.c_str());	// undantagshantering?
 		SDL_Texture* bgTexture = SDL_CreateTextureFromSurface(renderer, bgSurface);
 		SDL_FreeSurface(bgSurface); 
