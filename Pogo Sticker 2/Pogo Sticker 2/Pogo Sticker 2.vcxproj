@@ -73,6 +73,7 @@
     <ClCompile Include="Highscores.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mainmenu.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
@@ -80,8 +81,12 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="G_Button.h" />
     <ClInclude Include="Label.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Sprite.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="button_up.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
