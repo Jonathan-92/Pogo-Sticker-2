@@ -63,18 +63,19 @@ namespace gameEngine {
 		fps = i;
 	}
 
-	void GameEngine::setBackground(const char* path) {
-		bgPath = path;
-	}
-
 	std::list<Sprite*> GameEngine::getSprites() const {
 		return sprites;
 	}
 
+	void GameEngine::load(SDL_Texture* background2, list<Sprite*> sprites2)
+	{
+		background = background2;
+		sprites = sprites2;
+		it2 = sprites.begin();
+		switched = true;
+	}
+
 	void GameEngine::run() {
-		SDL_Surface* bgSurface = SDL_LoadBMP(bgPath.c_str());	// undantagshantering?
-		SDL_Texture* bgTexture = SDL_CreateTextureFromSurface(renderer, bgSurface);
-		SDL_FreeSurface(bgSurface); 
 		bool exited = false;
 
 		const int tickInterval = 1000 / fps;
@@ -82,10 +83,11 @@ namespace gameEngine {
 		int delay;
 
 		while (!exited) {
+			switched = false;
 			nextTick = SDL_GetTicks() + tickInterval;
 
 			SDL_RenderClear(renderer);
-			SDL_RenderCopy(renderer, bgTexture, nullptr, nullptr);
+			SDL_RenderCopy(renderer, background, nullptr, nullptr);
 			
 			for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) {
 				(*it)->draw();
@@ -99,23 +101,28 @@ namespace gameEngine {
 					exited = true;
 					break;
 				case SDL_MOUSEBUTTONDOWN:
-					forAll(&Sprite::mouseDown, event.button.x, event.button.y);
+					if (event.button.state == SDL_PRESSED) {
+						forAll(&Sprite::mouseDown, event.button.x, event.button.y);
+					}
 					break;
 				case SDL_MOUSEMOTION:
-					if (event.button.state == SDL_PRESSED) {
-						forAll(&Sprite::mousePressed, event.button.x, event.button.y);
-					}
+					forAll(&Sprite::mouseMotion, event.button.x, event.button.y);
 					break;
 				case SDL_KEYDOWN:
 					for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) {
 						(*it)->keyDown(event);
 					}
 					break;
+				case SDL_KEYUP:
+					for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) {
+						(*it)->keyUp(event);
+					}
+					break;
 				}
 			}
 
 			if (event.button.state == SDL_PRESSED) {
-				forAll(&Sprite::mousePressed, event.button.x, event.button.y);
+				forAll(&Sprite::mouseMotion, event.button.x, event.button.y);
 			}
 
 			for (itTick = sprites.begin(); itTick != sprites.end(); itTick++) {
@@ -136,8 +143,12 @@ namespace gameEngine {
 	}
 	
 	void GameEngine::forAll(void (Sprite::*membrPtr)(int, int), int x, int y) {
-		for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) {
-			((*it)->*membrPtr)(x, y);
+		for (it2 = sprites.begin(); it2 != sprites.end(); it2++) {
+			((*it2)->*membrPtr)(x, y);
+			if (switched)
+			{
+				return;
+			}
 		}
 	}
 

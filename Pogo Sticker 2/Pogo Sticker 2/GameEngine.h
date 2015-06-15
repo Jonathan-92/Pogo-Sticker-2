@@ -16,17 +16,20 @@ namespace gameEngine {
 		void setBackground(const char* path);
 		void setVideoMode(int w, int h);
 		void setFps(int i);
+		void load(SDL_Texture* background, std::list<Sprite*> sprites);
+		void delay(int ticks);
 		std::list<Sprite*> getSprites() const;
 		SDL_Renderer* getRenderer();
 		TTF_Font* getFont();
-		void delay(int ticks);
+		bool switched;
 	private:
 		SDL_Window* screen;
 		SDL_Renderer* renderer;
 		TTF_Font* font;
 		int fps;
-		std::string bgPath;
+		SDL_Texture* background;
 		std::list<Sprite*> sprites;
+		std::list<Sprite*>::iterator it2;
 		std::list<Sprite*>::iterator itTick;
 		void forAll(void (Sprite::*membrPtr)(int, int), int x, int y);
 	};

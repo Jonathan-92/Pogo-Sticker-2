@@ -3,24 +3,16 @@
 #include "Sprite.h"
 #include <list>
 #include "SDL_ttf.h"
+#include "ViewPort.h"
 
-namespace mainMenu {
+class MainMenu : public ViewPort {
+public:
+	static MainMenu* getInstance();
+	~MainMenu();
+	void init();
+private:
+	MainMenu();
+};
 
-	class MainMenu {
-	public:
-		MainMenu();
-		~MainMenu();
-		int start();
-		bool init();
-		bool loadMedia();
-	private:
-		SDL_Window* screen;
-		SDL_Renderer* renderer;
-		TTF_Font* font;
-		int fps;
-	};
-
-	void throwException(std::string, const char* (*errorFunc)());
-}
 
 #endif

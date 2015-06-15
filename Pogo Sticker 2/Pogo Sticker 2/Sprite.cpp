@@ -1,19 +1,15 @@
 #include "Sprite.h"
 #include "GameEngine.h"
+#include "SDL_image.h"
 
 namespace gameEngine {
 
 	Sprite::Sprite(int x, int y, int w, int h, std::string imgPath, bool transp) :
 		rect(x, y, w, h)
 	{
-		SDL_Surface* surface = SDL_LoadBMP(imgPath.c_str());
+		SDL_Surface* surface = IMG_Load(imgPath.c_str());
 		if (surface == nullptr)
 			throw std::runtime_error("surface is null");
-		
-		if (transp) {
-			Uint32 transp = *(Uint32*)surface->pixels;
-			SDL_SetColorKey(surface, SDL_RLEACCEL, transp); 
-		}
 
 		texture = SDL_CreateTextureFromSurface(ge().getRenderer(), surface);
 		if (texture == nullptr)

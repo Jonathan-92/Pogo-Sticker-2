@@ -12,8 +12,9 @@ namespace gameEngine {
 		virtual void draw();
 		virtual void tick(){}
 		virtual void mouseDown(int x, int y){}
-		virtual void mousePressed(int x, int y){}
+		virtual void mouseMotion(int x, int y){}
 		virtual void keyDown(SDL_Event& e){}
+		virtual void keyUp(SDL_Event& e){}
 	protected:
 		SDL_Texture* texture;
 		Sprite(int x, int y, int w, int h, std::string imgPath, bool transp);

@@ -13,6 +13,10 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DC3E61C3-5A23-49E5-9DFA-709EE1D1AF79}</ProjectGuid>
     <RootNamespace>PogoSticker2</RootNamespace>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -68,25 +72,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="G_Button.cpp" />
     <ClCompile Include="Highscores.cpp" />
     <ClCompile Include="Label.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mainmenu.cpp" />
     <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="ViewPort.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Character.h" />
     <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="Gravity.h" />
     <ClInclude Include="G_Button.h" />
     <ClInclude Include="Label.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="ViewPort.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="button_up.png" />
+    <Image Include="..\images\black.png" />
+    <Image Include="..\images\button_up.png" />
+    <Image Include="..\images\white.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,18 @@
 #include "MainMenu.h"
+#include "Label.h"
+#include "G_Button.h"
 
-int main(int argc, char** argv) {
-	mainMenu::MainMenu menu = mainMenu::MainMenu();
-	menu.start();
+using namespace gameEngine;
+
+MainMenu* mainMenu = MainMenu::getInstance();
+
+
+int main(int argc, char** argv) 
+{
+	mainMenu->init();
+	mainMenu->load();
+
+	ge().run();
+
 	return 0;
 }

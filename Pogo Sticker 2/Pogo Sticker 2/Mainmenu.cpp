@@ -1,94 +1,42 @@
 #include "SDL.h"
+#include "SDL_image.h"
 #include "MainMenu.h"
+#include "Label.h"
 #include <iostream>
+#include "Level.h"
+#include "G_Button.h"
 
-//The window we'll be rendering to 
-SDL_Window* gWindow = NULL;
-//The surface contained by the window 
-SDL_Surface* gScreenSurface = NULL;
-//The image we will load and show on the screen 
-SDL_Surface* gHelloWorld = NULL;
+using namespace gameEngine;
 
-const int SCREEN_HEIGHT = 860;
-const int SCREEN_WIDTH = 600;
+MainMenu* MainMenu::getInstance()
+{
+	static MainMenu mainMenu;
+	return &mainMenu;
+}
 
-namespace mainMenu
+MainMenu::MainMenu()
 {
 
-	MainMenu::MainMenu()
-	{
+}
+MainMenu::~MainMenu()
+{
 
-	}
-	MainMenu::~MainMenu()
-	{
+}
 
-	}
+void switchToLevel()
+{
+	Level* level1 = new Level();
+	level1->load();
+}
 
-	bool MainMenu::init() {
-		//Initialization flag 
-		bool success = true;
-		//Initialize SDL 
-		if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-			printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError()); success = false;
-		}
-		else {
-			//Create window 
-			gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-			if (gWindow == NULL) {
-				printf("Window could not be created! SDL_Error: %s\n", SDL_GetError()); success = false;
-			}
-			else {
-				//Get window surface 
-				gScreenSurface = SDL_GetWindowSurface(gWindow);
-			}
-		}
-		return success;
-	}
+void MainMenu::init()
+{
+	SDL_Surface* surface = IMG_Load("../images/white.png");
+	setBackground(surface);
 
-	bool MainMenu::loadMedia()
-	{
-		//Loading success flag 
-		bool success = true;
-		//Load splash image 
-		gHelloWorld = SDL_LoadBMP("./button_up.png");
-		if (gHelloWorld == NULL) {
-			printf("Unable to load image %s! SDL Error: %s\n", "button_up.png", SDL_GetError());
-			success = false;
-		}
-		return success;
-	}
+	Label* label = Label::getInstance(50, 50, 50, 50, "hejsan");
+	sprites.push_back(label);
 
-	int MainMenu::start() {
-		if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
-			std::cout << "SDL_Init Error:" << SDL_GetError() << std::endl;
-			return 1;
-		}
-		//Create the window and surface
-		init();
-		//Load assets
-		loadMedia();
-
-		//Application quit flag
-		bool quit = false;
-
-		SDL_Event sdl_event;
-
-		while (!quit)
-		{
-			while (SDL_PollEvent(&sdl_event) != 0)
-			{
-				//User requests quit 
-				if (sdl_event.type == SDL_QUIT) {
-					quit = true;
-				}
-				//User presses on one of the buttons
-				else if (sdl_event.type == SDL_MOUSEBUTTONDOWN) {
-
-				}
-			}
-		}
-		SDL_Quit();
-
-		return 0;
-	}
+	G_Button* button = new G_Button(100, 100, 100, 100, "../images/button_up.png", switchToLevel);
+	sprites.push_back(button);
 }
