@@ -37,46 +37,17 @@ void Character::mouseDown(int x, int y)
 
 
 void Character::tick()
-{
-	//Move the dot left or right
-	mPosX += mVelX;
-
-	//Count up the charge ticker
-	++chargeMeterTick;
-
-	if (chargeMeterTick == 5)
+{	
+	if (rect.y + rect.h > 640)
 	{
-		if (mPosY <= 400)
-			mPosY = gravity.applyGravity(mVelY, mPosY);
-		else
-		{
-			mVelY = 0;
-			mVelY += gravity.jump(chargeMeter);
-			mPosY -= mVelY;
-			gravity.resetTime();
-		}
-		chargeMeterTick = 0;
-		chargeMeter -= 0.5;
-		if (chargeMeter < 0)
-			chargeMeter = 0.1;
+		mVelY -= 2;
 	}
 
-	//If the dot went too far to the left or right
-	if ((mPosX < 0) || (mPosX + CHARACTER_WIDTH > 800))
-	{
-		//Move back
-		mPosX -= mVelX;
-	}
+	mVelY += 0.05f;
+	
+	rect.y += mVelY;
+	
 
-	//mPosY += mVelY;
- 
-	//If the dot went too far up or down 
-	if ((mPosY < 0) || (mPosY + rect.h > 640))
-	{
-		//Move back
-		mPosY -= mVelY;
-	}
-
-	rect.x = (int)mPosX;
-	rect.y = (int)mPosY;
+	//rect.x += mVelX;
+	//rect.y = (int)mPosY;
 }
