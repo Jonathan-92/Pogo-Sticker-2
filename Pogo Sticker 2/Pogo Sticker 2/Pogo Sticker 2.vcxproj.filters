@@ -13,14 +13,14 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Simulation">
-      <UniqueIdentifier>{2e1584cc-6d08-4bd5-83c6-369360256a30}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\SubSprites">
       <UniqueIdentifier>{4424799a-8ed3-47f6-b268-7f9ee38a76f3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\SubLabels">
       <UniqueIdentifier>{241ba110-8ed8-4a3d-9e4c-1eac61837c49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameComponents">
+      <UniqueIdentifier>{2e1584cc-6d08-4bd5-83c6-369360256a30}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -55,13 +55,19 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Gravity.cpp">
-      <Filter>Source Files\Simulation</Filter>
+      <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>Source Files\Simulation</Filter>
+      <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
-      <Filter>Source Files\Simulation</Filter>
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="Gravity.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files\SubSprites</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\SubSprites</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

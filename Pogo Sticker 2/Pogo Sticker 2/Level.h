@@ -1,11 +1,21 @@
-#pragma once
+#ifndef LEVEL_H
+#define LEVEL_H
 #include "ViewPort.h"
 
-class Level : public ViewPort
+namespace gameEngine
 {
-public:
-	Level();
-	~Level();
-	void init();
-};
+	class Level : public ViewPort
+	{
+	public:
+		Level();
+		~Level();
+		void init();
+		int getHeight();
+		int getWidth();
+	private:
+		int levelHeight;
+		int levelWidth;
+	};
+}
 
+#endif

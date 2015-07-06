@@ -18,7 +18,17 @@ Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x
 
 Character::~Character(void)
 {
-}	
+}
+
+int Character::getPosX()
+{
+	return mPosX;
+}
+
+int Character::getPosY()
+{
+	return mPosY;
+}
 
 void Character::mouseMotion(int x, int y)
 {
@@ -35,10 +45,14 @@ void Character::mouseDown(int x, int y)
 	chargeMeter += 4.5;	
 }
 
+void Character::collisonCheck(gameEngine::Sprite *sprites[])
+{
+	
+}
 
 void Character::tick()
 {	
-	if (rect.y + rect.h > 640)
+	if (rect.y + rect.h > 640 || rect.y + rect.h < 0)
 	{
 		mVelY -= 2;
 	}

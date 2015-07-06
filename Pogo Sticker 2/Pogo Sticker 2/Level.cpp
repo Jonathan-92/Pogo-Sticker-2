@@ -23,6 +23,16 @@ void switchToMenu()
 	mainMenu->load();
 }
 
+int Level::getHeight()
+{
+	return levelHeight;
+}
+
+int Level::getWidth()
+{
+	return levelWidth;
+}
+
 void Level::init()
 {
 	//SDL_Surface* surface = IMG_Load("../images/black.png");

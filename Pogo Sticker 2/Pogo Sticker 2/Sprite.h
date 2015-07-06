@@ -15,6 +15,9 @@ namespace gameEngine {
 		virtual void mouseMotion(int x, int y){}
 		virtual void keyDown(SDL_Event& e){}
 		virtual void keyUp(SDL_Event& e){}
+		virtual void collisonCheck(gameEngine::Sprite *sprites[]){}
+		virtual int getPosX();
+		virtual int getPosY();
 	protected:
 		SDL_Texture* texture;
 		Sprite(int x, int y, int w, int h, std::string imgPath, bool transp);

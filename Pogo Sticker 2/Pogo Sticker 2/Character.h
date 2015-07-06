@@ -22,6 +22,11 @@ public:
 	//Ärvd från Sprite antar jag
 	virtual void mouseMotion(int x, int y);
 	virtual void mouseDown(int x, int y);
+	virtual void collisonCheck(gameEngine::Sprite *sprites[]);
+
+	//Få ut positionen
+	virtual int getPosX();
+	virtual int getPosY();
 
 	//Takes key presses and adjusts the dot's velocity (Sprite sköter det tydligen)
 	//void handleEvent(SDL_Event& e);
@@ -31,7 +36,7 @@ public:
 
 private:
 	//The X and Y offsets of the dot
-	float mPosX, mPosY;
+	int mPosX, mPosY;
 
 	//The velocity of the dot
 	float mVelX, mVelY;

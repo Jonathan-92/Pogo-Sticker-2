@@ -40,4 +40,14 @@ namespace gameEngine {
 			SDL_DestroyTexture(texture);
 	}
 
+	int Sprite::getPosX()
+	{
+		return rect.x;
+	}
+
+	int Sprite::getPosY()
+	{
+		return rect.y;
+	}
+
 }
