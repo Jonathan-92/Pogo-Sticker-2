@@ -1,15 +1,16 @@
 #include <SDL.h>
 #include "Sprite.h"
 #include "Gravity.h"
-//The dot that will move around on the screen
+
+//The pogo guy.
 class Character : public gameEngine::Sprite
 {
 public:
-	//The dimensions of the dot
+	//The dimensions of the character
 	static const int CHARACTER_WIDTH = 20;
 	static const int CHARACTER_HEIGHT = 20;
 
-	//Maximum axis velocity of the dot
+	//Maximum axis velocity of the character
 	static const int CHARACTER_VEL = 10;
 
 	//Maximum charge

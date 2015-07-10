@@ -14,14 +14,6 @@ Timer::~Timer(void)
 {
 }
 
-void Timer::setText(std::string text)
-{
-	SDL_DestroyTexture(texture);
-	SDL_Surface* surface = TTF_RenderText_Solid(gameEngine::ge().getFont(), text.c_str(), Label::black);
-	texture = SDL_CreateTextureFromSurface(gameEngine::ge().getRenderer(), surface);
-	SDL_FreeSurface(surface);
-}
-
 void Timer::tick()
 {
 	if (milliseconds == 100)

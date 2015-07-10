@@ -8,7 +8,6 @@ namespace gameEngine {
 	public:
 		typedef void (*FuncPtr)();
 
-		//
 		G_Button(int x, int y, int w, int h, std::string imgPath, FuncPtr fp);
 		~G_Button(void);
 		void tick();

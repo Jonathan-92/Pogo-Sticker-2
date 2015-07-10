@@ -13,7 +13,7 @@ public:
 	static Label* getInstance(int x, int y, int w, int h, std::string text, FuncPtr fp);
 	static Label* getInstance(int x, int y, int w, int h, std::string text);
 	virtual void tick();
-	virtual void setText(std::string text);
+	void setText(std::string text);
 	~Label();
 protected:
 	Label(int x, int y, int w, int h, std::string text, FuncPtr fp);

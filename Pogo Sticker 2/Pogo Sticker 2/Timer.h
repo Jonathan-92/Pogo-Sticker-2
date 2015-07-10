@@ -1,7 +1,7 @@
 #include <SDL.h>
 #include "Label.h"
 
-//The dot that will move around on the screen
+// A timer that keeps track of how long the player has played the level.
 class Timer : public gameEngine::Label
 {
 public:
@@ -9,12 +9,8 @@ public:
 	Timer(int x, int y, int w, int h, std::string imgPath);
 	~Timer(void);
 
-	//Sets the text
-	virtual void setText(std::string text);
-
 	virtual void tick();
 
 private:
-	//The X and Y offsets of the dot
 	int milliseconds, seconds, minutes;
 };

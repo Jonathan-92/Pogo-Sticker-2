@@ -1,14 +1,11 @@
 #include <SDL.h>
 #include "Sprite.h"
 #include "Level.h"
-//The camera that will move around on the screen
 
-class Camera
+//The camera that will move around on the screen
+class Camera : public gameEngine::Sprite
 {
 public:
-	//The dimensions of the camera
-	SDL_Rect camera;
-
 	//Maximum axis velocity of the dot
 	static const int CAMERA_VEL = 0;
 
@@ -16,8 +13,7 @@ public:
 	Camera();
 	~Camera(void);
 
-	//Moves the camera
-	virtual void tick(gameEngine::Sprite character, gameEngine::Level level);
+	void tick(gameEngine::Sprite character, gameEngine::Level level);
 
 private:
 	//The X and Y offsets of the camera

@@ -4,7 +4,7 @@
 
 Camera::Camera()
 {
-	camera = { 0, 0, 800, 600 };
+	rect = { 0, 0, 800, 600 };
 }
 
 Camera::~Camera(void)
@@ -26,12 +26,12 @@ void Camera::tick(gameEngine::Sprite character, gameEngine::Level level)
 	{
 		mPosY = 0;
 	}
-	if (mPosX > level.getWidth() - camera.w)
+	if (mPosX > level.getWidth() - rect.w)
 	{
-		mPosX = level.getWidth() - camera.w;
+		mPosX = level.getWidth() - rect.w;
 	}
-	if (mPosY > level.getHeight() - camera.h)
+	if (mPosY > level.getHeight() - rect.h)
 	{
-		mPosY = level.getHeight() - camera.h;
+		mPosY = level.getHeight() - rect.h;
 	}
 }
