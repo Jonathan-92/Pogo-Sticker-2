@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include "Sprite.h"
 #include "Gravity.h"
+#include "Camera.h"
 
 //The pogo guy.
 class Character : public gameEngine::Sprite
@@ -31,6 +32,7 @@ public:
 
 	//Takes key presses and adjusts the dot's velocity (Sprite sköter det tydligen)
 	//void handleEvent(SDL_Event& e);
+	virtual void draw(Camera* camera);
 
 	//Moves the dot
 	virtual void tick();

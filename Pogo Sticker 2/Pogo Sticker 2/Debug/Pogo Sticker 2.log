@@ -1,27 +1,35 @@
-﻿Build started 2015-07-10 15:07:05.
-     1>Project "C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Pogo Sticker 2\Pogo Sticker 2.vcxproj" on node 2 (Build target(s)).
+﻿Build started 2015-07-10 15:37:25.
+     1>Project "C:\Users\Philip\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Pogo Sticker 2\Pogo Sticker 2.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"..\SDL2\SDL2_image-2.0.0\include" /I"..\SDL2\SDL2_ttf-2.0.12\include" /I"..\SDL2\SDL2-2.0.3\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Timer.cpp
+         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"..\SDL2\SDL2_image-2.0.0\include" /I"..\SDL2\SDL2_ttf-2.0.12\include" /I"..\SDL2\SDL2-2.0.3\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp Character.cpp GameEngine.cpp Gravity.cpp Label.cpp Level.cpp Main.cpp Mainmenu.cpp Sprite.cpp Timer.cpp ViewPort.cpp
+         ViewPort.cpp
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\level.h(8): error C2504: 'ViewPort' : base class undefined
          Timer.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.exe" /INCREMENTAL /NOLOGO /LIBPATH:"..\SDL2\SDL2-2.0.3\lib\x86" /LIBPATH:"..\SDL2\SDL2_ttf-2.0.12\lib\x86" /LIBPATH:"..\SDL2\SDL2_image-2.0.0\lib\x86" SDL2.lib SDL2main.lib SDL2_ttf.lib SDL2_image.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.lib" /MACHINE:X86 Debug\Camera.obj
-         Debug\Character.obj
-         Debug\GameEngine.obj
-         Debug\Gravity.obj
-         Debug\G_Button.obj
-         Debug\Highscores.obj
-         Debug\Label.obj
-         Debug\Level.obj
-         Debug\Main.obj
-         Debug\Mainmenu.obj
-         Debug\Rect.obj
-         Debug\Tile.obj
-         Debug\Timer.obj
-         Debug\Sprite.obj
-         Debug\ViewPort.obj
-         Pogo Sticker 2.vcxproj -> C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.exe
-     1>Done Building Project "C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Pogo Sticker 2\Pogo Sticker 2.vcxproj" (Build target(s)).
+         Sprite.cpp
+         Mainmenu.cpp
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\level.h(8): error C2504: 'ViewPort' : base class undefined
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\mainmenu.cpp(29): error C2039: 'load' : is not a member of 'gameEngine::Level'
+                 c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\level.h(7) : see declaration of 'gameEngine::Level'
+         Main.cpp
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\level.h(8): error C2504: 'ViewPort' : base class undefined
+         Level.cpp
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\camera.h(19): error C2039: 'Level' : is not a member of 'gameEngine'
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\camera.h(19): error C2061: syntax error : identifier 'Level'
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(52): warning C4305: 'argument' : truncation from 'double' to 'float'
+         Label.cpp
+         Gravity.cpp
+         GameEngine.cpp
+         Character.cpp
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\gameengine.h(30): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\gameengine.h(30): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(52): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.cpp(67): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+         Camera.cpp
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\gameengine.h(30): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\gameengine.h(30): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+         Generating Code...
+     1>Done Building Project "C:\Users\Philip\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Pogo Sticker 2\Pogo Sticker 2.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:01.18
+Time Elapsed 00:00:03.24

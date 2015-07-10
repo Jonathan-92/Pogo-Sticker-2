@@ -50,6 +50,11 @@ void Character::collisonCheck(gameEngine::Sprite *sprites[])
 	
 }
 
+void Character::draw(Camera* camera)
+{
+	SDL_RenderCopy(gameEngine::ge().getRenderer(), texture, nullptr, &camera->rect);
+}
+
 void Character::tick()
 {	
 	if (rect.y + rect.h > 640 || rect.y + rect.h < 0)

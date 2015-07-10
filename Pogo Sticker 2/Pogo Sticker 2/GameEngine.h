@@ -1,6 +1,7 @@
 #ifndef GAMEENGINE_H
 #define GAMEENGINE_H
 #include "Sprite.h"
+#include "Camera.h"
 #include <list>
 #include "SDL_ttf.h"
 
@@ -26,6 +27,7 @@ namespace gameEngine {
 		SDL_Window* screen;
 		SDL_Renderer* renderer;
 		TTF_Font* font;
+		Camera* camera;
 		int fps;
 		SDL_Texture* background;
 		std::list<Sprite*> sprites;
