@@ -1,7 +1,5 @@
 #ifndef VIEWPORT_H
 #define VIEWPORT_H
-
-#include "GameEngine.h"
 #include "Sprite.h"
 #include <list>
 
