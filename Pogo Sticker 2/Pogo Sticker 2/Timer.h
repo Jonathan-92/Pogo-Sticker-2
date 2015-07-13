@@ -1,3 +1,5 @@
+#ifndef TIMER_H
+#define TIMER_H
 #include <SDL.h>
 #include "Label.h"
 
@@ -14,3 +16,4 @@ public:
 private:
 	int milliseconds, seconds, minutes;
 };
+#endif

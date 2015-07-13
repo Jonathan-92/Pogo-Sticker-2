@@ -1,3 +1,5 @@
+#ifndef TILE_H
+#define TILE_H
 #include "SDL.h"
 #include "Sprite.h"
 //The tile
@@ -23,3 +25,4 @@ private:
 	//The tile type
 	int mType;
 };
+#endif

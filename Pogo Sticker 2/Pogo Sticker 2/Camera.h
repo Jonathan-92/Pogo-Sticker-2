@@ -1,6 +1,5 @@
 #ifndef CAMERA_H
 #define CAMERA_H
-
 #include <SDL.h>
 #include "Sprite.h"
 #include "Level.h"
@@ -23,5 +22,4 @@ private:
 	//The velocity of the camera
 	float mVelX, mVelY;
 };
-
 #endif

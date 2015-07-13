@@ -1,7 +1,9 @@
+#ifndef CHARACTER_H
+#define CHARACTER_H
 #include <SDL.h>
 #include "Sprite.h"
-#include "Gravity.h"
 #include "Camera.h"
+#include "Gravity.h"
 
 //The pogo guy.
 class Character : public gameEngine::Sprite
@@ -51,3 +53,4 @@ private:
 	//Gravity object
 	gameEngine::Gravity gravity = gameEngine::Gravity(0.1, 0.1, 0.01);
 };
+#endif

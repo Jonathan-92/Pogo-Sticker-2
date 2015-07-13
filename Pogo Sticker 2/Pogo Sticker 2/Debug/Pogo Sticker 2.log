@@ -1,11 +1,9 @@
-﻿Build started 2015-07-10 15:37:25.
+﻿Build started 2015-07-13 15:28:34.
      1>Project "C:\Users\Philip\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Pogo Sticker 2\Pogo Sticker 2.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"..\SDL2\SDL2_image-2.0.0\include" /I"..\SDL2\SDL2_ttf-2.0.12\include" /I"..\SDL2\SDL2-2.0.3\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp Character.cpp GameEngine.cpp Gravity.cpp Label.cpp Level.cpp Main.cpp Mainmenu.cpp Sprite.cpp Timer.cpp ViewPort.cpp
+         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"..\SDL2\SDL2_image-2.0.0\include" /I"..\SDL2\SDL2_ttf-2.0.12\include" /I"..\SDL2\SDL2-2.0.3\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp Character.cpp Level.cpp Main.cpp Mainmenu.cpp ViewPort.cpp
          ViewPort.cpp
      1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\level.h(8): error C2504: 'ViewPort' : base class undefined
-         Timer.cpp
-         Sprite.cpp
          Mainmenu.cpp
      1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\level.h(8): error C2504: 'ViewPort' : base class undefined
      1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\mainmenu.cpp(29): error C2039: 'load' : is not a member of 'gameEngine::Level'
@@ -13,16 +11,21 @@
          Main.cpp
      1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\level.h(8): error C2504: 'ViewPort' : base class undefined
          Level.cpp
-     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\camera.h(19): error C2039: 'Level' : is not a member of 'gameEngine'
-     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\camera.h(19): error C2061: syntax error : identifier 'Level'
-     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(52): warning C4305: 'argument' : truncation from 'double' to 'float'
-         Label.cpp
-         Gravity.cpp
-         GameEngine.cpp
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\camera.h(18): error C2039: 'Level' : is not a member of 'gameEngine'
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\camera.h(18): error C2061: syntax error : identifier 'Level'
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(53): error C2039: 'Gravity' : is not a member of 'gameEngine'
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(53): error C2146: syntax error : missing ';' before identifier 'gravity'
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(53): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(53): error C2143: syntax error : missing ';' before '='
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(53): error C2238: unexpected token(s) preceding ';'
          Character.cpp
      1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\gameengine.h(30): error C2143: syntax error : missing ';' before '*'
      1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\gameengine.h(30): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(52): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(53): error C2039: 'Gravity' : is not a member of 'gameEngine'
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(53): error C2146: syntax error : missing ';' before identifier 'gravity'
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(53): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(53): error C2143: syntax error : missing ';' before '='
+     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(53): error C2238: unexpected token(s) preceding ';'
      1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.cpp(67): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
          Camera.cpp
      1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\gameengine.h(30): error C2143: syntax error : missing ';' before '*'
@@ -32,4 +35,4 @@
 
 Build FAILED.
 
-Time Elapsed 00:00:03.24
+Time Elapsed 00:00:01.68
