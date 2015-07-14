@@ -9,7 +9,7 @@ namespace gameEngine {
 	public:
 		virtual ~Sprite();
 		Rect rect;
-		virtual void draw();
+		virtual void draw(Sprite* cameraRect);
 		virtual void tick(){}
 		virtual void mouseDown(int x, int y){}
 		virtual void mouseMotion(int x, int y){}
@@ -18,10 +18,12 @@ namespace gameEngine {
 		virtual void collisonCheck(gameEngine::Sprite *sprites[]){}
 		virtual int getPosX();
 		virtual int getPosY();
+		virtual std::string getType();
 	protected:
 		SDL_Texture* texture;
-		Sprite(int x, int y, int w, int h, std::string imgPath, bool transp);
-		Sprite(int x, int y, int w, int h, SDL_Surface* surface);
+		std::string type;
+		Sprite(int x, int y, int w, int h, std::string imgPath, bool transp, std::string spriteType);
+		Sprite(int x, int y, int w, int h, SDL_Surface* surface, std::string spriteType);
 		Sprite();
 	private:
 		Sprite(const Sprite&);

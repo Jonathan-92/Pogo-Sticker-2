@@ -8,7 +8,7 @@ using namespace std;
 namespace gameEngine {
 
 	Label::Label(int x, int y, int w, int h, string text, FuncPtr fp) :
-		Sprite(x, y, w, h, TTF_RenderText_Solid(ge().getFont(), text.c_str(), black)),
+		Sprite(x, y, w, h, TTF_RenderText_Solid(ge().getFont(), text.c_str(), black), "Label"),
 		funcPtr(fp)
 	{
 	}

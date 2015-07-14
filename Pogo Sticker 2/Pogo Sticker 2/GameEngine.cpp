@@ -82,6 +82,8 @@ namespace gameEngine {
 		Uint32 nextTick;
 		int delay;
 
+		camera = new Camera();
+
 		while (!exited) {
 			switched = false;
 			nextTick = SDL_GetTicks() + tickInterval;
@@ -90,7 +92,7 @@ namespace gameEngine {
 			SDL_RenderCopy(renderer, background, nullptr, nullptr);
 			
 			for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) {
-				(*it)->draw();
+				(*it)->draw(camera);
 			}
 
 			SDL_Event event;
@@ -127,6 +129,10 @@ namespace gameEngine {
 
 			for (itTick = sprites.begin(); itTick != sprites.end(); itTick++) {
 				(*itTick)->tick();
+				/*if ((*itTick)->getType == "Character")
+				{
+					camera->tick(&itTick._Mynode, &level);
+				}*/
 			}
 
 			SDL_RenderPresent(renderer);

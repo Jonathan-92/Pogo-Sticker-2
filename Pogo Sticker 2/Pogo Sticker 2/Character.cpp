@@ -2,7 +2,7 @@
 #include "GameEngine.h"
 #include <vector>
 
-Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x, y, w, h, imgPath, false)
+Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x, y, w, h, imgPath, false, "Character")
 {
 	//Initialize the offsets
 	mPosX = 0;

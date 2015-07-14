@@ -1,26 +1,8 @@
-﻿Build started 2015-07-13 15:38:30.
+﻿Build started 2015-07-14 09:29:02.
      1>Project "C:\Users\Philip\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Pogo Sticker 2\Pogo Sticker 2.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"..\SDL2\SDL2_image-2.0.0\include" /I"..\SDL2\SDL2_ttf-2.0.12\include" /I"..\SDL2\SDL2-2.0.3\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp Character.cpp GameEngine.cpp Gravity.cpp G_Button.cpp Highscores.cpp Label.cpp Level.cpp Main.cpp Mainmenu.cpp Rect.cpp Tile.cpp Timer.cpp Sprite.cpp ViewPort.cpp
-         ViewPort.cpp
-         Sprite.cpp
-         Timer.cpp
-         Tile.cpp
-         Rect.cpp
-         Mainmenu.cpp
-         Main.cpp
-         Level.cpp
-     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(54): warning C4305: 'argument' : truncation from 'double' to 'float'
-         Label.cpp
-         Highscores.cpp
-         G_Button.cpp
-         Gravity.cpp
+         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"..\SDL2\SDL2_image-2.0.0\include" /I"..\SDL2\SDL2_ttf-2.0.12\include" /I"..\SDL2\SDL2-2.0.3\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameEngine.cpp
          GameEngine.cpp
-         Character.cpp
-     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(54): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\philip\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.cpp(67): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
-         Camera.cpp
-         Generating Code...
        Link:
          D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Philip\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.exe" /INCREMENTAL /NOLOGO /LIBPATH:"..\SDL2\SDL2-2.0.3\lib\x86" /LIBPATH:"..\SDL2\SDL2_ttf-2.0.12\lib\x86" /LIBPATH:"..\SDL2\SDL2_image-2.0.0\lib\x86" SDL2.lib SDL2main.lib SDL2_ttf.lib SDL2_image.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Philip\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Philip\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.lib" /MACHINE:X86 Debug\Camera.obj
          Debug\Character.obj
@@ -37,10 +19,9 @@
          Debug\Timer.obj
          Debug\Sprite.obj
          Debug\ViewPort.obj
-     1>MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
          Pogo Sticker 2.vcxproj -> C:\Users\Philip\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.exe
      1>Done Building Project "C:\Users\Philip\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Pogo Sticker 2\Pogo Sticker 2.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.92
+Time Elapsed 00:00:00.64

@@ -4,7 +4,7 @@
 
 namespace gameEngine {
 
-	Sprite::Sprite(int x, int y, int w, int h, std::string imgPath, bool transp) :
+	Sprite::Sprite(int x, int y, int w, int h, std::string imgPath, bool transp, std::string spriteType) :
 		rect(x, y, w, h)
 	{
 		SDL_Surface* surface = IMG_Load(imgPath.c_str());
@@ -15,12 +15,15 @@ namespace gameEngine {
 		if (texture == nullptr)
 			throw std::runtime_error("texture is null");
 		
+		type = spriteType;
+
 		SDL_FreeSurface(surface);
 	}
 
-	Sprite::Sprite(int x, int y, int w, int h, SDL_Surface* surface) :
+	Sprite::Sprite(int x, int y, int w, int h, SDL_Surface* surface, std::string spriteType) :
 		rect(x, y, w, h)
 	{
+		type = spriteType;
 		texture = SDL_CreateTextureFromSurface(ge().getRenderer(), surface);
 		SDL_FreeSurface(surface);
 	}
@@ -30,8 +33,8 @@ namespace gameEngine {
 		texture = nullptr;
 	}
 
-	void Sprite::draw() {
-		SDL_RenderCopy(ge().getRenderer(), texture, nullptr, &rect);
+	void Sprite::draw(Sprite* cameraRect) {
+		SDL_RenderCopy(ge().getRenderer(), texture, &cameraRect->rect, &rect);
 	}
 
 	Sprite::~Sprite()
@@ -48,6 +51,11 @@ namespace gameEngine {
 	int Sprite::getPosY()
 	{
 		return rect.y;
+	}
+
+	std::string Sprite::getType()
+	{
+		return type;
 	}
 
 }
