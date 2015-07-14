@@ -67,6 +67,15 @@ namespace gameEngine {
 		return sprites;
 	}
 
+	void GameEngine::load(SDL_Texture* background2, list<Sprite*> sprites2, Level* level2)
+	{
+		level = level2;
+		background = background2;
+		sprites = sprites2;
+		it2 = sprites.begin();
+		switched = true;
+	}
+
 	void GameEngine::load(SDL_Texture* background2, list<Sprite*> sprites2)
 	{
 		background = background2;
@@ -82,6 +91,8 @@ namespace gameEngine {
 		Uint32 nextTick;
 		int delay;
 
+		camera = new Camera();
+
 		while (!exited) {
 			switched = false;
 			nextTick = SDL_GetTicks() + tickInterval;
@@ -90,7 +101,7 @@ namespace gameEngine {
 			SDL_RenderCopy(renderer, background, nullptr, nullptr);
 			
 			for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) {
-				(*it)->draw();
+				(*it)->draw(camera);
 			}
 
 			SDL_Event event;
@@ -127,6 +138,10 @@ namespace gameEngine {
 
 			for (itTick = sprites.begin(); itTick != sprites.end(); itTick++) {
 				(*itTick)->tick();
+				if ((*itTick)->getType() == "Character")
+				{
+					//camera->tick(&itTick,&level);
+				}
 			}
 
 			SDL_RenderPresent(renderer);

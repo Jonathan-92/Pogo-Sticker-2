@@ -14,24 +14,24 @@ Camera::~Camera(void)
 void Camera::tick(gameEngine::Sprite character, gameEngine::Level level)
 {
 	//800 600 skärmen ändra
-	mPosX = (character.getPosX() + character.rect.h / 2) - 800 / 2;
-	mPosY = (character.getPosY() + character.rect.w / 2) - 600 / 2;
+	rect.x = (character.getPosX() + character.rect.h / 2) - 800 / 2;
+	rect.y = (character.getPosY() + character.rect.w / 2) - 600 / 2;
 
 	//Keep the camera in bounds
-	if (mPosX < 0)
+	if (rect.x < 0)
 	{
-		mPosX = 0;
+		rect.x = 0;
 	}
-	if (mPosY < 0)
+	if (rect.y < 0)
 	{
-		mPosY = 0;
+		rect.y = 0;
 	}
-	if (mPosX > level.getWidth() - rect.w)
+	if (rect.x > level.getWidth() - rect.w)
 	{
-		mPosX = level.getWidth() - rect.w;
+		rect.x = level.getWidth() - rect.w;
 	}
-	if (mPosY > level.getHeight() - rect.h)
+	if (rect.y > level.getHeight() - rect.h)
 	{
-		mPosY = level.getHeight() - rect.h;
+		rect.y = level.getHeight() - rect.h;
 	}
 }

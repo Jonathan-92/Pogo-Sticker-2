@@ -2,7 +2,7 @@
 #include "GameEngine.h"
 #include <vector>
 
-Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x, y, w, h, imgPath, false)
+Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x, y, w, h, imgPath, false, "Character")
 {
 	//Initialize the offsets
 	mPosX = 0;
@@ -48,6 +48,11 @@ void Character::mouseDown(int x, int y)
 void Character::collisonCheck(gameEngine::Sprite *sprites[])
 {
 	
+}
+
+void Character::draw(Camera* camera)
+{
+	SDL_RenderCopy(gameEngine::ge().getRenderer(), texture, nullptr, &camera->rect);
 }
 
 void Character::tick()

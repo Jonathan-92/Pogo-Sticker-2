@@ -1,7 +1,5 @@
 #ifndef VIEWPORT_H
 #define VIEWPORT_H
-
-#include "GameEngine.h"
 #include "Sprite.h"
 #include <list>
 
@@ -11,12 +9,13 @@ public:
 	ViewPort();
 	~ViewPort();
 	virtual void init() = 0;
-	void load();
-	void setBackground(SDL_Surface* surface);
+	virtual void load();
+	virtual void setBackground(SDL_Surface* surface);
 protected:
 	std::list<gameEngine::Sprite*> sprites;
-private:
 	SDL_Texture* background;
+private:
+
 };
 
 #endif

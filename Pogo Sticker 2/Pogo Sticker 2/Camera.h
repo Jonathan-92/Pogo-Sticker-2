@@ -1,3 +1,5 @@
+#ifndef CAMERA_H
+#define CAMERA_H
 #include <SDL.h>
 #include "Sprite.h"
 #include "Level.h"
@@ -16,9 +18,8 @@ public:
 	void tick(gameEngine::Sprite character, gameEngine::Level level);
 
 private:
-	//The X and Y offsets of the camera
-	int mPosX, mPosY;
 
 	//The velocity of the camera
 	float mVelX, mVelY;
 };
+#endif

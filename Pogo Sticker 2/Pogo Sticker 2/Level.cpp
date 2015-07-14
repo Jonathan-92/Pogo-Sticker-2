@@ -4,6 +4,7 @@
 #include "MainMenu.h"
 #include "Character.h"
 #include "Timer.h"
+#include "GameEngine.h"
 
 using namespace gameEngine;
 

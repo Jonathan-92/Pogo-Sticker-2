@@ -14,11 +14,6 @@ Tile::Tile(int x, int y, int tileType)
 	mType = tileType;
 }
 
-int Tile::getType() 
-{ 
-	return mType; 
-} 
-
 SDL_Rect Tile::getBox() 
 { 
 	return mBox; 

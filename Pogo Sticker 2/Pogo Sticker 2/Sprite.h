@@ -17,6 +17,7 @@ namespace gameEngine {
 		/* Draws the Sprite on the window. This function can be overridden
 		if special behaviour is desired. */
 		virtual void draw();
+		virtual void draw(Sprite* cameraRect);
 
 		/* Performs something each lap in the game loop. What it does depends
 		on the implementation of the subclasses to this class. */
@@ -39,12 +40,15 @@ namespace gameEngine {
 		virtual void collisonCheck(gameEngine::Sprite *sprites[]){}
 		virtual int getPosX();
 		virtual int getPosY();
+		virtual std::string getType();
 	protected:
 		virtual ~Sprite();
 
 		/* This is what will be copied to the renderer and displayed in the
 		window. */
 		SDL_Texture* texture;
+		
+		std::string type;
 
 		// Creates a Sprite from an image path, and uses the flag transp to 
 		// determine if the background should be transparent of not
@@ -52,6 +56,9 @@ namespace gameEngine {
 
 		// Creates a Sprite from an SDL_Surface*
 		Sprite(int x, int y, int w, int h, SDL_Surface* surface);
+
+		Sprite(int x, int y, int w, int h, std::string imgPath, bool transp, std::string spriteType);
+		Sprite(int x, int y, int w, int h, SDL_Surface* surface, std::string spriteType);
 
 		// Allows for creating a Sprite that has no visibility properties
 		Sprite();

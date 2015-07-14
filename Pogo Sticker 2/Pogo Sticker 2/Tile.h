@@ -1,3 +1,5 @@
+#ifndef TILE_H
+#define TILE_H
 #include "SDL.h"
 #include "Sprite.h"
 //The tile
@@ -10,9 +12,6 @@ public:
 	//Shows the tile
 	void render(SDL_Rect& camera);
 
-	//Get the tile type
-	int getType();
-
 	//Get the collision box
 	SDL_Rect getBox();
 
@@ -23,3 +22,4 @@ private:
 	//The tile type
 	int mType;
 };
+#endif

@@ -6,7 +6,7 @@
 namespace gameEngine {
 
 	G_Button::G_Button(int x, int y, int w, int h, std::string imgPath, 
-		FuncPtr fp) : Sprite(x, y, w, h, imgPath, false), funcPtr(fp), 
+		FuncPtr fp) : Sprite(x, y, w, h, imgPath, false, "Button"), funcPtr(fp), 
 		enabled(true)
 	{
 	}
