@@ -24,6 +24,7 @@ namespace gameEngine {
 		std::list<Sprite*> getSprites() const;
 		SDL_Renderer* getRenderer();
 		TTF_Font* getFont();
+		Camera& getCamera();
 		bool switched;
 	private:
 		SDL_Window* screen;

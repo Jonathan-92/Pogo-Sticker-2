@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include "Sprite.h"
 #include "Level.h"
+#include "Character.h"
 
 //The camera that will move around on the screen
 class Camera : public gameEngine::Sprite
@@ -15,10 +16,12 @@ public:
 	Camera();
 	~Camera(void);
 
-	void tick(gameEngine::Sprite character, gameEngine::Level level);
-
+	void tick();
+	void setCharacter(Character* character);
+	void setLevel(gameEngine::Level* level);
 private:
-
+	Character* character;
+	gameEngine::Level* level;
 	//The velocity of the camera
 	float mVelX, mVelY;
 };

@@ -36,6 +36,8 @@ namespace gameEngine {
 		renderer = SDL_CreateRenderer(screen, -1, SDL_RENDERER_ACCELERATED);
 		if (renderer == nullptr)
 			throwException("Failed creating renderer.", SDL_GetError);
+
+		camera = new Camera();
 	}
 	
 	GameEngine::~GameEngine(void)
@@ -53,6 +55,11 @@ namespace gameEngine {
 
 	TTF_Font* GameEngine::getFont() {
 		return font;
+	}
+
+	Camera& GameEngine::getCamera()
+	{
+		return *camera;
 	}
 
 	void GameEngine::setVideoMode(int w, int h) {
@@ -91,8 +98,6 @@ namespace gameEngine {
 		Uint32 nextTick;
 		int delay;
 
-		camera = new Camera();
-
 		while (!exited) {
 			switched = false;
 			nextTick = SDL_GetTicks() + tickInterval;
@@ -101,7 +106,7 @@ namespace gameEngine {
 			SDL_RenderCopy(renderer, background, nullptr, nullptr);
 			
 			for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) {
-				(*it)->draw(camera);
+				(*it)->draw();
 			}
 
 			SDL_Event event;

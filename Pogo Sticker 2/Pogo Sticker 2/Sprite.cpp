@@ -33,8 +33,8 @@ namespace gameEngine {
 		texture = nullptr;
 	}
 
-	void Sprite::draw(Sprite* cameraRect) {
-		SDL_RenderCopy(ge().getRenderer(), texture, &cameraRect->rect, &rect);
+	void Sprite::draw() {
+		SDL_RenderCopy(ge().getRenderer(), texture, &ge().getCamera().rect, &rect);
 	}
 
 	Sprite::~Sprite()

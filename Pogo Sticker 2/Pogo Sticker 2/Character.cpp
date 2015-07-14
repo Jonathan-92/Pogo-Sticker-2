@@ -50,10 +50,10 @@ void Character::collisonCheck(gameEngine::Sprite *sprites[])
 	
 }
 
-void Character::draw(Camera* camera)
-{
-	SDL_RenderCopy(gameEngine::ge().getRenderer(), texture, nullptr, &camera->rect);
-}
+//void Character::draw(Camera* camera)
+//{
+//	SDL_RenderCopy(gameEngine::ge().getRenderer(), texture, nullptr, &camera->rect);
+//}
 
 void Character::tick()
 {	

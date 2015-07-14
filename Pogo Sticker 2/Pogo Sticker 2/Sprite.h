@@ -17,7 +17,7 @@ namespace gameEngine {
 		/* Draws the Sprite on the window. This function can be overridden
 		if special behaviour is desired. */
 		virtual void draw();
-		virtual void draw(Sprite* cameraRect);
+		//virtual void draw(Sprite* cameraRect);
 
 		/* Performs something each lap in the game loop. What it does depends
 		on the implementation of the subclasses to this class. */
@@ -36,6 +36,7 @@ namespace gameEngine {
 		/* Call this function when a key on the keyboard is pressed and pass the
 		event */
 		virtual void keyDown(SDL_Event& e){}
+		virtual void keyUp(SDL_Event& e){}
 
 		virtual void collisonCheck(gameEngine::Sprite *sprites[]){}
 		virtual int getPosX();

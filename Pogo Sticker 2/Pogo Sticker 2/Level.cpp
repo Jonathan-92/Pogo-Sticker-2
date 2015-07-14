@@ -47,6 +47,9 @@ void Level::init()
 	Character* character = new Character(200, 200, 100, 100, "../images/button_up.png");
 	sprites.push_back(character);
 
+	ge().getCamera().setCharacter(character);
+	ge().getCamera().setLevel(this);
+
 	Timer* timer = new Timer(10, 01, 100, 50, "hej");
 	sprites.push_back(timer);
 }

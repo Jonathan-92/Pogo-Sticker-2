@@ -2,7 +2,6 @@
 #define CHARACTER_H
 #include <SDL.h>
 #include "Sprite.h"
-#include "Camera.h"
 #include "Gravity.h"
 
 //The pogo guy.
@@ -34,7 +33,7 @@ public:
 
 	//Takes key presses and adjusts the dot's velocity (Sprite sköter det tydligen)
 	//void handleEvent(SDL_Event& e);
-	virtual void draw(Camera* camera);
+	//virtual void draw(Camera* camera);
 
 	//Moves the dot
 	virtual void tick();

@@ -46,7 +46,7 @@ void MainMenu::init()
 	SDL_Surface* surface = IMG_Load("../images/white.png");
 	setBackground(surface);
 
-	Label* label = Label::getInstance(50, 50, 50, 50, "hejsan");
+	Label* label = Label::getInstance(50, 50, 50, 50, "Main Menu");
 	sprites.push_back(label);
 
 	G_Button* button = new G_Button(100, 100, 100, 100, "../images/button_up.png", switchToLevel);
