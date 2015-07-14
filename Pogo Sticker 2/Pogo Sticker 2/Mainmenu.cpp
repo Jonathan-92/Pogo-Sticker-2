@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Level.h"
 #include "G_Button.h"
+#include "GameEngine.h"
 
 using namespace gameEngine;
 
@@ -27,6 +28,17 @@ void switchToLevel()
 {
 	Level* level1 = new Level();
 	level1->load();
+}
+
+void Level::load()
+{
+	ge().load(background, sprites, this);
+}
+
+void Level::setBackground(SDL_Surface* surface)
+{
+	background = SDL_CreateTextureFromSurface(ge().getRenderer(), surface);
+	SDL_FreeSurface(surface);
 }
 
 void MainMenu::init()

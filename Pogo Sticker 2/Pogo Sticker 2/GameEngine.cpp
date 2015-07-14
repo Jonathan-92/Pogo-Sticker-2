@@ -67,6 +67,15 @@ namespace gameEngine {
 		return sprites;
 	}
 
+	void GameEngine::load(SDL_Texture* background2, list<Sprite*> sprites2, Level* level2)
+	{
+		level = level2;
+		background = background2;
+		sprites = sprites2;
+		it2 = sprites.begin();
+		switched = true;
+	}
+
 	void GameEngine::load(SDL_Texture* background2, list<Sprite*> sprites2)
 	{
 		background = background2;
@@ -129,10 +138,10 @@ namespace gameEngine {
 
 			for (itTick = sprites.begin(); itTick != sprites.end(); itTick++) {
 				(*itTick)->tick();
-				/*if ((*itTick)->getType == "Character")
+				if ((*itTick)->getType() == "Character")
 				{
-					camera->tick(&itTick._Mynode, &level);
-				}*/
+					//camera->tick(&itTick,&level);
+				}
 			}
 
 			SDL_RenderPresent(renderer);

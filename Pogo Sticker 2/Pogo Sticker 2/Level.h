@@ -10,6 +10,8 @@ namespace gameEngine
 		Level();
 		~Level();
 		void init();
+		void load();
+		void setBackground(SDL_Surface* surface);
 		int getHeight();
 		int getWidth();
 	private:

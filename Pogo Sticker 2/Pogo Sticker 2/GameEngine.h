@@ -2,6 +2,7 @@
 #define GAMEENGINE_H
 #include "Sprite.h"
 #include "Camera.h"
+#include "Viewport.h"
 #include <list>
 #include "SDL_ttf.h"
 
@@ -17,6 +18,7 @@ namespace gameEngine {
 		void setBackground(const char* path);
 		void setVideoMode(int w, int h);
 		void setFps(int i);
+		void load(SDL_Texture* background, std::list<Sprite*> sprites, Level* level);
 		void load(SDL_Texture* background, std::list<Sprite*> sprites);
 		void delay(int ticks);
 		std::list<Sprite*> getSprites() const;
@@ -28,6 +30,7 @@ namespace gameEngine {
 		SDL_Renderer* renderer;
 		TTF_Font* font;
 		Camera* camera;
+		Level* level;
 		int fps;
 		SDL_Texture* background;
 		std::list<Sprite*> sprites;
