@@ -2,6 +2,8 @@
 #include "GameEngine.h"
 #include <vector>
 
+using namespace gameEngine;
+
 Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x, y, w, h, imgPath, false, "Character")
 {
 	//Initialize the offsets
@@ -60,6 +62,15 @@ void Character::tick()
 	if (rect.y + rect.h > 640 || rect.y + rect.h < 0)
 	{
 		mVelY -= 2;
+	}
+
+	std::list<Sprite*> sprites = ge().getSprites();
+	for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++)
+	{
+		if (rect.overlaps((*it)->rect) && (*it)->getType() == "Tile")
+		{
+			mVelY -= 2;
+		}
 	}
 
 	mVelY += 0.05f;
