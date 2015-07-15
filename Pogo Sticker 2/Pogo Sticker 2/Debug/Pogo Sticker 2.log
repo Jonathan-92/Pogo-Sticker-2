@@ -1,48 +1,9 @@
-﻿Build started 2015-07-14 11:23:39.
+﻿Build started 2015-07-14 16:32:30.
      1>Project "C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Pogo Sticker 2\Pogo Sticker 2.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"..\SDL2\SDL2_image-2.0.0\include" /I"..\SDL2\SDL2_ttf-2.0.12\include" /I"..\SDL2\SDL2-2.0.3\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp Character.cpp G_Button.cpp GameEngine.cpp Gravity.cpp Label.cpp Level.cpp Main.cpp Mainmenu.cpp Sprite.cpp Tile.cpp Timer.cpp ViewPort.cpp
-         Level.cpp
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\camera.h(16): error C2061: syntax error : identifier 'Character'
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\camera.h(22): error C2143: syntax error : missing ';' before '*'
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\camera.h(22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(54): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\level.cpp(50): error C2661: 'Camera::Camera' : no overloaded function takes 2 arguments
-         GameEngine.cpp
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(37): error C2061: syntax error : identifier 'Camera'
-         Camera.cpp
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(37): error C2061: syntax error : identifier 'Camera'
-         Generating Code...
-         Compiling...
-         Character.cpp
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\camera.h(16): error C2061: syntax error : identifier 'Character'
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\camera.h(22): error C2143: syntax error : missing ';' before '*'
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\camera.h(22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(54): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.cpp(67): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
-         Generating Code...
-         Compiling...
-         G_Button.cpp
-         Generating Code...
-         Compiling...
-         ViewPort.cpp
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(37): error C2061: syntax error : identifier 'Camera'
-         Timer.cpp
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(37): error C2061: syntax error : identifier 'Camera'
-         Tile.cpp
-         Sprite.cpp
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(37): error C2061: syntax error : identifier 'Camera'
-         Mainmenu.cpp
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(37): error C2061: syntax error : identifier 'Camera'
-         Main.cpp
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(37): error C2061: syntax error : identifier 'Camera'
-         Label.cpp
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(37): error C2061: syntax error : identifier 'Camera'
-         Gravity.cpp
-     1>c:\users\jonathan\documents\github\pogo-sticker-2\pogo sticker 2\pogo sticker 2\character.h(37): error C2061: syntax error : identifier 'Camera'
-         Generating Code...
-     1>Done Building Project "C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Pogo Sticker 2\Pogo Sticker 2.vcxproj" (Build target(s)) -- FAILED.
+     1>Link:
+         Pogo Sticker 2.vcxproj -> C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Debug\Pogo Sticker 2.exe
+     1>Done Building Project "C:\Users\Jonathan\Documents\GitHub\Pogo-Sticker-2\Pogo Sticker 2\Pogo Sticker 2\Pogo Sticker 2.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:06.55
+Time Elapsed 00:00:01.91
