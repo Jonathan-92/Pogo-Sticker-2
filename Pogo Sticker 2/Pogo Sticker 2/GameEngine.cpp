@@ -145,7 +145,7 @@ namespace gameEngine {
 				(*itTick)->tick();
 				if ((*itTick)->getType() == "Character")
 				{
-					//camera->tick(&itTick,&level);
+					camera->tick();
 				}
 			}
 

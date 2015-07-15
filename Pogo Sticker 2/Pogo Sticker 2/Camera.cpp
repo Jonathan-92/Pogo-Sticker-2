@@ -18,7 +18,7 @@ void Camera::setCharacter(Character* character)
 	this->character = character;
 }
 
-void Camera::setLevel(Level* Level)
+void Camera::setLevel(Level* level)
 {
 	this->level = level;
 }
@@ -28,8 +28,8 @@ void Camera::tick()
 	if (character == nullptr || level == nullptr)
 		return;
 	//800 600 skärmen ändra
-	rect.x = (character->getPosX() + character->rect.h / 2) - 800 / 2;
-	rect.y = (character->getPosY() + character->rect.w / 2) - 600 / 2;
+	rect.x = (character->rect.x + character->rect.w / 2) - 800 / 2;
+	rect.y = (character->rect.y + character->rect.h / 2) - 600 / 2;
 
 	//Keep the camera in bounds
 	if (rect.x < 0)

@@ -64,9 +64,8 @@ void Character::tick()
 
 	mVelY += 0.05f;
 	
-	rect.y += mVelY;
+	rect.y += mVelY;	
 	
-
 	//rect.x += mVelX;
 	//rect.y = (int)mPosY;
 }

@@ -34,7 +34,12 @@ namespace gameEngine {
 	}
 
 	void Sprite::draw() {
-		SDL_RenderCopy(ge().getRenderer(), texture, &ge().getCamera().rect, &rect);
+		if (type == "Character" || type == "Tile")
+		{
+			rect.x = rect.x - ge().getCamera().rect.x;
+			rect.y = rect.y - ge().getCamera().rect.y;
+		}
+		SDL_RenderCopy(ge().getRenderer(), texture, NULL, &rect);
 	}
 
 	Sprite::~Sprite()

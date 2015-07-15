@@ -4,6 +4,7 @@
 #include "MainMenu.h"
 #include "Character.h"
 #include "Timer.h"
+#include "Tile.h"
 #include "GameEngine.h"
 
 using namespace gameEngine;
@@ -11,6 +12,8 @@ using namespace gameEngine;
 Level::Level()
 {
 	init();
+	levelHeight = 2000;
+	levelWidth = 2000;
 }
 
 
@@ -44,8 +47,11 @@ void Level::init()
 	G_Button* button = new G_Button(100, 100, 100, 100, "../images/button_up.png", switchToMenu);
 	sprites.push_back(button);
 
-	Character* character = new Character(200, 200, 100, 100, "../images/button_up.png");
+	Character* character = new Character(600, 400, 100, 100, "../images/black.png");
 	sprites.push_back(character);
+
+	Tile* tile = new Tile(700, 500, 100, 100, "../images/black.png");
+	sprites.push_back(tile);
 
 	ge().getCamera().setCharacter(character);
 	ge().getCamera().setLevel(this);

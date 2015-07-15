@@ -7,7 +7,8 @@ class Tile : public gameEngine::Sprite
 {
 public:
 	//Initializes position and type
-	Tile(int x, int y, int tileType);
+	Tile(int x, int y, int w, int h, std::string imgPath);
+	~Tile();
 
 	//Shows the tile
 	void render(SDL_Rect& camera);

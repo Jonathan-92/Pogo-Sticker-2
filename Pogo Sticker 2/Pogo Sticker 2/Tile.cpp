@@ -1,17 +1,12 @@
 #include "Tile.h"
 
-Tile::Tile(int x, int y, int tileType)
+Tile::Tile(int x, int y, int w, int h, std::string imgPath) : Sprite(x, y, w, h, imgPath, false, "Tile")
 {
-	//Get the offsets
-	mBox.x = x;
-	mBox.y = y;
 
-	//Set the collision box
-	mBox.w = 50;
-	mBox.h = 50;
+}
 
-	//Get the tile type
-	mType = tileType;
+Tile::~Tile(void)
+{
 }
 
 SDL_Rect Tile::getBox() 
