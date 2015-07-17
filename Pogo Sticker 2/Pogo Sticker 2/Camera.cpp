@@ -6,7 +6,7 @@ using namespace gameEngine;
 
 Camera::Camera()
 {
-	rect = { 0, 0, 800, 600 };
+	rect = { 0, 0, 800, 640 };
 }
 
 Camera::~Camera(void)
@@ -28,8 +28,8 @@ void Camera::tick()
 	if (character == nullptr || level == nullptr)
 		return;
 	//800 600 skärmen ändra
-	rect.x = (character->rect.x + character->rect.w / 2) - 800 / 2;
-	rect.y = (character->rect.y + character->rect.h / 2) - 600 / 2;
+	rect.x = character->rect.centeredX() - 800 / 2;
+	rect.y = character->rect.centeredY() - 640 / 2;
 
 	//Keep the camera in bounds
 	if (rect.x < 0)

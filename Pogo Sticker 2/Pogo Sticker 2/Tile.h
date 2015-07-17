@@ -21,6 +21,7 @@ public:
 	//Get the collision box
 	void draw();
 	int getTileType();
+	void tick();
 
 private:
 	//The tile type

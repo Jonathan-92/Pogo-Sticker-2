@@ -21,11 +21,11 @@ Character::~Character(void)
 void Character::mouseMotion(int x, int y)
 {
 	if (mVelX >= CHARACTER_VEL)
-		mVelX -= 2;
+		mVelX -= 0.2f;
 	if (rect.x < x)
-		mVelX += 1;
+		mVelX += 0.1f;
 	if (rect.x > x)
-		mVelX -= 1;
+		mVelX -= 0.1f;
 }
 
 void Character::mouseDown(int x, int y)
@@ -35,14 +35,13 @@ void Character::mouseDown(int x, int y)
 
 void Character::draw()
 {
-	rect.x = rect.x - ge().getCamera().rect.x;
-	rect.y = rect.y - ge().getCamera().rect.y;
-	SDL_RenderCopy(gameEngine::ge().getRenderer(), texture, nullptr, &rect);
+	SDL_Rect drawingRect = { rect.x - ge().getCamera().rect.x, rect.y - ge().getCamera().rect.y, rect.w, rect.h };
+	SDL_RenderCopy(gameEngine::ge().getRenderer(), texture, nullptr, &drawingRect);	
 }
 
 void Character::tick()
 {	
-	if (rect.y + rect.h > 640 || rect.y + rect.h < 0)
+	if (rect.y + rect.h > 1000 || rect.y + rect.h < 0)
 	{
 		mVelY -= 2;
 	}
@@ -52,14 +51,17 @@ void Character::tick()
 	{
 		if (rect.overlaps((*it)->rect) && (*it)->getType() == "Tile")
 		{
-			mVelY -= 2;
+			if (mVelY > 0)
+				mVelY -= 2;
+			else
+				mVelY += 2;
 		}
 	}
 
+	//TODO: Apply gravity here
 	mVelY += 0.05f;
 	
-	rect.y += mVelY;	
-	
-	//rect.x += mVelX;
-	//rect.y = (int)mPosY;
+	rect.y += mVelY;		
+	rect.x += mVelX;
+
 }

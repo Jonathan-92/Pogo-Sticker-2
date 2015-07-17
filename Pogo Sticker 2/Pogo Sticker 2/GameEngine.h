@@ -3,6 +3,7 @@
 #include "Sprite.h"
 #include "Camera.h"
 #include "Viewport.h"
+#include "Tile.h"
 #include <list>
 #include "SDL_ttf.h"
 

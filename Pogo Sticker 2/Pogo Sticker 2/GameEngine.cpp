@@ -29,7 +29,7 @@ namespace gameEngine {
 			throwException("Failed to open font.", TTF_GetError);
 
 		screen = SDL_CreateWindow("My Game", SDL_WINDOWPOS_CENTERED,
-			20, 800, 600, SDL_WINDOW_OPENGL);
+			20, 800, 640, SDL_WINDOW_OPENGL);
 		if (screen == nullptr)
 			throwException("Failed creating window.", SDL_GetError);
 
