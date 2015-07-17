@@ -2,3 +2,6 @@
 - Filhantering för att spara levels som filer
 - En tile engine
 - Ladda ner Tiled
+- Kontroll från vilket håll en kollision sker
+- Ett sätt att hantera tile typer
+- Dela upp spelkaraktären i flera rektanglar
