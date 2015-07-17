@@ -108,6 +108,7 @@
   <ItemGroup>
     <Image Include="..\images\black.png" />
     <Image Include="..\images\button_up.png" />
+    <Image Include="..\images\Goal.png" />
     <Image Include="..\images\white.png" />
   </ItemGroup>
   <ItemGroup>

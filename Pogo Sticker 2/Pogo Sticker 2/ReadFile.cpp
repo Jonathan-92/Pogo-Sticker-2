@@ -15,7 +15,9 @@ int ReadFile::readData()
 	while (!map.eof())
 	{
 		int next;
+		char dummy;
 		map >> next;
+		map >> dummy;
 		data.push_back(&next);
 	}
 	map.close();

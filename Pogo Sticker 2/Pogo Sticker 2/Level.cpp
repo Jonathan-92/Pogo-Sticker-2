@@ -65,9 +65,11 @@ void Level::init()
 
 	for (int i = 0; i < 15; ++i)
 	{
-		Tile* tile = new Tile(100+50*i, 500, 100, 100, "../images/black.png");
+		Tile* tile = new Tile(100+50*i, 500, 100, 100, "../images/black.png", 1);
 		sprites.push_back(tile);
 	}
+	Tile* tile = new Tile(900, 500, 100, 100, "../images/Goal.png", 1);
+	sprites.push_back(tile);
 
 	ge().getCamera().setCharacter(character);
 	ge().getCamera().setLevel(this);
