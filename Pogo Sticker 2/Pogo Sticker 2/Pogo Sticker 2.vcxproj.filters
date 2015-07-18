@@ -136,6 +136,9 @@
     <Image Include="..\images\Goal.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\images\5z1KX.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
