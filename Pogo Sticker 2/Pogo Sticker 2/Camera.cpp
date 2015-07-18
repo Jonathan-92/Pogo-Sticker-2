@@ -27,7 +27,7 @@ void Camera::tick()
 {
 	if (character == nullptr || level == nullptr)
 		return;
-	//800 600 skärmen ändra
+	//TODO: Change screensize to variables
 	rect.x = character->rect.centeredX() - 800 / 2;
 	rect.y = character->rect.centeredY() - 640 / 2;
 

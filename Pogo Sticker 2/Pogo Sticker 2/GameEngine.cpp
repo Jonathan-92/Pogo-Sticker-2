@@ -38,6 +38,7 @@ namespace gameEngine {
 			throwException("Failed creating renderer.", SDL_GetError);
 
 		camera = new Camera();
+		exited = false;
 	}
 	
 	GameEngine::~GameEngine(void)
@@ -92,8 +93,7 @@ namespace gameEngine {
 	}
 
 	void GameEngine::run() {
-		bool exited = false;
-
+		//TODO: Dela upp koden i funktioner
 		const int tickInterval = 1000 / fps;
 		Uint32 nextTick;
 		int delay;
@@ -105,49 +105,9 @@ namespace gameEngine {
 			SDL_RenderClear(renderer);
 			SDL_RenderCopy(renderer, background, nullptr, nullptr);
 			
-			for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) {
-				(*it)->draw();
-			}
-
-			SDL_Event event;
-			while (SDL_PollEvent(&event)) {
-
-				switch (event.type) {
-				case SDL_QUIT:
-					exited = true;
-					break;
-				case SDL_MOUSEBUTTONDOWN:
-					if (event.button.state == SDL_PRESSED) {
-						forAll(&Sprite::mouseDown, event.button.x, event.button.y);
-					}
-					break;
-				case SDL_MOUSEMOTION:
-					forAll(&Sprite::mouseMotion, event.button.x, event.button.y);
-					break;
-				case SDL_KEYDOWN:
-					for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) {
-						(*it)->keyDown(event);
-					}
-					break;
-				case SDL_KEYUP:
-					for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) {
-						(*it)->keyUp(event);
-					}
-					break;
-				}
-			}
-
-			if (event.button.state == SDL_PRESSED) {
-				forAll(&Sprite::mouseMotion, event.button.x, event.button.y);
-			}
-
-			for (itTick = sprites.begin(); itTick != sprites.end(); itTick++) {
-				(*itTick)->tick();
-				if ((*itTick)->getType() == "Character")
-				{
-					camera->tick();
-				}
-			}
+			drawSprites();
+			handleEvents();			
+			handleTicks();
 
 			SDL_RenderPresent(renderer);
 
@@ -156,6 +116,54 @@ namespace gameEngine {
 			if (delay > 0)
 				SDL_Delay(delay);
 		} 
+	}
+
+	void GameEngine::drawSprites()
+	{
+		for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) 
+		{
+			(*it)->draw();
+		}
+	}
+	void GameEngine::handleEvents()
+	{
+		SDL_Event event;
+		while (SDL_PollEvent(&event)) 
+		{
+			switch (event.type) {
+			case SDL_QUIT:
+				exited = true;
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				if (event.button.state == SDL_PRESSED) {
+					forAll(&Sprite::mouseDown, event.button.x, event.button.y);
+				}
+				break;
+			case SDL_MOUSEMOTION:
+				forAll(&Sprite::mouseMotion, event.button.x, event.button.y);
+				break;
+			case SDL_KEYDOWN:
+				for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) {
+					(*it)->keyDown(event);
+				}
+				break;
+			case SDL_KEYUP:
+				for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) {
+					(*it)->keyUp(event);
+				}
+				break;
+			}
+		}
+	}
+	void GameEngine::handleTicks()
+	{
+		for (itTick = sprites.begin(); itTick != sprites.end(); itTick++) {
+			(*itTick)->tick();
+			if ((*itTick)->getType() == "Character")
+			{
+				camera->tick();
+			}
+		}
 	}
 
 	void GameEngine::delay(int ticks) {
