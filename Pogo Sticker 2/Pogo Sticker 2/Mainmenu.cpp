@@ -46,9 +46,9 @@ void MainMenu::init()
 	SDL_Surface* surface = IMG_Load("../images/white.png");
 	setBackground(surface);
 
-	Label* label = Label::getInstance(50, 50, 50, 50, "Main Menu");
+	Label* label = Label::getInstance(50, 50, 150, 50, "Main Menu");
 	sprites.push_back(label);
 
-	G_Button* button = new G_Button(100, 100, 100, 100, "../images/button_up.png", switchToLevel);
+	G_Button* button = new G_Button(100, 100, 200, 100, "../images/start_level_1.png", switchToLevel);
 	sprites.push_back(button);
 }

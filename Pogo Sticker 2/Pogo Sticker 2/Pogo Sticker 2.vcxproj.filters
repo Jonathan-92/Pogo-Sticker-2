@@ -121,6 +121,9 @@
     <Image Include="..\images\button_up.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\images\start_level_1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
