@@ -134,6 +134,8 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\images\start_level_1.png">
+		<Filter>Resource Files</Filter>
+    </Image>
     <Image Include="..\images\Goal.png">
       <Filter>Resource Files</Filter>
     </Image>
