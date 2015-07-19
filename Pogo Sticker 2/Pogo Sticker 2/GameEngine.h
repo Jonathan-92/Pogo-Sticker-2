@@ -3,6 +3,7 @@
 #include "Sprite.h"
 #include "Camera.h"
 #include "Viewport.h"
+#include "Tile.h"
 #include <list>
 #include "SDL_ttf.h"
 
@@ -32,12 +33,17 @@ namespace gameEngine {
 		TTF_Font* font;
 		Camera* camera;
 		Level* level;
+		bool exited;
 		int fps;
 		SDL_Texture* background;
 		std::list<Sprite*> sprites;
 		std::list<Sprite*>::iterator it2;
 		std::list<Sprite*>::iterator itTick;
 		void forAll(void (Sprite::*membrPtr)(int, int), int x, int y);
+		//Loop functions
+		void drawSprites();
+		void handleEvents();
+		void handleTicks();
 	};
 
 	GameEngine& ge();

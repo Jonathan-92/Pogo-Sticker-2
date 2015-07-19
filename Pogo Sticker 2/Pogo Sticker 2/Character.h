@@ -25,27 +25,17 @@ public:
 	//Ärvd från Sprite antar jag
 	virtual void mouseMotion(int x, int y);
 	virtual void mouseDown(int x, int y);
-	virtual void collisonCheck(gameEngine::Sprite *sprites[]);
 
-	//Få ut positionen
-	virtual int getPosX();
-	virtual int getPosY();
+	void draw();
 
-	//Takes key presses and adjusts the dot's velocity (Sprite sköter det tydligen)
-	//void handleEvent(SDL_Event& e);
-	//virtual void draw(Camera* camera);
-
-	//Moves the dot
 	virtual void tick();
 
 private:
-	//The X and Y offsets of the dot
-	int mPosX, mPosY;
 
 	//The velocity of the dot
 	float mVelX, mVelY;
 
-	//CHAAAARRGEEEE!
+	//Handle how high it should bounce
 	float chargeMeter;
 	int chargeMeterTick;
 

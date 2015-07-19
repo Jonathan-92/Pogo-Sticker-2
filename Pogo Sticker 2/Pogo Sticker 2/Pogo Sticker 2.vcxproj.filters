@@ -22,6 +22,12 @@
     <Filter Include="Source Files\GameComponents">
       <UniqueIdentifier>{2e1584cc-6d08-4bd5-83c6-369360256a30}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\FileI/O">
+      <UniqueIdentifier>{3d5b90c5-71cf-4b82-b9a8-58fc321ac7cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\File">
+      <UniqueIdentifier>{ba276a54-94e0-4262-ad3b-349577a2f659}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -69,6 +75,9 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
+    <ClCompile Include="ReadFile.cpp">
+      <Filter>Source Files\File</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -110,6 +119,9 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files\SubSprites</Filter>
     </ClInclude>
+    <ClInclude Include="ReadFile.h">
+      <Filter>Header Files\FileI/O</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\images\black.png">
@@ -122,6 +134,10 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\images\start_level_1.png">
+    <Image Include="..\images\Goal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\images\5z1KX.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -130,5 +146,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="TODO.txt" />
+    <Text Include="Text.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

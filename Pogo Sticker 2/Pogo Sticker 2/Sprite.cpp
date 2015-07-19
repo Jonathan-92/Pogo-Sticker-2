@@ -29,18 +29,16 @@ namespace gameEngine {
 	}
 
 	// "invisible" sprite
-	Sprite::Sprite() {
+	Sprite::Sprite() 
+	{
 		texture = nullptr;
 	}
 
-	void Sprite::draw() {
-		if (type == "Character" || type == "Tile")
-		{
-			rect.x = rect.x - ge().getCamera().rect.x;
-			rect.y = rect.y - ge().getCamera().rect.y;
-		}
+	void Sprite::draw() 
+	{
 		SDL_RenderCopy(ge().getRenderer(), texture, NULL, &rect);
 	}
+
 
 	Sprite::~Sprite()
 	{

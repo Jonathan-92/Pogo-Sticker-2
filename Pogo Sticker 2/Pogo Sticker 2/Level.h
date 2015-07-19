@@ -1,6 +1,7 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 #include "ViewPort.h"
+#include "ReadFile.h"
 
 namespace gameEngine
 {
@@ -17,6 +18,7 @@ namespace gameEngine
 	private:
 		int levelHeight;
 		int levelWidth;
+		ReadFile* fileReader;
 	};
 }
 
