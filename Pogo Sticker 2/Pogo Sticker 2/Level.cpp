@@ -11,15 +11,15 @@ using namespace gameEngine;
 
 Level::Level()
 {
-	init();
-
 	fileReader = new ReadFile("../Pogo Sticker 2/Text.txt");
 	fileReader->readData();
 
-	levelHeight = fileReader->dataContext["height"];
-	levelWidth = fileReader->dataContext["width"];
+	levelHeight = fileReader->dataContext["height"]*32;
+	levelWidth = fileReader->dataContext["width"]*32;
 	tileHeight = fileReader->dataContext["tileheight"];
 	tileWidth = fileReader->dataContext["tilewidth"];
+
+	init();
 }
 
 
@@ -45,34 +45,39 @@ int Level::getWidth()
 
 void Level::init()
 {
-	//SDL_Surface* surface = IMG_Load("../images/black.png");
-	//setBackground(surface);
 	SDL_Surface* surface = IMG_Load("../images/white.png");
 	setBackground(surface);
 
 	G_Button* button = new G_Button(100, 100, 100, 100, "../images/button_up.png", switchToMenu);
 	sprites.push_back(button);
 
-	Character* character = new Character(500, 200, 100, 100, "../images/black.png");
+	Character* character = new Character(200, 100, 100, 100, "../images/black.png");
 	sprites.push_back(character);
 
 	//xy = Starting point on the tilemap
 	//wh = How big the tile is
-	SDL_Rect srcRect = { 0, 0, tileHeight, tileWidth };
+	SDL_Rect srcRect = { 32, 32, tileHeight, tileWidth };
+	SDL_Surface* surface2 = IMG_Load("../images/tiletemplate.png");
 	int x = 0;
 	int y = 0;
 	std::list<int> data = fileReader->getData();
 	for (std::list<int>::iterator it = data.begin(); it != data.end(); it++)
 	{
-		if (&it == 0)
-			continue;
 		if (x >= levelWidth)
 		{
 			x = 0;
 			y += tileHeight;
 		}
-		Tile* tile = new Tile(x, y, tileWidth, tileHeight, &srcRect, "../images/tiletemplate.png", 1);
-		sprites.push_back(tile);
+		if (it._Ptr->_Myval == 0)
+		{
+			x += tileWidth;
+			continue;
+		}
+		else
+		{
+			Tile* tile = new Tile(x, y, tileWidth, tileHeight, &srcRect, surface2, 1);
+			sprites.push_back(tile);
+		}
 		x += tileWidth;
 	}
 

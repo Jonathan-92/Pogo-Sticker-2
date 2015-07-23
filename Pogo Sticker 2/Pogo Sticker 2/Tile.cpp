@@ -3,7 +3,7 @@
 
 using namespace gameEngine;
 
-Tile::Tile(int x, int y, int w, int h, SDL_Rect* sourceRect, std::string imgPath, int type) : Sprite(x, y, w, h, sourceRect, imgPath, false, "Tile")
+Tile::Tile(int x, int y, int w, int h, SDL_Rect* sourceRect, SDL_Surface* surface, int type) : Sprite(x, y, w, h, sourceRect, surface, false, "Tile")
 {
 	tileType = type;
 }
@@ -21,7 +21,6 @@ void Tile::draw()
 {
 	SDL_Rect drawingRect = { rect.x - ge().getCamera().rect.x, rect.y - ge().getCamera().rect.y, rect.w, rect.h };
 
-	//SDL_BlitSurface(Surf_Src, &SrcR, Surf_Dest, &DestR);
 	if (rect.overlaps(ge().getCamera().rect))
 		SDL_RenderCopy(ge().getRenderer(), texture, NULL, &drawingRect);
 	else

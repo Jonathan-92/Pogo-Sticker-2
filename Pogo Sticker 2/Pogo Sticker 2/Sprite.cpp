@@ -22,10 +22,9 @@ namespace gameEngine {
 	}
 
 	//For tilemaps
-	Sprite::Sprite(int x, int y, int w, int h, SDL_Rect* sourceRect, std::string imgPath, bool transp, std::string spriteType) :
+	Sprite::Sprite(int x, int y, int w, int h, SDL_Rect* sourceRect, SDL_Surface* surface , bool transp, std::string spriteType) :
 		rect(x, y, w, h)
 	{
-		SDL_Surface* surface = IMG_Load(imgPath.c_str());
 		//32 = Current tilesize
 		SDL_Surface* surface2 = SDL_CreateRGBSurface(0, sourceRect->w, sourceRect->h, 32, 0, 0, 0, 0);
 		
