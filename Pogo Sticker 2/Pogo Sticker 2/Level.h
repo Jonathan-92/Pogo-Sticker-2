@@ -18,6 +18,8 @@ namespace gameEngine
 	private:
 		int levelHeight;
 		int levelWidth;
+		int tileHeight;
+		int tileWidth;
 		ReadFile* fileReader;
 	};
 }
