@@ -63,26 +63,30 @@ void Level::init()
 		++i;
 	}*/
 
+	//xy = Starting point on the tilemap
+	//wh = How big the tile is
+	SDL_Rect srcRect = { 0, 0, 32, 32 };
 	//Floor
 	for (int i = 0; i < 15; ++i)
 	{
-		Tile* tile = new Tile(100+50*i, 500, 100, 100, "../images/black.png", 1);
+		Tile* tile = new Tile(100 + 32 * i, 500, 32, 32, &srcRect, "../images/tiletemplate.png", 1);
 		sprites.push_back(tile);
 	}
 	//Roof
 	for (int i = 0; i < 15; ++i)
 	{
-		Tile* tile = new Tile(100 + 50 * i, 0, 100, 100, "../images/black.png", 1);
+		Tile* tile = new Tile(100 + 32 * i, 0, 32, 32, &srcRect, "../images/tiletemplate.png", 1);
 		sprites.push_back(tile);
 	}	
 	//Left wall
+	srcRect.x = 32; srcRect.y = 32;
 	for (int i = 0; i < 10; ++i)
 	{
-		Tile* tile = new Tile(100, 0 + 50 * i, 100, 100, "../images/black.png", 1);
+		Tile* tile = new Tile(100, 0 + 32 * i, 32, 32, &srcRect, "../images/tiletemplate.png", 1);
 		sprites.push_back(tile);
 	}
 
-	Tile* tile = new Tile(900, 500, 100, 100, "../images/Goal.png", 2);
+	Tile* tile = new Tile(900, 500, 100, 100, &srcRect, "../images/Goal.png", 2);
 	sprites.push_back(tile);
 
 	ge().getCamera().setCharacter(character);

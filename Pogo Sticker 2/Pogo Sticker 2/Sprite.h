@@ -61,6 +61,9 @@ namespace gameEngine {
 		Sprite(int x, int y, int w, int h, std::string imgPath, bool transp, std::string spriteType);
 		Sprite(int x, int y, int w, int h, SDL_Surface* surface, std::string spriteType);
 
+		//For tiles bliting
+		Sprite::Sprite(int x, int y, int w, int h, SDL_Rect* sourceRect, std::string imgPath, bool transp, std::string spriteType);
+
 		// Allows for creating a Sprite that has no visibility properties
 		Sprite();
 	private:

@@ -63,6 +63,11 @@ namespace gameEngine {
 		return *camera;
 	}
 
+	SDL_Window* GameEngine::getScreen()
+	{
+		return screen;
+	}
+
 	void GameEngine::setVideoMode(int w, int h) {
 		SDL_SetWindowSize(screen, w, h);
 	}

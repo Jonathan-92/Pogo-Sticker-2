@@ -15,7 +15,7 @@ class Tile : public gameEngine::Sprite
 {
 public:
 	//Initializes position and type
-	Tile(int x, int y, int w, int h, std::string imgPath, int tileType);
+	Tile(int x, int y, int w, int h, SDL_Rect* sourceRect, std::string imgPath, int tileType);
 	~Tile();
 
 	//Get the collision box

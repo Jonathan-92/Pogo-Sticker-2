@@ -3,7 +3,7 @@
 
 using namespace gameEngine;
 
-Tile::Tile(int x, int y, int w, int h, std::string imgPath, int type) : Sprite(x, y, w, h, imgPath, false, "Tile")
+Tile::Tile(int x, int y, int w, int h, SDL_Rect* sourceRect, std::string imgPath, int type) : Sprite(x, y, w, h, sourceRect, imgPath, false, "Tile")
 {
 	tileType = type;
 }

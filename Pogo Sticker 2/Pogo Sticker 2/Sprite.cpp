@@ -1,6 +1,7 @@
 #include "Sprite.h"
 #include "GameEngine.h"
 #include "SDL_image.h"
+#include "SDL.h"
 
 namespace gameEngine {
 
@@ -18,6 +19,35 @@ namespace gameEngine {
 		type = spriteType;
 
 		SDL_FreeSurface(surface);
+	}
+
+	//For tilemaps
+	Sprite::Sprite(int x, int y, int w, int h, SDL_Rect* sourceRect, std::string imgPath, bool transp, std::string spriteType) :
+		rect(x, y, w, h)
+	{
+		SDL_Surface* surface = IMG_Load(imgPath.c_str());
+		//32 = Current tilesize
+		SDL_Surface* surface2 = SDL_CreateRGBSurface(0, sourceRect->w, sourceRect->h, 32, 0, 0, 0, 0);
+		
+		if (surface == nullptr)
+			throw std::runtime_error("surface is null");
+
+		//Where in the rect the drawing should start
+		SDL_Rect DestR;
+		DestR.x = 0;
+		DestR.y = 0;
+
+		//Take part of an image as texture only
+		SDL_BlitSurface(surface, sourceRect, surface2, &DestR);
+
+		texture = SDL_CreateTextureFromSurface(ge().getRenderer(), surface2);
+		if (texture == nullptr)
+			throw std::runtime_error("texture is null");
+
+		type = spriteType;
+
+		SDL_FreeSurface(surface);
+		SDL_FreeSurface(surface2);
 	}
 
 	Sprite::Sprite(int x, int y, int w, int h, SDL_Surface* surface, std::string spriteType) :

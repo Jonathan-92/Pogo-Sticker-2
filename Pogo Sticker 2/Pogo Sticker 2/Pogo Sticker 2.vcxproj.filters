@@ -134,12 +134,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\images\start_level_1.png">
-		<Filter>Resource Files</Filter>
+      <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\images\Goal.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\images\5z1KX.png">
+    <Image Include="..\images\tiletemplate.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

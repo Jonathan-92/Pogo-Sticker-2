@@ -26,6 +26,7 @@ namespace gameEngine {
 		SDL_Renderer* getRenderer();
 		TTF_Font* getFont();
 		Camera& getCamera();
+		SDL_Window* getScreen();
 		bool switched;
 	private:
 		SDL_Window* screen;
