@@ -27,7 +27,9 @@ namespace gameEngine {
 	{
 		//32 = Current tilesize
 		SDL_Surface* surface2 = SDL_CreateRGBSurface(0, sourceRect->w, sourceRect->h, 32, 0, 0, 0, 0);
-		
+		if (surface2 == nullptr)
+			throwException("surface2 is null ", SDL_GetError);
+			
 		if (surface == nullptr)
 			throw std::runtime_error("surface is null");
 
@@ -38,7 +40,9 @@ namespace gameEngine {
 
 		//Take part of an image as texture only
 		//SDL_BlitSurface(surface, sourceRect, surface2, &DestR);
-
+		if (surface2 == nullptr)
+			throwException("surface2 is null ", SDL_GetError);
+			
 		texture = SDL_CreateTextureFromSurface(ge().getRenderer(), surface2);
 		if (texture == nullptr)
 			throw std::runtime_error("texture is null");
