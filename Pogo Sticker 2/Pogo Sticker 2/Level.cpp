@@ -55,6 +55,9 @@ void Level::init()
 	sprites.push_back(character);
 
 	SDL_Surface* surface2 = IMG_Load("../images/tiletemplate.png");
+	if (surface2 == nullptr)
+		throwException("surface2 is null ", SDL_GetError);
+		
 	int x = 0;
 	int y = 0;
 	std::list<int> data = fileReader->getData();
