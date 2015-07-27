@@ -19,10 +19,11 @@ namespace gameEngine {
 		void setBackground(const char* path);
 		void setVideoMode(int w, int h);
 		void setFps(int i);
-		void load(SDL_Texture* background, std::list<Sprite*> sprites, Level* level);
+		void load(SDL_Texture* background, std::list<Sprite*> sprites, std::list<Tile*> tiles, Level* level);
 		void load(SDL_Texture* background, std::list<Sprite*> sprites);
 		void delay(int ticks);
 		std::list<Sprite*> getSprites() const;
+		std::list<Tile*> getTiles() const;
 		SDL_Renderer* getRenderer();
 		TTF_Font* getFont();
 		Camera& getCamera();
@@ -38,6 +39,7 @@ namespace gameEngine {
 		int fps;
 		SDL_Texture* background;
 		std::list<Sprite*> sprites;
+		std::list<Tile*> tiles;
 		std::list<Sprite*>::iterator it2;
 		std::list<Sprite*>::iterator itTick;
 		void forAll(void (Sprite::*membrPtr)(int, int), int x, int y);

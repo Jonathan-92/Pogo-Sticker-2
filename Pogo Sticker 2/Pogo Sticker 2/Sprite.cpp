@@ -37,7 +37,7 @@ namespace gameEngine {
 		DestR.y = 0;
 
 		//Take part of an image as texture only
-		SDL_BlitSurface(surface, sourceRect, surface2, &DestR);
+		//SDL_BlitSurface(surface, sourceRect, surface2, &DestR);
 
 		texture = SDL_CreateTextureFromSurface(ge().getRenderer(), surface2);
 		if (texture == nullptr)
