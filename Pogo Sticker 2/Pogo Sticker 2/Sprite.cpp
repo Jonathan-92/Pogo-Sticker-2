@@ -26,15 +26,10 @@ namespace gameEngine {
 		rect(x, y, w, h)
 	{
 		//32 = Current tilesize
-<<<<<<< HEAD
-		SDL_Surface* surface2 = SDL_CreateRGBSurface(0, sourceRect->w, sourceRect->h, 32, 0xff000000, 0x00ff0000, 0x0000ff00, 0x00000000);
-		
-=======
 		SDL_Surface* surface2 = SDL_CreateRGBSurface(0, sourceRect->w, sourceRect->h, 32, 0, 0, 0, 0);
 		if (surface2 == nullptr)
 			throwException("surface2 is null ", SDL_GetError);
 			
->>>>>>> origin/develop
 		if (surface == nullptr)
 			throw std::runtime_error("surface is null");
 
@@ -44,15 +39,11 @@ namespace gameEngine {
 		DestR.y = 0;
 
 		//Take part of an image as texture only
-<<<<<<< HEAD
 		SDL_BlitSurface(surface, sourceRect, surface2, &DestR);
 
-=======
-		//SDL_BlitSurface(surface, sourceRect, surface2, &DestR);
 		if (surface2 == nullptr)
 			throwException("surface2 is null ", SDL_GetError);
 			
->>>>>>> origin/develop
 		texture = SDL_CreateTextureFromSurface(ge().getRenderer(), surface2);
 		if (texture == nullptr)
 			throwException("texture is null", SDL_GetError);
@@ -60,11 +51,7 @@ namespace gameEngine {
 		type = spriteType;
 
 		//SDL_FreeSurface(surface);
-<<<<<<< HEAD
 		SDL_FreeSurface(surface2);
-=======
-		//SDL_FreeSurface(surface2);
->>>>>>> origin/develop
 	}
 
 	Sprite::Sprite(int x, int y, int w, int h, SDL_Surface* surface, std::string spriteType) :
