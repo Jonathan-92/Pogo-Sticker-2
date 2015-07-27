@@ -51,7 +51,7 @@ void Level::init()
 	G_Button* button = new G_Button(100, 100, 100, 100, "../images/button_up.png", switchToMenu);
 	sprites.push_back(button);
 
-	Character* character = new Character(200, 100, 30, 60, "../images/character.png");
+	Character* character = new Character(100, 50, 30, 60, "../images/character.png");
 	sprites.push_back(character);
 
 	SDL_Surface* surface2 = IMG_Load("../images/tiletemplate.png");
@@ -78,7 +78,13 @@ void Level::init()
 			int tileMapWidth = surface2->w / 32;
 			int tileMapHeight = surface2->h / 32;
 			int tilePosition = it._Ptr->_Myval;
-			int a = (int)tilePosition / tileMapWidth;
+			int a;
+			if (tilePosition < tileMapWidth)
+				a = tilePosition - 1;
+			else
+			{
+				a = (int)tilePosition % tileMapWidth;
+			}
 			int b = (int)tilePosition / tileMapHeight;
 			//xy = Starting point on the tilemap
 			//wh = How big the tile is
