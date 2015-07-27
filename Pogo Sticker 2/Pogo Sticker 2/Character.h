@@ -32,6 +32,7 @@ public:
 
 private:
 
+	void applyMotion();
 	//The velocity of the dot
 	float mVelX, mVelY;
 

@@ -63,7 +63,12 @@ void Character::tick()
 	//TODO: Apply gravity here
 	mVelY += 0.05f;
 	
-	rect.y += mVelY;		
-	rect.x += mVelX;
+	applyMotion();
 
+}
+
+void Character::applyMotion()
+{
+	rect.y += mVelY;
+	rect.x += mVelX;
 }
