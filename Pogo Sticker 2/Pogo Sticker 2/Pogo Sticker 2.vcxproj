@@ -106,6 +106,7 @@
     <ClInclude Include="ViewPort.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\images\character.png" />
     <Image Include="..\images\tiletemplate.png" />
     <Image Include="..\images\black.png" />
     <Image Include="..\images\button_up.png" />

@@ -37,6 +37,8 @@ namespace gameEngine {
 		SDL_Rect DestR;
 		DestR.x = 0;
 		DestR.y = 0;
+		DestR.h = sourceRect->h;
+		DestR.w = sourceRect->w;
 
 		//Take part of an image as texture only
 		SDL_BlitSurface(surface, sourceRect, surface2, &DestR);
