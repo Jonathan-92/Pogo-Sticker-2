@@ -41,11 +41,11 @@ namespace gameEngine {
 
 		texture = SDL_CreateTextureFromSurface(ge().getRenderer(), surface2);
 		if (texture == nullptr)
-			throw std::runtime_error("texture is null");
+			throwException("texture is null", SDL_GetError);
 
 		type = spriteType;
 
-		SDL_FreeSurface(surface);
+		//SDL_FreeSurface(surface);
 		SDL_FreeSurface(surface2);
 	}
 

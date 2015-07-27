@@ -15,7 +15,7 @@ public:
 	std::map<std::string, int> dataContext;
 private:
 	std::string filePath;
-	std::ifstream map;
+	std::ifstream fileStream;
 };
 
 #endif
