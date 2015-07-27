@@ -12,16 +12,16 @@ ReadFile::~ReadFile(void)
 //TODO: Divide into functions
 int ReadFile::readData()
 {
-	map.open(filePath);
+	fileStream.open(filePath);
 	std::string line;
 
-	std::getline(map, line);
+	std::getline(fileStream, line);
 
 	if (line == "[header]")
 	{
 		while (line != "[layer]")
 		{
-			std::getline(map, line);
+			std::getline(fileStream, line);
 			int number = 0;
 
 			std::size_t pos = line.find("=");
@@ -36,19 +36,19 @@ int ReadFile::readData()
 	}
 	if (line == "[layer]")
 	{
-		std::getline(map, line);
-		std::getline(map, line);
+		std::getline(fileStream, line);
+		std::getline(fileStream, line);
 
-		while (!map.eof())
+		while (!fileStream.eof())
 		{
 			int next;
 			char dummy;
-			map >> next;
-			map >> dummy;
+			fileStream >> next;
+			fileStream >> dummy;
 			data.push_back(next);
 		}
 	}		
-	map.close();
+	fileStream.close();
 	return 0;
 }
 
