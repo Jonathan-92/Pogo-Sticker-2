@@ -16,18 +16,34 @@ Timer::~Timer(void)
 
 void Timer::tick()
 {
-	if (milliseconds == 100)
+	if (timerStarted == false)
 	{
-		milliseconds = 0;
-		seconds += 1;
+		startTime = SDL_GetTicks();
+		timerStarted = true;
 	}
-	if (seconds == 60)
+	int time = SDL_GetTicks() - startTime;
+	if (time > lastTime)
 	{
-		seconds = 0;
-		minutes += 1;
+		milliseconds += time - lastTime;
+		if (milliseconds >= 1000)
+		{
+			milliseconds = 0;
+			seconds += 1;
+		}
+		if (seconds == 60)
+		{
+			seconds = 0;
+			minutes += 1;
+		}
+		lastTime = time;
 	}
-	milliseconds += 2;
+
+	setTimeLabel();
+}
+
+void Timer::setTimeLabel()
+{
 	std::ostringstream convert;
-	convert << minutes << ":" << seconds << ":" << milliseconds;
+	convert << minutes << ":" << seconds << ":" << milliseconds / 10;
 	Label::setText(convert.str());
 }

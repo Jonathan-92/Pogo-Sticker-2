@@ -54,10 +54,10 @@ void Level::init()
 	Character* character = new Character(200, 100, 100, 100, "../images/black.png");
 	sprites.push_back(character);
 
-	//xy = Starting point on the tilemap
-	//wh = How big the tile is
-	SDL_Rect srcRect = { 32, 32, tileHeight, tileWidth };
 	SDL_Surface* surface2 = IMG_Load("../images/tiletemplate.png");
+	if (surface2 == nullptr)
+		throwException("surface2 is null ", SDL_GetError);
+		
 	int x = 0;
 	int y = 0;
 	std::list<int> data = fileReader->getData();
@@ -75,8 +75,12 @@ void Level::init()
 		}
 		else
 		{
-			Tile* tile = new Tile(x, y, tileWidth, tileHeight, &srcRect, surface2, 1);
+			//xy = Starting point on the tilemap
+			//wh = How big the tile is
+			SDL_Rect srcRect = { it._Ptr->_Myval*tileHeight, it._Ptr->_Myval*tileWidth, tileHeight, tileWidth };
+			Tile* tile = new Tile(x, y, tileWidth, tileHeight, &srcRect, surface2, it._Ptr->_Myval);
 			sprites.push_back(tile);
+			tiles.push_back(tile);
 		}
 		x += tileWidth;
 	}

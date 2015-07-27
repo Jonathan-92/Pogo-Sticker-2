@@ -14,6 +14,9 @@ public:
 	virtual void tick();
 
 private:
+	void setTimeLabel();
+	Uint32 startTime = 0, lastTime;
+	bool timerStarted = false;
 	int milliseconds, seconds, minutes;
 };
 #endif

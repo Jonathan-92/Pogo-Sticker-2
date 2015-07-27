@@ -46,11 +46,13 @@ void Character::tick()
 		mVelY -= 2;
 	}
 
-	std::list<Sprite*> sprites = ge().getSprites();
-	for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++)
+	std::list<Tile*> tiles = ge().getTiles();
+	for (std::list<Tile*>::iterator it = tiles.begin(); it != tiles.end(); it++)
 	{
 		if (rect.overlaps((*it)->rect) && (*it)->getType() == "Tile")
 		{
+			if ((*it)->getTileType() == 1)
+				//Very good
 			if (mVelY > 0)
 				mVelY -= 2;
 			else
@@ -61,7 +63,12 @@ void Character::tick()
 	//TODO: Apply gravity here
 	mVelY += 0.05f;
 	
-	rect.y += mVelY;		
-	rect.x += mVelX;
+	applyMotion();
 
+}
+
+void Character::applyMotion()
+{
+	rect.y += mVelY;
+	rect.x += mVelX;
 }

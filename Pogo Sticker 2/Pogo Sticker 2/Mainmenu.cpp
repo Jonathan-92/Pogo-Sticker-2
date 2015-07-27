@@ -32,7 +32,7 @@ void switchToLevel()
 
 void Level::load()
 {
-	ge().load(background, sprites, this);
+	ge().load(background, sprites, tiles, this);
 }
 
 void Level::setBackground(SDL_Surface* surface)

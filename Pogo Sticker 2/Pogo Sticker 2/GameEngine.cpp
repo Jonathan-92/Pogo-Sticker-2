@@ -80,11 +80,16 @@ namespace gameEngine {
 		return sprites;
 	}
 
-	void GameEngine::load(SDL_Texture* background2, list<Sprite*> sprites2, Level* level2)
+	std::list<Tile*> GameEngine::getTiles() const {
+		return tiles;
+	}
+
+	void GameEngine::load(SDL_Texture* background2, list<Sprite*> sprites2, list<Tile*> tiles2, Level* level2)
 	{
 		level = level2;
 		background = background2;
 		sprites = sprites2;
+		tiles = tiles2;
 		it2 = sprites.begin();
 		switched = true;
 	}
@@ -126,7 +131,7 @@ namespace gameEngine {
 	void GameEngine::drawSprites()
 	{
 		for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) 
-		{
+		{			
 			(*it)->draw();
 		}
 	}
