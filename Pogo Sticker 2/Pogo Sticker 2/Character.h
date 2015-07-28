@@ -39,6 +39,7 @@ private:
 	//Handle how high it should bounce
 	float chargeMeter;
 	int chargeMeterTick;
+	float angle;
 
 	//Gravity object
 	gameEngine::Gravity gravity = gameEngine::Gravity(0.1, 0.1, 0.01);
