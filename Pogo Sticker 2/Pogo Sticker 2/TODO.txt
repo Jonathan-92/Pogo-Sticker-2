@@ -5,3 +5,5 @@
 - Kontroll från vilket håll en kollision sker
 - Ett sätt att hantera tile typer
 - Dela upp spelkaraktären i flera rektanglar
+- Kollisionshantering för snea rektanglar
+- Fysik för studsar i vinkel
