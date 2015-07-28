@@ -22,38 +22,31 @@ namespace gameEngine {
 	}
 
 	//For tilemaps
-	Sprite::Sprite(int x, int y, int w, int h, SDL_Rect* sourceRect, SDL_Surface* surface , bool transp, std::string spriteType) :
+	Sprite::Sprite(int x, int y, int w, int h, SDL_Rect* sourceRect, SDL_Surface* srcSurface , bool transp, std::string spriteType) :
 		rect(x, y, w, h)
 	{
-		//32 = Current tilesize
-		SDL_Surface* surface2 = SDL_CreateRGBSurface(0, sourceRect->w, sourceRect->h, 32, 0, 0, 0, 0);
-		if (surface2 == nullptr)
-			throwException("surface2 is null ", SDL_GetError);
-			
-		if (surface == nullptr)
+		if (srcSurface == nullptr)
 			throw std::runtime_error("surface is null");
 
-		//Where in the rect the drawing should start
-		SDL_Rect DestR;
-		DestR.x = 0;
-		DestR.y = 0;
-		DestR.h = sourceRect->h;
-		DestR.w = sourceRect->w;
+		//32 = Current tilesize
+		SDL_Surface* dstSurface = SDL_CreateRGBSurface(0, sourceRect->w, sourceRect->h, 32, 0, 0, 0, 0);
+		if (dstSurface == nullptr)
+			throwException("surface2 is null ", SDL_GetError);
 
 		//Take part of an image as texture only
-		SDL_BlitSurface(surface, sourceRect, surface2, &DestR);
+		SDL_BlitSurface(srcSurface, sourceRect, dstSurface, nullptr);
 
-		if (surface2 == nullptr)
+		if (dstSurface == nullptr)
 			throwException("surface2 is null ", SDL_GetError);
 			
-		texture = SDL_CreateTextureFromSurface(ge().getRenderer(), surface2);
+		texture = SDL_CreateTextureFromSurface(ge().getRenderer(), dstSurface);
 		if (texture == nullptr)
 			throwException("texture is null", SDL_GetError);
 
 		type = spriteType;
 
 		//SDL_FreeSurface(surface);
-		SDL_FreeSurface(surface2);
+		SDL_FreeSurface(dstSurface);
 	}
 
 	Sprite::Sprite(int x, int y, int w, int h, SDL_Surface* surface, std::string spriteType) :
