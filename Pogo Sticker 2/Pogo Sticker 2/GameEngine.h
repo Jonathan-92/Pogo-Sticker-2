@@ -36,6 +36,7 @@ namespace gameEngine {
 		Camera* camera;
 		Level* level;
 		bool exited;
+		bool paused;
 		int fps;
 		SDL_Texture* background;
 		std::list<Sprite*> sprites;
@@ -44,6 +45,7 @@ namespace gameEngine {
 		std::list<Sprite*>::iterator itTick;
 		void forAll(void (Sprite::*membrPtr)(int, int), int x, int y);
 		//Loop functions
+		void checkPause();
 		void drawSprites();
 		void handleEvents();
 		void handleTicks();

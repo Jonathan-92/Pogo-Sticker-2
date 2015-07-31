@@ -92,6 +92,7 @@ namespace gameEngine {
 		tiles = tiles2;
 		it2 = sprites.begin();
 		switched = true;
+		paused = false;
 	}
 
 	void GameEngine::load(SDL_Texture* background2, list<Sprite*> sprites2)
@@ -100,6 +101,7 @@ namespace gameEngine {
 		sprites = sprites2;
 		it2 = sprites.begin();
 		switched = true;
+		paused = false;
 	}
 
 	void GameEngine::run() {
@@ -116,8 +118,12 @@ namespace gameEngine {
 			SDL_RenderCopy(renderer, background, nullptr, nullptr);
 			
 			drawSprites();
-			handleEvents();			
-			handleTicks();
+			checkPause();
+			if (!paused)
+			{
+				handleEvents();
+				handleTicks();
+			}
 
 			SDL_RenderPresent(renderer);
 
@@ -126,6 +132,20 @@ namespace gameEngine {
 			if (delay > 0)
 				SDL_Delay(delay);
 		} 
+	}
+
+	void GameEngine::checkPause()
+	{
+		if (paused)
+		{
+			SDL_Event event;
+			SDL_PollEvent(&event);
+			if (event.type == SDL_KEYDOWN)
+			{
+				if (event.key.keysym.sym == SDLK_p)
+					paused = false;
+			}
+		}
 	}
 
 	void GameEngine::drawSprites()
@@ -153,6 +173,11 @@ namespace gameEngine {
 				forAll(&Sprite::mouseMotion, event.button.x, event.button.y);
 				break;
 			case SDL_KEYDOWN:
+				if (event.key.keysym.sym == SDLK_p)
+				{
+					paused = true;
+					continue;
+				}
 				for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) {
 					(*it)->keyDown(event);
 				}
