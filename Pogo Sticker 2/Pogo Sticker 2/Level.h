@@ -2,6 +2,7 @@
 #define LEVEL_H
 #include "ViewPort.h"
 #include "ReadFile.h"
+#include "Timer.h"
 
 namespace gameEngine
 {
@@ -21,6 +22,7 @@ namespace gameEngine
 		int levelWidth;
 		int tileHeight;
 		int tileWidth;
+		Timer* timer;
 		ReadFile* fileReader;
 	};
 }

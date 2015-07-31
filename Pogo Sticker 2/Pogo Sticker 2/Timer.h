@@ -12,6 +12,7 @@ public:
 	~Timer(void);
 
 	virtual void tick();
+	int getTime();
 
 private:
 	void setTimeLabel();

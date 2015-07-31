@@ -14,6 +14,11 @@ Timer::~Timer(void)
 {
 }
 
+int Timer::getTime()
+{
+	return milliseconds;
+}
+
 void Timer::tick()
 {
 	if (timerStarted == false)
