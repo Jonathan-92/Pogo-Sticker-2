@@ -26,20 +26,20 @@ namespace gameEngine {
 	}
 
 	bool Rect::overlaps(const Rect& other) const{
-		int left1   = x;
-		int left2   = other.x;
-		int right1  = x + w;
-		int right2  = other.x + other.w;
-		int top1    = y;
-		int top2    = other.y;
-		int bottom1 = y + h;
-		int bottom2 = other.y + other.h;
+		int left			= x;					// left side of the rect
+		int other_left		= other.x;				// other rect's left side
+		int right			= x + w;				// etc...
+		int other_right		= other.x + other.w;
+		int top				= y;
+		int other_top		= other.y;
+		int bottom			= y + h;
+		int other_bottom	= other.y + other.h;
 
-		if (bottom1 < top2) return false;
-		if (top1 > bottom2) return false;
+		if (bottom < other_top) return false;
+		if (top > other_bottom) return false;
 
-		if (right1 < left2) return false;
-		if (left1 > right2) return false;
+		if (right < other_left) return false;
+		if (left > other_right) return false;
 
 		return true;
 	}
