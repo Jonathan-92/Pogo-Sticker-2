@@ -33,6 +33,12 @@ void switchToMenu()
 	mainMenu->load();
 }
 
+void Level::levelCompleted()
+{
+	G_Button* button = new G_Button(100, 100, 100, 100, "../images/button_up.png", switchToMenu);
+	ge().add(button);
+}
+
 int Level::getHeight()
 {
 	return levelHeight;
@@ -47,9 +53,6 @@ void Level::init()
 {
 	SDL_Surface* surface = IMG_Load("../images/white.png");
 	setBackground(surface);
-
-	G_Button* button = new G_Button(100, 100, 100, 100, "../images/button_up.png", switchToMenu);
-	sprites.push_back(button);
 
 	Character* character = new Character(100, 50, 30, 60, "../images/character.png");
 	sprites.push_back(character);

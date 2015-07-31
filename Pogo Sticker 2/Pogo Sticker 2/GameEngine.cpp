@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <string>
 #include <iostream>
+#include "G_Button.h"
 
 using namespace std;
 
@@ -74,6 +75,11 @@ namespace gameEngine {
 
 	void GameEngine::setFps(int i) {
 		fps = i;
+	}
+
+	Level* GameEngine::getLevel()
+	{
+		return level;
 	}
 
 	std::list<Sprite*> GameEngine::getSprites() const {

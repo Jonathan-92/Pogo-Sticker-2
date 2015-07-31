@@ -46,6 +46,10 @@ void Character::tick()
 	{
 		if (rect.overlaps((*it)->rect) && (*it)->getType() == "Tile")
 		{
+			if ((*it)->getTileType() == 28)
+			{
+				ge().getLevel()->levelCompleted();
+			}
 			mVelX = angle / 100 + chargeMeter;
 			if (mVelY > 0)
 				mVelY -= 2;

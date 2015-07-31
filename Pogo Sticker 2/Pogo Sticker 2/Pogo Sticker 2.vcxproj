@@ -119,7 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Text.txt" />
-    <Text Include="Text2.txt" />
     <Text Include="TODO.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
