@@ -22,6 +22,7 @@ namespace gameEngine {
 		void load(SDL_Texture* background, std::list<Sprite*> sprites, std::list<Tile*> tiles, Level* level);
 		void load(SDL_Texture* background, std::list<Sprite*> sprites);
 		void delay(int ticks);
+		void setEndstate(bool state);
 		std::list<Sprite*> getSprites() const;
 		std::list<Tile*> getTiles() const;
 		SDL_Renderer* getRenderer();
@@ -38,6 +39,7 @@ namespace gameEngine {
 		Level* level;
 		bool exited;
 		bool paused;
+		bool endstate;
 		int fps;
 		SDL_Texture* background;
 		std::list<Sprite*> sprites;

@@ -99,6 +99,7 @@ namespace gameEngine {
 		it2 = sprites.begin();
 		switched = true;
 		paused = false;
+		endstate = false;
 	}
 
 	void GameEngine::load(SDL_Texture* background2, list<Sprite*> sprites2)
@@ -108,6 +109,7 @@ namespace gameEngine {
 		it2 = sprites.begin();
 		switched = true;
 		paused = false;
+		endstate = false;
 	}
 
 	void GameEngine::run() {
@@ -128,7 +130,10 @@ namespace gameEngine {
 			if (!paused)
 			{
 				handleEvents();
-				handleTicks();
+				if (!endstate)
+				{
+					handleTicks();
+				}
 			}
 
 			SDL_RenderPresent(renderer);
@@ -138,6 +143,11 @@ namespace gameEngine {
 			if (delay > 0)
 				SDL_Delay(delay);
 		} 
+	}
+
+	void GameEngine::setEndstate(bool state)
+	{
+		endstate = state;
 	}
 
 	void GameEngine::checkPause()
