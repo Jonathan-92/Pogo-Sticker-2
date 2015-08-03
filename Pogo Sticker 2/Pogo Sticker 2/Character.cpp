@@ -11,9 +11,9 @@ Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x
 	mVelY = 0;
 	angle = 0;
 
-	/*head = Sprite::getInstance(32, 32, 15, 15, "../images/head.png", false, "Head");
-	body = new Sprite(32, 32, 15, 15, "../images/body.png", false, "Head");
-	foot = new Sprite(32, 32, 15, 15, "../images/foot.png", false, "Head");*/
+	head = new BodyPart(x, y-29, 35, 29, "../images/head.png", "Head");
+	body = new BodyPart(x, y, w, h, "../images/body.png", "Body");
+	foot = new BodyPart(x, y+y, 35, 12, "../images/foot.png", "Foot");
 
 	chargeMeter = 0.5;
 	chargeMeterTick = 0;
@@ -40,8 +40,15 @@ void Character::mouseDown(int x, int y)
 
 void Character::draw()
 {
-	SDL_Rect drawingRect = { rect.x - ge().getCamera().rect.x, rect.y - ge().getCamera().rect.y, rect.w, rect.h };
-	SDL_RenderCopyEx(gameEngine::ge().getRenderer(), texture, nullptr, &drawingRect, angle, NULL, SDL_FLIP_NONE);
+	head->draw();
+	body->draw();
+	foot->draw();
+	//Head
+	//SDL_Rect drawingRect = { rect.x - ge().getCamera().rect.x, rect.y - ge().getCamera().rect.y, rect.w, rect.h };
+	//SDL_RenderCopyEx(gameEngine::ge().getRenderer(), texture, nullptr, &drawingRect, angle, NULL, SDL_FLIP_NONE);
+	//Body
+	
+	//Foot
 }
 
 void Character::tick()
@@ -73,6 +80,23 @@ void Character::tick()
 	}
 	
 	applyMotion();
+	syncBodyParts();
+}
+
+void Character::syncBodyParts()
+{
+	body->rect.x = rect.x;
+	body->rect.y = rect.y;
+	body->angle = angle;
+	
+	head->rect.x = body->rect.x;
+	head->angle = angle;
+
+	foot->rect.x = body->rect.x;
+	foot->angle = angle;
+
+	head->rect.y = rect.y-25;
+	foot->rect.y = rect.y+rect.y;
 }
 
 void Character::applyMotion()

@@ -2,6 +2,7 @@
 #define CHARACTER_H
 #include <SDL.h>
 #include "Sprite.h"
+#include "BodyPart.h"
 #include "Gravity.h"
 
 //The pogo guy.
@@ -33,6 +34,7 @@ public:
 private:
 
 	void applyMotion();
+	void syncBodyParts();
 	//The velocity of the dot
 	float mVelX, mVelY;
 
@@ -41,7 +43,9 @@ private:
 	int chargeMeterTick;
 	float angle;
 
-	//Sprite* head, body, foot;
+	BodyPart* head;
+	BodyPart* body; 
+	BodyPart* foot;
 	//Gravity object
 	gameEngine::Gravity gravity = gameEngine::Gravity(0.1, 0.1, 0.01);
 };

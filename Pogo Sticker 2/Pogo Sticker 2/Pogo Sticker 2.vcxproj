@@ -72,6 +72,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BodyPart.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CDRR.C" />
     <ClCompile Include="Character.cpp" />
@@ -91,6 +92,7 @@
     <ClCompile Include="ViewPort.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BodyPart.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="GameEngine.h" />
