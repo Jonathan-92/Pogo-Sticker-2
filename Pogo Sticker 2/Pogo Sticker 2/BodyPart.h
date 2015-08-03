@@ -14,7 +14,7 @@ public:
 	BodyPart(int x, int y, int w, int h, std::string imgPath, std::string type);
 	~BodyPart(void);
 
-	void draw();
+	void draw(SDL_Point* center);
 	int angle;
 
 private:
