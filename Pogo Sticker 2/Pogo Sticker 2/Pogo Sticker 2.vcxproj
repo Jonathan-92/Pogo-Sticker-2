@@ -73,6 +73,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CDRR.C" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="Gravity.cpp" />
@@ -106,7 +107,10 @@
     <ClInclude Include="ViewPort.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\images\body.png" />
     <Image Include="..\images\character.png" />
+    <Image Include="..\images\foot.png" />
+    <Image Include="..\images\head.png" />
     <Image Include="..\images\tiletemplate.png" />
     <Image Include="..\images\black.png" />
     <Image Include="..\images\button_up.png" />

@@ -47,7 +47,6 @@ namespace gameEngine {
 		std::list<Sprite*>::iterator it2;
 		std::list<Sprite*>::iterator itTick;
 		void forAll(void (Sprite::*membrPtr)(int, int), int x, int y);
-		//Loop functions
 		void checkPause();
 		void drawSprites();
 		void handleEvents();

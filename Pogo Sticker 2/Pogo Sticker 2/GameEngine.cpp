@@ -18,7 +18,7 @@ namespace gameEngine {
 		return *ge;
 	}
 
-	GameEngine::GameEngine() : fps(60) {		// lägg till fler null checkar
+	GameEngine::GameEngine() : fps(60) {		// lï¿½gg till fler null checkar
 		if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
 			throwException("Failed initialize SDL", SDL_GetError);
 
@@ -206,6 +206,7 @@ namespace gameEngine {
 			}
 		}
 	}
+
 	void GameEngine::handleTicks()
 	{
 		for (itTick = sprites.begin(); itTick != sprites.end(); itTick++) {
@@ -215,10 +216,6 @@ namespace gameEngine {
 				camera->tick();
 			}
 		}
-	}
-
-	void GameEngine::delay(int ticks) {
-		SDL_Delay(ticks);
 	}
 	
 	void GameEngine::forAll(void (Sprite::*membrPtr)(int, int), int x, int y) {

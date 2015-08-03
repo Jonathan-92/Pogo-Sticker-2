@@ -28,6 +28,9 @@
     <Filter Include="Source Files\File">
       <UniqueIdentifier>{ba276a54-94e0-4262-ad3b-349577a2f659}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Character">
+      <UniqueIdentifier>{993f81e4-bcc5-4e29-b96a-f2fac50c2a96}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -77,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="ReadFile.cpp">
       <Filter>Source Files\File</Filter>
+    </ClCompile>
+    <ClCompile Include="CDRR.C">
+      <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,8 +148,17 @@
     <Image Include="..\images\tiletemplate.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\images\body.png">
+      <Filter>Resource Files\Character</Filter>
+    </Image>
+    <Image Include="..\images\foot.png">
+      <Filter>Resource Files\Character</Filter>
+    </Image>
+    <Image Include="..\images\head.png">
+      <Filter>Resource Files\Character</Filter>
+    </Image>
     <Image Include="..\images\character.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Character</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

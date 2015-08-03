@@ -11,12 +11,17 @@ Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x
 	mVelY = 0;
 	angle = 0;
 
+	/*head = Sprite::getInstance(32, 32, 15, 15, "../images/head.png", false, "Head");
+	body = new Sprite(32, 32, 15, 15, "../images/body.png", false, "Head");
+	foot = new Sprite(32, 32, 15, 15, "../images/foot.png", false, "Head");*/
+
 	chargeMeter = 0.5;
 	chargeMeterTick = 0;
 }
 
 Character::~Character(void)
 {
+
 }
 
 void Character::mouseMotion(int x, int y)
@@ -25,6 +30,7 @@ void Character::mouseMotion(int x, int y)
 	int deltaY = y - point.x;
 	int deltaX = x - point.y;
 	angle = atan2(deltaY, deltaX) * 180 / 3.141;
+	rect.angle = angle;
 }
 
 void Character::mouseDown(int x, int y)
@@ -35,7 +41,7 @@ void Character::mouseDown(int x, int y)
 void Character::draw()
 {
 	SDL_Rect drawingRect = { rect.x - ge().getCamera().rect.x, rect.y - ge().getCamera().rect.y, rect.w, rect.h };
-	SDL_Point point = { rect.x / 2, rect.y / 2 };
+	SDL_Point point = { rect.centeredX(), rect.centeredY() };
 	SDL_RenderCopyEx(gameEngine::ge().getRenderer(), texture, nullptr, &drawingRect, angle, &point, SDL_FLIP_NONE);
 }
 
@@ -44,15 +50,15 @@ void Character::tick()
 	std::list<Tile*> tiles = ge().getTiles();
 	for (std::list<Tile*>::iterator it = tiles.begin(); it != tiles.end(); it++)
 	{
-		if (rect.overlaps((*it)->rect) && (*it)->getType() == "Tile")
-		{
+		if (rect.RotRectsCollision(&rect, &it._Ptr->_Myval->rect) == 1 && (*it)->getType() == "Tile")
+		{			
 			if ((*it)->getTileType() == 28)
 			{
 				ge().getLevel()->levelCompleted();
 			}
 			mVelX = angle / 100 + chargeMeter;
 			if (mVelY > 0)
-				mVelY -= 2;
+				mVelY -= 1;
 		}
 	}
 
