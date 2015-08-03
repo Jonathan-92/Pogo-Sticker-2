@@ -41,8 +41,7 @@ void Character::mouseDown(int x, int y)
 void Character::draw()
 {
 	SDL_Rect drawingRect = { rect.x - ge().getCamera().rect.x, rect.y - ge().getCamera().rect.y, rect.w, rect.h };
-	SDL_Point point = { rect.centeredX(), rect.centeredY() };
-	SDL_RenderCopyEx(gameEngine::ge().getRenderer(), texture, nullptr, &drawingRect, angle, &point, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(gameEngine::ge().getRenderer(), texture, nullptr, &drawingRect, angle, NULL, SDL_FLIP_NONE);
 }
 
 void Character::tick()
@@ -50,7 +49,7 @@ void Character::tick()
 	std::list<Tile*> tiles = ge().getTiles();
 	for (std::list<Tile*>::iterator it = tiles.begin(); it != tiles.end(); it++)
 	{
-		if (rect.RotRectsCollision(&rect, &it._Ptr->_Myval->rect) == 1 && (*it)->getType() == "Tile")
+		if (rect.RotRectsCollision(&rect, &it._Ptr->_Myval->rect) == 1 && rect.overlaps((*it)->rect) && (*it)->getType() == "Tile")
 		{			
 			if ((*it)->getTileType() == 28)
 			{
