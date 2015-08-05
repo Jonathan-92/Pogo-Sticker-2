@@ -1,173 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\SubSprites">
-      <UniqueIdentifier>{4424799a-8ed3-47f6-b268-7f9ee38a76f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\SubLabels">
-      <UniqueIdentifier>{241ba110-8ed8-4a3d-9e4c-1eac61837c49}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GameComponents">
-      <UniqueIdentifier>{2e1584cc-6d08-4bd5-83c6-369360256a30}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\FileI/O">
-      <UniqueIdentifier>{3d5b90c5-71cf-4b82-b9a8-58fc321ac7cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\File">
-      <UniqueIdentifier>{ba276a54-94e0-4262-ad3b-349577a2f659}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Character">
-      <UniqueIdentifier>{9af51583-4a57-4e63-82fb-c859f3aa2f8b}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CDRR.C" />
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="Gravity.cpp" />
+    <ClCompile Include="G_Button.cpp" />
+    <ClCompile Include="Highscores.cpp" />
+    <ClCompile Include="Label.cpp" />
+    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mainmenu.cpp" />
+    <ClCompile Include="ReadFile.cpp" />
+    <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="ViewPort.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Highscores.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="G_Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Label.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mainmenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewPort.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Gravity.cpp">
-      <Filter>Source Files\GameComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files\GameComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>Source Files\GameComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Source Files\GameComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\GameComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="ReadFile.cpp">
-      <Filter>Source Files\File</Filter>
-    </ClCompile>
-    <ClCompile Include="CDRR.C">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="Gravity.h" />
+    <ClInclude Include="G_Button.h" />
+    <ClInclude Include="Label.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="ReadFile.h" />
+    <ClInclude Include="Rect.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="ViewPort.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Label.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewPort.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files\SubSprites</Filter>
-    </ClInclude>
-    <ClInclude Include="G_Button.h">
-      <Filter>Header Files\SubSprites</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>Header Files\SubLabels</Filter>
-    </ClInclude>
-    <ClInclude Include="Gravity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Header Files\SubSprites</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files\SubSprites</Filter>
-    </ClInclude>
-    <ClInclude Include="ReadFile.h">
-      <Filter>Header Files\FileI/O</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\images\black.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\images\white.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\images\button_up.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\images\start_level_1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\images\Goal.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\images\tiletemplate.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\images\body.png">
-      <Filter>Resource Files\Character</Filter>
-    </Image>
-    <Image Include="..\images\foot.png">
-      <Filter>Resource Files\Character</Filter>
-    </Image>
-    <Image Include="..\images\head.png">
-      <Filter>Resource Files\Character</Filter>
-    </Image>
-    <Image Include="..\images\character.png">
-      <Filter>Resource Files\Character</Filter>
-    </Image>
+    <Image Include="..\images\body.png" />
+    <Image Include="..\images\character.png" />
+    <Image Include="..\images\foot.png" />
+    <Image Include="..\images\head.png" />
+    <Image Include="..\images\tiletemplate.png" />
+    <Image Include="..\images\black.png" />
+    <Image Include="..\images\button_up.png" />
+    <Image Include="..\images\start_level_1.png" />
+    <Image Include="..\images\Goal.png" />
+    <Image Include="..\images\white.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Text.txt" />
     <Text Include="TODO.txt" />
-    <Text Include="Text.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
   </ItemGroup>
 </Project>

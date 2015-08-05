@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 #include "G_Button.h"
+#include <SDL_opengl.h>
+#include "GL\glut.h"
 
 using namespace std;
 
@@ -11,6 +13,48 @@ namespace gameEngine {
 	void throwException(string msg, const char* (*errorFunc)()) {
 		msg += errorFunc();
 		throw runtime_error(msg.c_str());
+	}
+
+	bool initGL()
+	{
+		bool success = true;
+		GLenum error = GL_NO_ERROR;
+
+		//Initialize Projection Matrix
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+
+		//Check for error
+		error = glGetError();
+		if (error != GL_NO_ERROR)
+		{
+			printf("Error initializing OpenGL! %s\n", gluErrorString(error)); 
+			success = false;
+		}
+
+		//Initialize Modelview Matrix
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+
+		//Check for error
+		error = glGetError();
+		if (error != GL_NO_ERROR)
+		{
+			printf("Error initializing OpenGL! %s\n", gluErrorString(error)); 
+			success = false;
+		}
+
+		//Initialize clear color 
+		glClearColor( 0.f, 0.f, 0.f, 1.f ); 
+
+		//Check for error error = glGetError(); 
+		if( error != GL_NO_ERROR ) 
+		{ 
+			printf( "Error initializing OpenGL! %s\n", gluErrorString( error ) ); 
+			success = false; 
+		} 
+
+		return success; 
 	}
 
 	GameEngine& ge() {
@@ -38,10 +82,34 @@ namespace gameEngine {
 		if (renderer == nullptr)
 			throwException("Failed creating renderer.", SDL_GetError);
 
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2); 
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+
+		//Create context 
+		gContext = SDL_GL_CreateContext( screen ); 
+		if (gContext == NULL ) 
+		{ 
+			printf( "OpenGL context could not be created! SDL Error: %s\n", SDL_GetError() ); 
+		} 
+		else 
+		{ 
+			//Use Vsync 
+			if( SDL_GL_SetSwapInterval( 1 ) < 0 ) 
+			{ 
+				printf( "Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError() ); 
+			} 
+
+			//Initialize OpenGL 
+			if (!initGL())
+			{ 
+				printf( "Unable to initialize OpenGL!\n" ); 
+			} 
+		}
+
 		camera = new Camera();
 		exited = false;
 	}
-	
+
 	GameEngine::~GameEngine(void)
 	{
 		TTF_CloseFont(font);
