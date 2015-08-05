@@ -11,6 +11,10 @@ Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x
 	mVelY = 0;
 	angle = 0;
 
+	head = Sprite::getInstance(32, 32, 15, 15, "../images/head.png", false, "Head");
+	body = new Sprite(32, 32, 15, 15, "../images/body.png", false, "Head");
+	foot = new Sprite(32, 32, 15, 15, "../images/foot.png", false, "Head");
+
 	chargeMeter = 0.5;
 	chargeMeterTick = 0;
 }

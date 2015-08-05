@@ -28,6 +28,9 @@
     <Filter Include="Source Files\File">
       <UniqueIdentifier>{ba276a54-94e0-4262-ad3b-349577a2f659}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Character">
+      <UniqueIdentifier>{9af51583-4a57-4e63-82fb-c859f3aa2f8b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -143,7 +146,7 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\images\character.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Character</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

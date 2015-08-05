@@ -22,7 +22,7 @@ public:
 	Character(int x, int y, int w, int h, std::string imgPath);
 	~Character(void);
 
-	//Ärvd från Sprite antar jag
+	//ï¿½rvd frï¿½n Sprite antar jag
 	virtual void mouseMotion(int x, int y);
 	virtual void mouseDown(int x, int y);
 
@@ -41,6 +41,7 @@ private:
 	int chargeMeterTick;
 	float angle;
 
+	Sprite* head, body, foot;
 	//Gravity object
 	gameEngine::Gravity gravity = gameEngine::Gravity(0.1, 0.1, 0.01);
 };

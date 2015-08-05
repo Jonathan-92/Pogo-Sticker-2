@@ -18,7 +18,7 @@ namespace gameEngine {
 		return *ge;
 	}
 
-	GameEngine::GameEngine() : fps(60) {		// lägg till fler null checkar
+	GameEngine::GameEngine() : fps(60) {		// lï¿½gg till fler null checkar
 		if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
 			throwException("Failed initialize SDL", SDL_GetError);
 
@@ -150,7 +150,7 @@ namespace gameEngine {
 		endstate = state;
 	}
 
-	void GameEngine::checkPause()
+	void checkPause()
 	{
 		if (paused)
 		{
@@ -164,14 +164,14 @@ namespace gameEngine {
 		}
 	}
 
-	void GameEngine::drawSprites()
+	void drawSprites()
 	{
 		for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) 
 		{			
 			(*it)->draw();
 		}
 	}
-	void GameEngine::handleEvents()
+	void handleEvents()
 	{
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) 
@@ -206,7 +206,8 @@ namespace gameEngine {
 			}
 		}
 	}
-	void GameEngine::handleTicks()
+
+	void handleTicks()
 	{
 		for (itTick = sprites.begin(); itTick != sprites.end(); itTick++) {
 			(*itTick)->tick();
@@ -216,12 +217,8 @@ namespace gameEngine {
 			}
 		}
 	}
-
-	void GameEngine::delay(int ticks) {
-		SDL_Delay(ticks);
-	}
 	
-	void GameEngine::forAll(void (Sprite::*membrPtr)(int, int), int x, int y) {
+	void forAll(void (Sprite::*membrPtr)(int, int), int x, int y) {
 		for (it2 = sprites.begin(); it2 != sprites.end(); it2++) {
 			((*it2)->*membrPtr)(x, y);
 			if (switched)
