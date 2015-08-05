@@ -13,8 +13,8 @@ BodyPart::~BodyPart(void)
 
 }
 
-void BodyPart::draw(SDL_Point* center)
+void BodyPart::draw()
 {
 	SDL_Rect drawingRect = { rect.x - ge().getCamera().rect.x, rect.y - ge().getCamera().rect.y, rect.w, rect.h };
-	SDL_RenderCopyEx(gameEngine::ge().getRenderer(), texture, nullptr, &drawingRect, angle, center, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(gameEngine::ge().getRenderer(), texture, nullptr, &drawingRect, angle, NULL, SDL_FLIP_NONE);
 }

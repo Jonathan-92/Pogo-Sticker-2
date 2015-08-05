@@ -14,7 +14,6 @@ Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x
 	head = new BodyPart(x, y-29, 35, 29, "../images/head.png", "Head");
 	body = new BodyPart(x, y, w, h, "../images/body.png", "Body");
 	foot = new BodyPart(x, y+y, 35, 12, "../images/foot.png", "Foot");
-	debugPoint = new BodyPart(x, y + y, 50, 50, "../images/black.png", "DEBUG");
 
 	chargeMeter = 0.5;
 	chargeMeterTick = 0;
@@ -41,15 +40,9 @@ void Character::mouseDown(int x, int y)
 
 void Character::draw()
 {
-	SDL_Point center = { rect.centeredX(), rect.centeredY() };
-	debugPoint->rect.x = center.x;
-	debugPoint->rect.y = center.y;
-	
-	debugPoint->draw(&center);
-	
-	head->draw(NULL);
-	body->draw(NULL);
-	foot->draw(NULL);
+	head->draw();
+	body->draw();
+	foot->draw();
 	//Head
 	//SDL_Rect drawingRect = { rect.x - ge().getCamera().rect.x, rect.y - ge().getCamera().rect.y, rect.w, rect.h };
 	//SDL_RenderCopyEx(gameEngine::ge().getRenderer(), texture, nullptr, &drawingRect, angle, NULL, SDL_FLIP_NONE);
@@ -80,17 +73,16 @@ void Character::tick()
 	mVelY += 0.05f;
 
 	if (angle > 0)
-		angle -= 0.3;
+		angle -= 0.1;
 	else
 	{
-		angle += 0.3;
+		angle += 0.1;
 	}
 	
 	applyMotion();
 	syncBodyParts();
 }
 
-//TODO: FIXA!
 void Character::syncBodyParts()
 {
 	body->rect.x = rect.x;
@@ -98,12 +90,13 @@ void Character::syncBodyParts()
 	body->angle = angle;
 	
 	head->rect.x = body->rect.x;
-	head->rect.y = body->rect.y - 29;
 	head->angle = angle;
 
-	foot->rect.x = SDL_cos(body->angle);
-	foot->rect.y = SDL_sin(body->angle) + body->rect.y;
+	foot->rect.x = body->rect.x;
 	foot->angle = angle;
+
+	head->rect.y = rect.y-25;
+	foot->rect.y = rect.y+rect.y;
 }
 
 void Character::applyMotion()
