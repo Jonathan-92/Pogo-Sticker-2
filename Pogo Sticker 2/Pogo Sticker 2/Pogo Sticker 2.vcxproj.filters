@@ -84,9 +84,6 @@
     <ClCompile Include="CDRR.C">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="BodyPart.cpp">
-      <Filter>Source Files\GameComponents</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -130,9 +127,6 @@
     </ClInclude>
     <ClInclude Include="ReadFile.h">
       <Filter>Header Files\FileI/O</Filter>
-    </ClInclude>
-    <ClInclude Include="BodyPart.h">
-      <Filter>Header Files\SubSprites</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
