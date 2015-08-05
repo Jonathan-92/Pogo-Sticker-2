@@ -39,6 +39,7 @@ namespace gameEngine {
 			throwException("Failed creating renderer.", SDL_GetError);
 
 		camera = new Camera();
+		collision = new CollisionHandling();
 		exited = false;
 	}
 	
@@ -57,6 +58,11 @@ namespace gameEngine {
 
 	TTF_Font* GameEngine::getFont() {
 		return font;
+	}
+
+	CollisionHandling* GameEngine::getCollider()
+	{
+		return collision;
 	}
 
 	Camera& GameEngine::getCamera()

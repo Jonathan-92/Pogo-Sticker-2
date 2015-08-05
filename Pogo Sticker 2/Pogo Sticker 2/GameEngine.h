@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "Viewport.h"
 #include "Tile.h"
+#include "CollisionHandling.h"
 #include <list>
 #include "SDL_ttf.h"
 
@@ -30,6 +31,7 @@ namespace gameEngine {
 		Camera& getCamera();
 		SDL_Window* getScreen();
 		Level* getLevel();
+		CollisionHandling* getCollider();
 		bool switched;
 	private:
 		SDL_Window* screen;
@@ -37,6 +39,7 @@ namespace gameEngine {
 		TTF_Font* font;
 		Camera* camera;
 		Level* level;
+		CollisionHandling* collision;
 		bool exited;
 		bool paused;
 		bool endstate;
