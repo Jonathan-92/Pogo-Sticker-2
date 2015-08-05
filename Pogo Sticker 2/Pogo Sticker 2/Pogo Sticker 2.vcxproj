@@ -76,6 +76,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CDRR.C" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="CollisionHandling.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="G_Button.cpp" />
@@ -94,6 +95,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="CollisionHandling.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Gravity.h" />
     <ClInclude Include="G_Button.h" />

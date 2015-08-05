@@ -49,7 +49,7 @@ void Character::tick()
 	std::list<Tile*> tiles = ge().getTiles();
 	for (std::list<Tile*>::iterator it = tiles.begin(); it != tiles.end(); it++)
 	{
-		if (rect.RotRectsCollision(&rect, &it._Ptr->_Myval->rect) == 1 && rect.overlaps((*it)->rect) && (*it)->getType() == "Tile")
+		if (ge().getCollider()->overlaps(&rect, &(*it)->rect) && (*it)->getType() == "Tile")
 		{			
 			if ((*it)->getTileType() == 28)
 			{
