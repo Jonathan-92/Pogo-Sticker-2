@@ -150,7 +150,7 @@ namespace gameEngine {
 		endstate = state;
 	}
 
-	void checkPause()
+	void GameEngine::checkPause()
 	{
 		if (paused)
 		{
@@ -164,14 +164,14 @@ namespace gameEngine {
 		}
 	}
 
-	void drawSprites()
+	void GameEngine::drawSprites()
 	{
 		for (std::list<Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++) 
 		{			
 			(*it)->draw();
 		}
 	}
-	void handleEvents()
+	void GameEngine::handleEvents()
 	{
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) 
@@ -207,7 +207,7 @@ namespace gameEngine {
 		}
 	}
 
-	void handleTicks()
+	void GameEngine::handleTicks()
 	{
 		for (itTick = sprites.begin(); itTick != sprites.end(); itTick++) {
 			(*itTick)->tick();
@@ -218,7 +218,7 @@ namespace gameEngine {
 		}
 	}
 	
-	void forAll(void (Sprite::*membrPtr)(int, int), int x, int y) {
+	void GameEngine::forAll(void (Sprite::*membrPtr)(int, int), int x, int y) {
 		for (it2 = sprites.begin(); it2 != sprites.end(); it2++) {
 			((*it2)->*membrPtr)(x, y);
 			if (switched)

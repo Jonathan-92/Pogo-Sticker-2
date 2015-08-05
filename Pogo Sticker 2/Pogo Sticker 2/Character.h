@@ -41,7 +41,7 @@ private:
 	int chargeMeterTick;
 	float angle;
 
-	Sprite* head, body, foot;
+	//Sprite* head, body, foot;
 	//Gravity object
 	gameEngine::Gravity gravity = gameEngine::Gravity(0.1, 0.1, 0.01);
 };

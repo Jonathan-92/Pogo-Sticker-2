@@ -17,6 +17,8 @@ namespace gameEngine {
 		param "hh" = height in pixels */
 		Rect(int xx, int yy, int ww, int hh);
 
+		int RotRectsCollision(Rect * rr1, Rect * rr2);
+
 		/* Checks whether another Rect is within this Rect's bounds. */
 		bool contains(int xx, int yy) const;
 
@@ -35,6 +37,9 @@ namespace gameEngine {
 		/* Changes the location and size of this instance according to the
 		arguments supplied. */
 		void setRect(int x, int y, int w, int h);
+
+		/* The angle of the rectangles rotation */
+		float angle;
 	};
 }
 

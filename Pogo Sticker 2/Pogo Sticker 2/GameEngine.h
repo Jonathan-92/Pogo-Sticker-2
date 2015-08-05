@@ -46,6 +46,11 @@ namespace gameEngine {
 		std::list<Tile*> tiles;
 		std::list<Sprite*>::iterator it2;
 		std::list<Sprite*>::iterator itTick;
+		void forAll(void (Sprite::*membrPtr)(int, int), int x, int y);
+		void checkPause();
+		void drawSprites();
+		void handleEvents();
+		void handleTicks();
 	};
 
 	GameEngine& ge();

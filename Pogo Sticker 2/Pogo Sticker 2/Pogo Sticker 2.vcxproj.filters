@@ -81,6 +81,9 @@
     <ClCompile Include="ReadFile.cpp">
       <Filter>Source Files\File</Filter>
     </ClCompile>
+    <ClCompile Include="CDRR.C">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -144,6 +147,15 @@
     </Image>
     <Image Include="..\images\tiletemplate.png">
       <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\images\body.png">
+      <Filter>Resource Files\Character</Filter>
+    </Image>
+    <Image Include="..\images\foot.png">
+      <Filter>Resource Files\Character</Filter>
+    </Image>
+    <Image Include="..\images\head.png">
+      <Filter>Resource Files\Character</Filter>
     </Image>
     <Image Include="..\images\character.png">
       <Filter>Resource Files\Character</Filter>

@@ -1,5 +1,5 @@
 - strukturera upp projektet i mappar
-- Kontroll frÃ¥n vilket hÃ¥ll en kollision sker
-- Dela upp spelkaraktÃ¤ren i flera rektanglar
-- Kollisionshantering fÃ¶r sneda rektanglar
-- Fysik fÃ¶r studsar i vinkel
+- Kontroll från vilket håll en kollision sker
+- Dela upp spelkaraktären i flera rektanglar
+- Kollisionshantering för sneda rektanglar
+- Fysik för studsar i vinkel
