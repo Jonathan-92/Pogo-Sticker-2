@@ -12,12 +12,6 @@ namespace gameEngine {
 		if (surface == nullptr)
 			throw std::runtime_error("surface is null");
 
-		if (transp) 
-		{
-			Uint32 transp = *(Uint32*)surface->pixels;
-			SDL_SetColorKey(surface, SDL_RLEACCEL, transp);
-		}
-
 		texture = SDL_CreateTextureFromSurface(ge().getRenderer(), surface);
 		if (texture == nullptr)
 			throw std::runtime_error("texture is null");

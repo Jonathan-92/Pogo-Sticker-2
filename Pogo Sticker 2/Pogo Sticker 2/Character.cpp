@@ -7,9 +7,9 @@ using namespace gameEngine;
 Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x, y, w, h, imgPath, false, "Character")
 {
 	//Initialize the velocity
-	mVelX = 0;
-	mVelY = 0;
-	angle = 0;
+	movementVelocityX = 0;
+	movementVelocityY = 0;
+	spriteAxisAngle = 0;
 
 	/*head = Sprite::getInstance(32, 32, 15, 15, "../images/head.png", false, "Head");
 	body = new Sprite(32, 32, 15, 15, "../images/body.png", false, "Head");
@@ -29,8 +29,8 @@ void Character::mouseMotion(int x, int y)
 	SDL_Point point = { rect.x / 2, rect.y / 2 };
 	int deltaY = y - point.x;
 	int deltaX = x - point.y;
-	angle = atan2(deltaY, deltaX) * 180 / 3.141;
-	rect.angle = angle;
+	spriteAxisAngle = atan2(deltaY, deltaX) * 180 / 3.141;
+	rect.angle = spriteAxisAngle;
 }
 
 void Character::mouseDown(int x, int y)
@@ -41,7 +41,7 @@ void Character::mouseDown(int x, int y)
 void Character::draw()
 {
 	SDL_Rect drawingRect = { rect.x - ge().getCamera().rect.x, rect.y - ge().getCamera().rect.y, rect.w, rect.h };
-	SDL_RenderCopyEx(gameEngine::ge().getRenderer(), texture, nullptr, &drawingRect, angle, NULL, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(gameEngine::ge().getRenderer(), texture, nullptr, &drawingRect, spriteAxisAngle, NULL, SDL_FLIP_NONE);
 }
 
 void Character::tick()
@@ -55,21 +55,21 @@ void Character::tick()
 			{
 				ge().getLevel()->levelCompleted();
 			}
-			mVelX = angle / 100 + chargeMeter;
-			if (mVelY > 0)
-				mVelY -= 1;
+			movementVelocityX = spriteAxisAngle / 100 + chargeMeter;
+			if (movementVelocityY > 0)
+				movementVelocityY -= 1;
 		}
 	}
 
 	//TODO: Apply gravity here
-	//mVelX = angle/100 + chargeMeter;
-	mVelY += 0.05f;
+	//mVelX = spriteAxisAngle/100 + chargeMeter;
+	movementVelocityY += 0.05f;
 
-	if (angle > 0)
-		angle -= 0.1;
+	if (spriteAxisAngle > 0)
+		spriteAxisAngle -= 0.1;
 	else
 	{
-		angle += 0.1;
+		spriteAxisAngle += 0.1;
 	}
 	
 	applyMotion();
@@ -77,6 +77,6 @@ void Character::tick()
 
 void Character::applyMotion()
 {
-	rect.y += mVelY;
-	rect.x += mVelX;
+	rect.y += movementVelocityY;
+	rect.x += movementVelocityX;
 }

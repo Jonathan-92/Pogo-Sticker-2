@@ -1,20 +1,44 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pogo Sticker 2", "Pogo Sticker 2\Pogo Sticker 2.vcxproj", "{DC3E61C3-5A23-49E5-9DFA-709EE1D1AF79}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoogleTestLibrary", "GoogleTestLibrary\GoogleTestLibrary.vcxproj", "{306073EB-0E4E-4E47-9C8C-B4E9ED88FAA9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests\UnitTests.vcxproj", "{3873628D-3C6D-4D6C-8651-F6D0327E4AD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
 		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DC3E61C3-5A23-49E5-9DFA-709EE1D1AF79}.Debug|Win32.ActiveCfg = Debug|Win32
 		{DC3E61C3-5A23-49E5-9DFA-709EE1D1AF79}.Debug|Win32.Build.0 = Debug|Win32
+		{DC3E61C3-5A23-49E5-9DFA-709EE1D1AF79}.Debug|x64.ActiveCfg = Debug|Win32
 		{DC3E61C3-5A23-49E5-9DFA-709EE1D1AF79}.Release|Win32.ActiveCfg = Release|Win32
 		{DC3E61C3-5A23-49E5-9DFA-709EE1D1AF79}.Release|Win32.Build.0 = Release|Win32
+		{DC3E61C3-5A23-49E5-9DFA-709EE1D1AF79}.Release|x64.ActiveCfg = Release|Win32
+		{306073EB-0E4E-4E47-9C8C-B4E9ED88FAA9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{306073EB-0E4E-4E47-9C8C-B4E9ED88FAA9}.Debug|Win32.Build.0 = Debug|Win32
+		{306073EB-0E4E-4E47-9C8C-B4E9ED88FAA9}.Debug|x64.ActiveCfg = Debug|x64
+		{306073EB-0E4E-4E47-9C8C-B4E9ED88FAA9}.Debug|x64.Build.0 = Debug|x64
+		{306073EB-0E4E-4E47-9C8C-B4E9ED88FAA9}.Release|Win32.ActiveCfg = Release|Win32
+		{306073EB-0E4E-4E47-9C8C-B4E9ED88FAA9}.Release|Win32.Build.0 = Release|Win32
+		{306073EB-0E4E-4E47-9C8C-B4E9ED88FAA9}.Release|x64.ActiveCfg = Release|x64
+		{306073EB-0E4E-4E47-9C8C-B4E9ED88FAA9}.Release|x64.Build.0 = Release|x64
+		{3873628D-3C6D-4D6C-8651-F6D0327E4AD9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3873628D-3C6D-4D6C-8651-F6D0327E4AD9}.Debug|Win32.Build.0 = Debug|Win32
+		{3873628D-3C6D-4D6C-8651-F6D0327E4AD9}.Debug|x64.ActiveCfg = Debug|x64
+		{3873628D-3C6D-4D6C-8651-F6D0327E4AD9}.Debug|x64.Build.0 = Debug|x64
+		{3873628D-3C6D-4D6C-8651-F6D0327E4AD9}.Release|Win32.ActiveCfg = Release|Win32
+		{3873628D-3C6D-4D6C-8651-F6D0327E4AD9}.Release|Win32.Build.0 = Release|Win32
+		{3873628D-3C6D-4D6C-8651-F6D0327E4AD9}.Release|x64.ActiveCfg = Release|x64
+		{3873628D-3C6D-4D6C-8651-F6D0327E4AD9}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

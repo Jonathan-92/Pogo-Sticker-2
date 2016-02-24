@@ -29,7 +29,7 @@
       <UniqueIdentifier>{ba276a54-94e0-4262-ad3b-349577a2f659}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\Character">
-      <UniqueIdentifier>{993f81e4-bcc5-4e29-b96a-f2fac50c2a96}</UniqueIdentifier>
+      <UniqueIdentifier>{9af51583-4a57-4e63-82fb-c859f3aa2f8b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -84,9 +84,6 @@
     <ClCompile Include="CDRR.C">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionHandling.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -131,9 +128,6 @@
     <ClInclude Include="ReadFile.h">
       <Filter>Header Files\FileI/O</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionHandling.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\images\black.png">
@@ -171,7 +165,9 @@
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Text.txt" />
     <Text Include="TODO.txt" />
+    <Text Include="Text.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

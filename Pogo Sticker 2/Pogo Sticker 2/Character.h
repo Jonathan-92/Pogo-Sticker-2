@@ -34,12 +34,12 @@ private:
 
 	void applyMotion();
 	//The velocity of the dot
-	float mVelX, mVelY;
+	float movementVelocityX, movementVelocityY;
 
 	//Handle how high it should bounce
 	float chargeMeter;
 	int chargeMeterTick;
-	float angle;
+	float spriteAxisAngle;
 
 	//Sprite* head, body, foot;
 	//Gravity object

@@ -54,7 +54,6 @@ namespace gameEngine {
 		void drawSprites();
 		void handleEvents();
 		void handleTicks();
-		SDL_GLContext gContext;
 	};
 
 	GameEngine& ge();
