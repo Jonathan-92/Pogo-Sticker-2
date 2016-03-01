@@ -31,6 +31,12 @@
     <Filter Include="Resource Files\Character">
       <UniqueIdentifier>{9af51583-4a57-4e63-82fb-c859f3aa2f8b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Enums">
+      <UniqueIdentifier>{610c53dd-6a3e-4022-80ac-33ecc273cd55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enums">
+      <UniqueIdentifier>{137fadc7-7f5d-4b11-8a0e-cacd74c75119}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -84,6 +90,12 @@
     <ClCompile Include="CDRR.C">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionHandling.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OverlapSourceEnum.cpp">
+      <Filter>Source Files\Enums</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -127,6 +139,12 @@
     </ClInclude>
     <ClInclude Include="ReadFile.h">
       <Filter>Header Files\FileI/O</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionHandling.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OverlapSourceEnum.h">
+      <Filter>Header Files\Enums</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 #include "Character.h"
 #include "GameEngine.h"
+#include "OverlapSourceEnum.h"
 #include <vector>
 
 using namespace gameEngine;
@@ -46,37 +47,63 @@ void Character::draw()
 
 void Character::tick()
 {	
-	std::list<Tile*> tiles = ge().getTiles();
-	for (std::list<Tile*>::iterator it = tiles.begin(); it != tiles.end(); it++)
-	{
-		if (ge().getCollider()->overlaps(&rect, &(*it)->rect) && (*it)->getType() == "Tile")
-		{			
-			if ((*it)->getTileType() == 28)
-			{
-				ge().getLevel()->levelCompleted();
-			}
-			movementVelocityX = spriteAxisAngle / 100 + chargeMeter;
-			if (movementVelocityY > 0)
-				movementVelocityY -= 1;
-		}
-	}
+	handleCollision();
 
 	//TODO: Apply gravity here
 	//mVelX = spriteAxisAngle/100 + chargeMeter;
 	movementVelocityY += 0.05f;
 
-	if (spriteAxisAngle > 0)
-		spriteAxisAngle -= 0.1;
-	else
-	{
-		spriteAxisAngle += 0.1;
-	}
-	
+	straightenUp();
 	applyMotion();
+}
+
+void Character::handleCollision()
+{
+	std::list<Tile*> tiles = ge().getTiles();
+	for (std::list<Tile*>::iterator it = tiles.begin(); it != tiles.end(); it++)
+	{
+		if (ge().getCollider()->overlaps(&rect, &(*it)->rect) && (*it)->getType() == "Tile")
+		{
+			OverlapSourceEnum overlapSourceEnum = ge().getCollider()->overlapSource(&rect, &(*it)->rect);
+			if ((*it)->getTileType() == 28)
+			{
+				ge().getLevel()->levelCompleted();
+			}
+
+			if (overlapSourceEnum.getOverlapSouceEnum() == OverlapSourceEnum::OverlapSourceEnums::overlapsTop)
+			{
+				movementVelocityY -= 5;
+			}			
+			if (overlapSourceEnum.getOverlapSouceEnum() == OverlapSourceEnum::OverlapSourceEnums::overlapsBottom)
+			{
+				movementVelocityY += 5;
+			}			
+			if (overlapSourceEnum.getOverlapSouceEnum() == OverlapSourceEnum::OverlapSourceEnums::overlapsLeft)
+			{
+				movementVelocityX += 1;
+			}			
+			if (overlapSourceEnum.getOverlapSouceEnum() == OverlapSourceEnum::OverlapSourceEnums::overlapsRight)
+			{
+				movementVelocityX -= 1;
+			}
+
+			//movementVelocityX = spriteAxisAngle / 100 + chargeMeter;
+		}
+	}
 }
 
 void Character::applyMotion()
 {
 	rect.y += movementVelocityY;
 	rect.x += movementVelocityX;
+}
+
+void Character::straightenUp()
+{
+	if (spriteAxisAngle > 0)
+		spriteAxisAngle -= 0.1;
+	else
+	{
+		spriteAxisAngle += 0.1;
+	}
 }

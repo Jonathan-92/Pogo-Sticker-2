@@ -33,6 +33,8 @@ public:
 private:
 
 	void applyMotion();
+	void straightenUp();
+	void handleCollision();
 	//The velocity of the dot
 	float movementVelocityX, movementVelocityY;
 
