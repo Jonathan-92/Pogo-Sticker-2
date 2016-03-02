@@ -28,28 +28,42 @@ namespace gameEngine {
 	
 	OverlapSourceEnum CollisionHandling::overlapSource(Rect* myRect, Rect* other)
 	{
-		int left = myRect->x;					// left side of the rect
-		int other_left = other->x;				// other rect's left side
-		int right = myRect->x + myRect->w;				// etc...
-		int other_right = other->x + other->w;
-		int top = myRect->y;
-		int other_top = other->y;
-		int bottom = myRect->y + myRect->h;
-		int other_bottom = other->y + other->h;
+		// what side of the stationaryObject does the movingObject collide on?
+		bool intersectsTop = false;
+		bool intersectsRight = false;
+
+		if (myRect->x > other->x)
+			intersectsRight = true;
+		// y up is neg
+		if (myRect->y < other->y)
+			intersectsTop = true;
 
 		OverlapSourceEnum* overlapSourceEnum = new OverlapSourceEnum();
-		if (bottom <= other_top)  overlapSourceEnum->setOverlapSouceEnum(OverlapSourceEnum::OverlapSourceEnums::overlapsTop);
-		if (top >= other_bottom)  overlapSourceEnum->setOverlapSouceEnum(OverlapSourceEnum::OverlapSourceEnums::overlapsBottom);
 
-		if (right <= other_left)  overlapSourceEnum->setOverlapSouceEnum(OverlapSourceEnum::OverlapSourceEnums::overlapsLeft);
-		if (left >= other_right)  overlapSourceEnum->setOverlapSouceEnum(OverlapSourceEnum::OverlapSourceEnums::overlapsRight);
+		if (intersectsTop)
+		{
+			overlapSourceEnum->setOverlapSouceEnum(OverlapSourceEnum::OverlapSourceEnums::overlapsTop);
+		}
+		else
+		{
+			overlapSourceEnum->setOverlapSouceEnum(OverlapSourceEnum::OverlapSourceEnums::overlapsBottom);
+		}
+
+		if (intersectsRight)
+		{
+			overlapSourceEnum->setOverlapSouceEnum(OverlapSourceEnum::OverlapSourceEnums::overlapsRight);
+		}
+		else
+		{
+			overlapSourceEnum->setOverlapSouceEnum(OverlapSourceEnum::OverlapSourceEnums::overlapsLeft);
+		}
 
 		return *overlapSourceEnum;
 	}
 
 	bool CollisionHandling::pixelOverlaps()
 	{
-		return false;
+		return false;	
 	}
 
 }

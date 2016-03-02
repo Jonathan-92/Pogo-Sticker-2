@@ -8,7 +8,7 @@ using namespace gameEngine;
 Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x, y, w, h, imgPath, false, "Character")
 {
 	//Initialize the velocity
-	movementVelocityX = 0;
+	movementVelocityX = -0.1;
 	movementVelocityY = 0;
 	spriteAxisAngle = 0;
 
@@ -60,11 +60,53 @@ void Character::tick()
 void Character::handleCollision()
 {
 	std::list<Tile*> tiles = ge().getTiles();
+	bool handeldCollision = false;
 	for (std::list<Tile*>::iterator it = tiles.begin(); it != tiles.end(); it++)
 	{
 		if (ge().getCollider()->overlaps(&rect, &(*it)->rect) && (*it)->getType() == "Tile")
 		{
-			OverlapSourceEnum overlapSourceEnum = ge().getCollider()->overlapSource(&rect, &(*it)->rect);
+			SDL_Rect movingObject = rect;
+			SDL_Rect stationaryObject = (*it)->rect;
+			// what side of the stationaryObject does the movingObject collide on?
+			bool intersectsTop = false;
+			bool intersectsRight = false;
+
+			if (movingObject.x > stationaryObject.x)
+				intersectsRight = true;
+			// y up is neg
+			if (movingObject.y < stationaryObject.y)
+				intersectsTop = true;
+
+			// the height & width of the intersection rectangle
+			short int height, width;
+
+			if (intersectsTop)
+				height = abs(stationaryObject.y - (movingObject.y + movingObject.h));
+			else
+				height = abs(stationaryObject.y + stationaryObject.h - movingObject.y);
+			if (intersectsRight)
+				width = abs(stationaryObject.x + stationaryObject.w - movingObject.x);
+			else
+				width = abs(stationaryObject.x - (movingObject.x + movingObject.w));
+
+			bool moveInXDirection = height > width ? true : false;
+
+			// adjust moving object's position accordingly
+			if (moveInXDirection)
+			{
+				if (intersectsRight)
+					movementVelocityX += width;
+				else
+					movementVelocityX -= width;
+			}
+			else
+			{
+				if (intersectsTop)
+					movementVelocityY -= height;
+				else
+					movementVelocityY += height;
+			}
+			/*OverlapSourceEnum overlapSourceEnum = ge().getCollider()->overlapSource(&rect, &(*it)->rect);
 			if ((*it)->getTileType() == 28)
 			{
 				ge().getLevel()->levelCompleted();
@@ -72,22 +114,38 @@ void Character::handleCollision()
 
 			if (overlapSourceEnum.getOverlapSouceEnum() == OverlapSourceEnum::OverlapSourceEnums::overlapsTop)
 			{
-				movementVelocityY -= 5;
+				if (!handeldCollision && movementVelocityY < 0)
+				{
+					handeldCollision = !handeldCollision;
+					movementVelocityY *= -1;
+				}
 			}			
 			if (overlapSourceEnum.getOverlapSouceEnum() == OverlapSourceEnum::OverlapSourceEnums::overlapsBottom)
 			{
-				movementVelocityY += 5;
+				if (!handeldCollision)
+				{
+					handeldCollision = !handeldCollision;
+					movementVelocityY -= movementVelocityY * 2;
+				}
 			}			
 			if (overlapSourceEnum.getOverlapSouceEnum() == OverlapSourceEnum::OverlapSourceEnums::overlapsLeft)
 			{
-				movementVelocityX += 1;
+				if (!handeldCollision  && movementVelocityY < 0)
+				{
+					handeldCollision = !handeldCollision;
+					movementVelocityX *= -1;
+				}
 			}			
 			if (overlapSourceEnum.getOverlapSouceEnum() == OverlapSourceEnum::OverlapSourceEnums::overlapsRight)
 			{
-				movementVelocityX -= 1;
-			}
+				if (!handeldCollision)
+				{
+					handeldCollision = !handeldCollision;
+					movementVelocityX -= movementVelocityX * 2;
+				}
+			}*/
 
-			//movementVelocityX = spriteAxisAngle / 100 + chargeMeter;
+			//movementVelocityX += spriteAxisAngle / 100 + chargeMeter;
 		}
 	}
 }
