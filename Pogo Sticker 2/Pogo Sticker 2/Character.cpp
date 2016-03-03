@@ -8,7 +8,7 @@ using namespace gameEngine;
 Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x, y, w, h, imgPath, false, "Character")
 {
 	//Initialize the velocity
-	movementVelocityX = -0.1;
+	movementVelocityX = 0;
 	movementVelocityY = 0;
 	spriteAxisAngle = 0;
 
@@ -16,7 +16,7 @@ Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x
 	body = new Sprite(32, 32, 15, 15, "../images/body.png", false, "Head");
 	foot = new Sprite(32, 32, 15, 15, "../images/foot.png", false, "Head");*/
 
-	chargeMeter = 0.5;
+	chargeMeter = 0.2;
 	chargeMeterTick = 0;
 }
 
@@ -36,7 +36,7 @@ void Character::mouseMotion(int x, int y)
 
 void Character::mouseDown(int x, int y)
 {
-	chargeMeter += 0.5;	
+	chargeMeter += 0.2;	
 }
 
 void Character::draw()
@@ -60,7 +60,6 @@ void Character::tick()
 void Character::handleCollision()
 {
 	std::list<Tile*> tiles = ge().getTiles();
-	bool handeldCollision = false;
 	for (std::list<Tile*>::iterator it = tiles.begin(); it != tiles.end(); it++)
 	{
 		if (ge().getCollider()->overlaps(&rect, &(*it)->rect) && (*it)->getType() == "Tile")
@@ -95,57 +94,34 @@ void Character::handleCollision()
 			if (moveInXDirection)
 			{
 				if (intersectsRight)
+				{
 					movementVelocityX += width;
+				}
 				else
+				{
 					movementVelocityX -= width;
+				}
 			}
 			else
 			{
 				if (intersectsTop)
+				{
 					movementVelocityY -= height;
+				}
 				else
+				{
 					movementVelocityY += height;
+				}
 			}
-			/*OverlapSourceEnum overlapSourceEnum = ge().getCollider()->overlapSource(&rect, &(*it)->rect);
+
 			if ((*it)->getTileType() == 28)
 			{
 				ge().getLevel()->levelCompleted();
-			}
+			}			
 
-			if (overlapSourceEnum.getOverlapSouceEnum() == OverlapSourceEnum::OverlapSourceEnums::overlapsTop)
-			{
-				if (!handeldCollision && movementVelocityY < 0)
-				{
-					handeldCollision = !handeldCollision;
-					movementVelocityY *= -1;
-				}
-			}			
-			if (overlapSourceEnum.getOverlapSouceEnum() == OverlapSourceEnum::OverlapSourceEnums::overlapsBottom)
-			{
-				if (!handeldCollision)
-				{
-					handeldCollision = !handeldCollision;
-					movementVelocityY -= movementVelocityY * 2;
-				}
-			}			
-			if (overlapSourceEnum.getOverlapSouceEnum() == OverlapSourceEnum::OverlapSourceEnums::overlapsLeft)
-			{
-				if (!handeldCollision  && movementVelocityY < 0)
-				{
-					handeldCollision = !handeldCollision;
-					movementVelocityX *= -1;
-				}
-			}			
-			if (overlapSourceEnum.getOverlapSouceEnum() == OverlapSourceEnum::OverlapSourceEnums::overlapsRight)
-			{
-				if (!handeldCollision)
-				{
-					handeldCollision = !handeldCollision;
-					movementVelocityX -= movementVelocityX * 2;
-				}
-			}*/
-
-			//movementVelocityX += spriteAxisAngle / 100 + chargeMeter;
+			//Sinus and cosinus
+			movementVelocityX += sin(spriteAxisAngle) + chargeMeter;
+			movementVelocityY += cos(spriteAxisAngle) + chargeMeter;
 		}
 	}
 }
@@ -159,9 +135,9 @@ void Character::applyMotion()
 void Character::straightenUp()
 {
 	if (spriteAxisAngle > 0)
-		spriteAxisAngle -= 0.1;
+		spriteAxisAngle -= 0.1f;
 	else
 	{
-		spriteAxisAngle += 0.1;
+		spriteAxisAngle += 0.1f;
 	}
 }
