@@ -1,6 +1,5 @@
 #include "Character.h"
 #include "GameEngine.h"
-#include "OverlapSourceEnum.h"
 #include <vector>
 
 using namespace gameEngine;
@@ -11,10 +10,7 @@ Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x
 	movementVelocityX = 0;
 	movementVelocityY = 0;
 	spriteAxisAngle = 0;
-
-	/*head = Sprite::getInstance(32, 32, 15, 15, "../images/head.png", false, "Head");
-	body = new Sprite(32, 32, 15, 15, "../images/body.png", false, "Head");
-	foot = new Sprite(32, 32, 15, 15, "../images/foot.png", false, "Head");*/
+	cursorDistanceFromCharacter = 0;
 
 	chargeMeter = 0.2;
 	chargeMeterTick = 0;
@@ -32,6 +28,7 @@ void Character::mouseMotion(int x, int y)
 	int deltaX = x - point.y;
 	spriteAxisAngle = atan2(deltaY, deltaX) * 180 / 3.141;
 	rect.angle = spriteAxisAngle;
+	cursorDistanceFromCharacter = setCursorDistanceFromCharacter(x, y);
 }
 
 void Character::mouseDown(int x, int y)
@@ -41,8 +38,8 @@ void Character::mouseDown(int x, int y)
 
 void Character::draw()
 {
-	SDL_Rect drawingRect = { rect.x - ge().getCamera().rect.x, rect.y - ge().getCamera().rect.y, rect.w, rect.h };
-	SDL_RenderCopyEx(gameEngine::ge().getRenderer(), texture, nullptr, &drawingRect, spriteAxisAngle, NULL, SDL_FLIP_NONE);
+	SDL_Rect drawingRect = { rect.x - currentGameEngine().getCamera().rect.x, rect.y - currentGameEngine().getCamera().rect.y, rect.w, rect.h };
+	SDL_RenderCopyEx(currentGameEngine().getRenderer(), texture, nullptr, &drawingRect, spriteAxisAngle, NULL, SDL_FLIP_NONE);
 }
 
 void Character::tick()
@@ -50,19 +47,18 @@ void Character::tick()
 	handleCollision();
 
 	//TODO: Apply gravity here
-	//mVelX = spriteAxisAngle/100 + chargeMeter;
 	movementVelocityY += 0.05f;
 
-	straightenUp();
+	//straightenUp();
 	applyMotion();
 }
 
 void Character::handleCollision()
 {
-	std::list<Tile*> tiles = ge().getTiles();
+	std::list<Tile*> tiles = currentGameEngine().getTiles();
 	for (std::list<Tile*>::iterator it = tiles.begin(); it != tiles.end(); it++)
 	{
-		if (ge().getCollider()->overlaps(&rect, &(*it)->rect) && (*it)->getType() == "Tile")
+		if (currentGameEngine().getCollider()->overlaps(&rect, &(*it)->rect) && (*it)->getType() == "Tile")
 		{
 			SDL_Rect movingObject = rect;
 			SDL_Rect stationaryObject = (*it)->rect;
@@ -116,14 +112,21 @@ void Character::handleCollision()
 
 			if ((*it)->getTileType() == 28)
 			{
-				ge().getLevel()->levelCompleted();
+				currentGameEngine().getLevel()->levelCompleted();
 			}			
 
 			//Sinus and cosinus
-			movementVelocityX += sin(spriteAxisAngle) + chargeMeter;
+			movementVelocityX += sin(spriteAxisAngle) + cursorDistanceFromCharacter;
 			movementVelocityY += cos(spriteAxisAngle) + chargeMeter;
 		}
 	}
+}
+
+int Character::setCursorDistanceFromCharacter(int x, int y)
+{
+	SDL_Point point = { rect.x / 2, rect.y / 2 };
+	int cursorDistanceFromCharacter = (x - point.x) / 200;
+	return cursorDistanceFromCharacter;
 }
 
 void Character::applyMotion()

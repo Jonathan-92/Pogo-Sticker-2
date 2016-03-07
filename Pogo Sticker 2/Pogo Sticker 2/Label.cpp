@@ -8,7 +8,7 @@ using namespace std;
 namespace gameEngine {
 
 	Label::Label(int x, int y, int w, int h, string text, FuncPtr fp) :
-		Sprite(x, y, w, h, TTF_RenderText_Solid(ge().getFont(), text.c_str(), black), "Label"),
+		Sprite(x, y, w, h, TTF_RenderText_Solid(currentGameEngine().getFont(), text.c_str(), black), "Label"),
 		funcPtr(fp)
 	{
 	}
@@ -28,8 +28,8 @@ namespace gameEngine {
 	void Label::setText(string text)
 	{
 		SDL_DestroyTexture(texture);
-		SDL_Surface* surface = TTF_RenderText_Solid(ge().getFont(), text.c_str(), black);
-		texture = SDL_CreateTextureFromSurface(ge().getRenderer(), surface);
+		SDL_Surface* surface = TTF_RenderText_Solid(currentGameEngine().getFont(), text.c_str(), black);
+		texture = SDL_CreateTextureFromSurface(currentGameEngine().getRenderer(), surface);
 		SDL_FreeSurface(surface);
 	}
 

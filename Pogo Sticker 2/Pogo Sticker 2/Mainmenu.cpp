@@ -32,12 +32,12 @@ void switchToLevel()
 
 void Level::load()
 {
-	ge().load(background, sprites, tiles, this);
+	currentGameEngine().load(background, sprites, tiles, this);
 }
 
 void Level::setBackground(SDL_Surface* surface)
 {
-	background = SDL_CreateTextureFromSurface(ge().getRenderer(), surface);
+	background = SDL_CreateTextureFromSurface(currentGameEngine().getRenderer(), surface);
 	SDL_FreeSurface(surface);
 }
 

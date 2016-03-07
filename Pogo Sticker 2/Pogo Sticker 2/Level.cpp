@@ -36,11 +36,11 @@ void switchToMenu()
 void Level::levelCompleted()
 {
 	G_Button* button = new G_Button(100, 100, 100, 100, "../images/button_up.png", switchToMenu);
-	ge().add(button);
+	currentGameEngine().add(button);
 	int time = timer->getTime();
 	Label* label = Label::getInstance(200, 200, 200, 25, "grats m8 ur time is: " + std::to_string(time));
-	ge().add(label);
-	ge().setEndstate(true);
+	currentGameEngine().add(label);
+	currentGameEngine().setEndstate(true);
 }
 
 int Level::getHeight()
@@ -127,8 +127,8 @@ void Level::init()
 	Tile* tile = new Tile(900, 500, 100, 100, &srcRect, "../images/Goal.png", 2);
 	sprites.push_back(tile);*/
 
-	ge().getCamera().setCharacter(character);
-	ge().getCamera().setLevel(this);
+	currentGameEngine().getCamera().setCharacter(character);
+	currentGameEngine().getCamera().setLevel(this);
 
 	timer = new Timer(10, 01, 100, 50, "hej");
 	sprites.push_back(timer);

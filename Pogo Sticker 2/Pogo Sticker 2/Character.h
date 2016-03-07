@@ -23,27 +23,28 @@ public:
 	~Character(void);
 
 	//�rvd fr�n Sprite antar jag
-	virtual void mouseMotion(int x, int y);
-	virtual void mouseDown(int x, int y);
+	void mouseMotion(int x, int y) override;
+	void mouseDown(int x, int y) override;
 
-	void draw();
+	void draw() override;
 
-	virtual void tick();
+	void tick() override;
 
 private:
 
 	void applyMotion();
 	void straightenUp();
 	void handleCollision();
+	int setCursorDistanceFromCharacter(int x, int y);
 	//The velocity of the dot
 	float movementVelocityX, movementVelocityY;
 
 	//Handle how high it should bounce
 	float chargeMeter;
+	int cursorDistanceFromCharacter;
 	int chargeMeterTick;
 	float spriteAxisAngle;
 
-	//Sprite* head, body, foot;
 	//Gravity object
 	gameEngine::Gravity gravity = gameEngine::Gravity(0.1, 0.1, 0.01);
 };

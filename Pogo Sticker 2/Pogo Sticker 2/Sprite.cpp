@@ -12,7 +12,7 @@ namespace gameEngine {
 		if (surface == nullptr)
 			throw std::runtime_error("surface is null");
 
-		texture = SDL_CreateTextureFromSurface(ge().getRenderer(), surface);
+		texture = SDL_CreateTextureFromSurface(currentGameEngine().getRenderer(), surface);
 		if (texture == nullptr)
 			throw std::runtime_error("texture is null");
 		
@@ -39,7 +39,7 @@ namespace gameEngine {
 		if (dstSurface == nullptr)
 			throwException("surface2 is null ", SDL_GetError);
 			
-		texture = SDL_CreateTextureFromSurface(ge().getRenderer(), dstSurface);
+		texture = SDL_CreateTextureFromSurface(currentGameEngine().getRenderer(), dstSurface);
 		if (texture == nullptr)
 			throwException("texture is null", SDL_GetError);
 
@@ -53,7 +53,7 @@ namespace gameEngine {
 		rect(x, y, w, h)
 	{
 		type = spriteType;
-		texture = SDL_CreateTextureFromSurface(ge().getRenderer(), surface);
+		texture = SDL_CreateTextureFromSurface(currentGameEngine().getRenderer(), surface);
 		SDL_FreeSurface(surface);
 	}
 
@@ -65,7 +65,7 @@ namespace gameEngine {
 
 	void Sprite::draw() 
 	{
-		SDL_RenderCopy(ge().getRenderer(), texture, NULL, &rect);
+		SDL_RenderCopy(currentGameEngine().getRenderer(), texture, NULL, &rect);
 	}
 
 

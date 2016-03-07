@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 	mainMenu->init();
 	mainMenu->load();
 
-	ge().run();
+	currentGameEngine().run();
 
 	return 0;
 }

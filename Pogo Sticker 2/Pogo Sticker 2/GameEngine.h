@@ -56,7 +56,7 @@ namespace gameEngine {
 		void handleTicks();
 	};
 
-	GameEngine& ge();
+	GameEngine& currentGameEngine();
 	void throwException(std::string, const char* (*errorFunc)());
 }
 

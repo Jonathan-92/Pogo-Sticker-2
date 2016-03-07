@@ -20,14 +20,14 @@ int Tile::getTileType()
 
 void Tile::draw()
 {
-	SDL_Rect drawingRect = { rect.x - ge().getCamera().rect.x, rect.y - ge().getCamera().rect.y, rect.w, rect.h };
-	if (rect.overlaps(ge().getCamera().rect))
-		SDL_RenderCopy(ge().getRenderer(), texture, NULL, &drawingRect);
+	SDL_Rect drawingRect = { rect.x - currentGameEngine().getCamera().rect.x, rect.y - currentGameEngine().getCamera().rect.y, rect.w, rect.h };
+	if (rect.overlaps(currentGameEngine().getCamera().rect))
+		SDL_RenderCopy(currentGameEngine().getRenderer(), texture, NULL, &drawingRect);
 	else
 		return;
 }
 
 void Tile::tick()
 {
-	//if (rect.overlaps(ge().))
+	//if (rect.overlaps(currentGameEngine().))
 }

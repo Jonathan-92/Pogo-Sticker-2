@@ -61,9 +61,4 @@ namespace gameEngine {
 		return *overlapSourceEnum;
 	}
 
-	bool CollisionHandling::pixelOverlaps()
-	{
-		return false;	
-	}
-
 }

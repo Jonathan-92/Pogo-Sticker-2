@@ -15,11 +15,11 @@ ViewPort::~ViewPort()
 
 void ViewPort::load()
 {
-	ge().load(background, sprites);
+	currentGameEngine().load(background, sprites);
 }
 
 void ViewPort::setBackground(SDL_Surface* surface)
 {
-	background = SDL_CreateTextureFromSurface(ge().getRenderer(), surface);
+	background = SDL_CreateTextureFromSurface(currentGameEngine().getRenderer(), surface);
 	SDL_FreeSurface(surface);
 }

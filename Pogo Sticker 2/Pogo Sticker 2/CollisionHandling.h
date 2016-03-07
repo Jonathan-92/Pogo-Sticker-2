@@ -13,7 +13,6 @@ namespace gameEngine {
 		~CollisionHandling();
 		bool overlaps(Rect* myRect, Rect* other);
 		OverlapSourceEnum overlapSource(Rect* myRect, Rect* other);
-		bool pixelOverlaps();
 	};
 }
 #endif

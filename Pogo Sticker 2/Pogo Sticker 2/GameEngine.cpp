@@ -13,9 +13,9 @@ namespace gameEngine {
 		throw runtime_error(msg.c_str());
 	}
 
-	GameEngine& ge() {
-		static GameEngine* ge = new GameEngine();
-		return *ge;
+	GameEngine& currentGameEngine() {
+		static GameEngine* gameEngine = new GameEngine();
+		return *gameEngine;
 	}
 
 	GameEngine::GameEngine() : fps(60) {		// l�gg till fler null checkar
