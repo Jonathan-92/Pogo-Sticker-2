@@ -1,6 +1,8 @@
 #include "Character.h"
 #include "GameEngine.h"
 #include <vector>
+#include "Hitbox.h"
+#include <SDL_image.h>
 
 using namespace gameEngine;
 
@@ -11,6 +13,10 @@ Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x
 	movementVelocityY = 0;
 	spriteAxisAngle = 0;
 	cursorDistanceFromCharacter = 0;
+
+	hitboxes.push_back(new Hitbox(x, y, w, h-50, HitboxEnum::HitboxEnums::characterHead));
+	hitboxes.push_back(new Hitbox(x, y+10, w, h-20, HitboxEnum::HitboxEnums::characterBody));
+	hitboxes.push_back(new Hitbox(x, y+50, w, h-50, HitboxEnum::HitboxEnums::characterFoot));
 
 	chargeMeter = 0.2;
 	chargeMeterTick = 0;
@@ -40,6 +46,17 @@ void Character::draw()
 {
 	SDL_Rect drawingRect = { rect.x - currentGameEngine().getCamera().rect.x, rect.y - currentGameEngine().getCamera().rect.y, rect.w, rect.h };
 	SDL_RenderCopyEx(currentGameEngine().getRenderer(), texture, nullptr, &drawingRect, spriteAxisAngle, NULL, SDL_FLIP_NONE);
+
+	//Draw hitboxes for debugging
+	SDL_Surface* surface = IMG_Load("../images/hitbox.png");
+	if (surface == nullptr)
+		throw std::runtime_error("surface is null");
+
+	texture = SDL_CreateTextureFromSurface(currentGameEngine().getRenderer(), surface);
+	for (std::list<Hitbox*>::iterator hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); hitboxIterator++)
+	{
+		SDL_RenderCopyEx(currentGameEngine().getRenderer(), texture, nullptr, hitboxIterator._Ptr->_Myval, spriteAxisAngle, NULL, SDL_FLIP_NONE);
+	}
 }
 
 void Character::tick()
@@ -51,73 +68,89 @@ void Character::tick()
 
 	//straightenUp();
 	applyMotion();
+	syncHitboxes();
+}
+
+void Character::syncHitboxes()
+{
+	for (std::list<Hitbox*>::iterator hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); hitboxIterator++)
+	{
+		Hitbox* hitbox = hitboxIterator._Ptr->_Myval;
+
+		hitbox->x = rect.x + cos(rect.angle * M_PI / 180);
+		hitbox->y = rect.y + sin(rect.angle * M_PI / 180);
+		hitbox->angle = spriteAxisAngle;
+	}
 }
 
 void Character::handleCollision()
 {
 	std::list<Tile*> tiles = currentGameEngine().getTiles();
-	for (std::list<Tile*>::iterator it = tiles.begin(); it != tiles.end(); it++)
+	for (std::list<Tile*>::iterator tileIterator = tiles.begin(); tileIterator != tiles.end(); tileIterator++)
 	{
-		if (currentGameEngine().getCollider()->overlaps(&rect, &(*it)->rect) && (*it)->getType() == "Tile")
+		for (std::list<Hitbox*>::iterator hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); hitboxIterator++)
 		{
-			SDL_Rect movingObject = rect;
-			SDL_Rect stationaryObject = (*it)->rect;
-			// what side of the stationaryObject does the movingObject collide on?
-			bool intersectsTop = false;
-			bool intersectsRight = false;
-
-			if (movingObject.x > stationaryObject.x)
-				intersectsRight = true;
-			// y up is neg
-			if (movingObject.y < stationaryObject.y)
-				intersectsTop = true;
-
-			// the height & width of the intersection rectangle
-			short int height, width;
-
-			if (intersectsTop)
-				height = abs(stationaryObject.y - (movingObject.y + movingObject.h));
-			else
-				height = abs(stationaryObject.y + stationaryObject.h - movingObject.y);
-			if (intersectsRight)
-				width = abs(stationaryObject.x + stationaryObject.w - movingObject.x);
-			else
-				width = abs(stationaryObject.x - (movingObject.x + movingObject.w));
-
-			bool moveInXDirection = height > width ? true : false;
-
-			// adjust moving object's position accordingly
-			if (moveInXDirection)
+			if (currentGameEngine().getCollider()->overlapsWithAngles(hitboxIterator._Ptr->_Myval, &(*tileIterator)->rect) && (*tileIterator)->getType() == "Tile")
 			{
-				if (intersectsRight)
-				{
-					movementVelocityX += width;
-				}
-				else
-				{
-					movementVelocityX -= width;
-				}
-			}
-			else
-			{
+				SDL_Rect* movingObject = hitboxIterator._Ptr->_Myval;
+				SDL_Rect* stationaryObject = &(*tileIterator)->rect;
+				// what side of the stationaryObject does the movingObject collide on?
+				bool intersectsTop = false;
+				bool intersectsRight = false;
+
+				if (&movingObject->x > &stationaryObject->x)
+					intersectsRight = true;
+				// y up is neg
+				if (&movingObject->y < &stationaryObject->y)
+					intersectsTop = true;
+
+				// the height & width of the intersection rectangle
+				short int height, width;
+
 				if (intersectsTop)
+					height = abs(stationaryObject->y - (movingObject->y + movingObject->h));
+				else
+					height = abs(stationaryObject->y + stationaryObject->h - movingObject->y);
+				if (intersectsRight)
+					width = abs(stationaryObject->x + stationaryObject->w - movingObject->x);
+				else
+					width = abs(stationaryObject->x - (movingObject->x + movingObject->w));
+
+				bool moveInXDirection = height > width ? true : false;
+
+				// adjust moving object's position accordingly
+				if (moveInXDirection)
 				{
-					movementVelocityY -= height;
+					if (intersectsRight)
+					{
+						movementVelocityX += width;
+					}
+					else
+					{
+						movementVelocityX -= width;
+					}
 				}
 				else
 				{
-					movementVelocityY += height;
+					if (intersectsTop)
+					{
+						movementVelocityY -= height;
+					}
+					else
+					{
+						movementVelocityY += height;
+					}
 				}
+
+				if ((*tileIterator)->getTileType() == 28)
+				{
+					currentGameEngine().getLevel()->levelCompleted();
+				}
+
+				//Sinus and cosinus
+				movementVelocityX += sin(spriteAxisAngle * M_PI / 180) + cursorDistanceFromCharacter;
+				movementVelocityY += cos(spriteAxisAngle * M_PI / 180) + chargeMeter;
 			}
-
-			if ((*it)->getTileType() == 28)
-			{
-				currentGameEngine().getLevel()->levelCompleted();
-			}			
-
-			//Sinus and cosinus
-			movementVelocityX += sin(spriteAxisAngle) + cursorDistanceFromCharacter;
-			movementVelocityY += cos(spriteAxisAngle) + chargeMeter;
 		}
 	}
 }
@@ -127,12 +160,6 @@ int Character::setCursorDistanceFromCharacter(int x, int y)
 	SDL_Point point = { rect.x / 2, rect.y / 2 };
 	int cursorDistanceFromCharacter = (x - point.x) / 200;
 	return cursorDistanceFromCharacter;
-}
-
-void Character::applyMotion()
-{
-	rect.y += movementVelocityY;
-	rect.x += movementVelocityX;
 }
 
 void Character::straightenUp()

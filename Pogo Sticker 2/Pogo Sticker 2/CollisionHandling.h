@@ -1,7 +1,6 @@
 #ifndef COLLISIONHANDLING_H
 #define COLLISIONHANDLING_H
 #include "Rect.h"
-#include "OverlapSourceEnum.h"
 
 namespace gameEngine {
 
@@ -12,7 +11,7 @@ namespace gameEngine {
 		CollisionHandling();
 		~CollisionHandling();
 		bool overlaps(Rect* myRect, Rect* other);
-		OverlapSourceEnum overlapSource(Rect* myRect, Rect* other);
+		bool overlapsWithAngles(Rect* myRect, Rect* other);
 	};
 }
 #endif

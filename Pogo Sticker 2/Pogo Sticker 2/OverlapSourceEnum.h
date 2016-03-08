@@ -1,9 +1,6 @@
 #pragma once
 
 class OverlapSourceEnum {
-protected:
-
-
 public:
 	typedef enum OverlapSourceEnums {
 		overlapsTop = 1,

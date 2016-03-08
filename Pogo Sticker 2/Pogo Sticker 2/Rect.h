@@ -1,9 +1,9 @@
 #ifndef RECT_H
 #define RECT_H
 #include <SDL.h>
+#include "Vector2D.h"
 
 namespace gameEngine {
-
 	/* Acts as the bounds and position which Sprites will be displayed on.
 	Extends SDL_Rect and provides additional operations. */
 	struct Rect : public SDL_Rect {
@@ -27,6 +27,9 @@ namespace gameEngine {
 
 		/* Returns the y coordinate in the middle of this instance */
 		int centeredY();
+
+		Vector2D centerPoint();
+		Vector2D sizePoint();
 
 		/* Creates a new rectangle that is centered on this instance */
 		Rect centeredRect(int width, int height) const;

@@ -80,6 +80,8 @@
     <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="G_Button.cpp" />
     <ClCompile Include="Highscores.cpp" />
+    <ClCompile Include="Hitbox.cpp" />
+    <ClCompile Include="HitboxEnum.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -90,6 +92,7 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="ViewPort.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +102,8 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Gravity.h" />
     <ClInclude Include="G_Button.h" />
+    <ClInclude Include="Hitbox.h" />
+    <ClInclude Include="HitboxEnum.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="MainMenu.h" />
@@ -108,6 +113,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Vector2D.h" />
     <ClInclude Include="ViewPort.h" />
   </ItemGroup>
   <ItemGroup>

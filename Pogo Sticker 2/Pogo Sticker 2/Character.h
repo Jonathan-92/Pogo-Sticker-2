@@ -1,8 +1,9 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
-#include <SDL.h>
 #include "Sprite.h"
 #include "Gravity.h"
+#include <list>
+#include "Hitbox.h"
 
 //The pogo guy.
 class Character : public gameEngine::Sprite
@@ -32,12 +33,10 @@ public:
 
 private:
 
-	void applyMotion();
 	void straightenUp();
 	void handleCollision();
+	void syncHitboxes();
 	int setCursorDistanceFromCharacter(int x, int y);
-	//The velocity of the dot
-	float movementVelocityX, movementVelocityY;
 
 	//Handle how high it should bounce
 	float chargeMeter;
@@ -45,6 +44,7 @@ private:
 	int chargeMeterTick;
 	float spriteAxisAngle;
 
+	std::list<gameEngine::Hitbox*> hitboxes;
 	//Gravity object
 	gameEngine::Gravity gravity = gameEngine::Gravity(0.1, 0.1, 0.01);
 };

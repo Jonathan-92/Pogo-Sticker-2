@@ -17,6 +17,8 @@ namespace gameEngine {
 			throw std::runtime_error("texture is null");
 		
 		type = spriteType;
+		movementVelocityX = 0;
+		movementVelocityY = 0;
 
 		SDL_FreeSurface(surface);
 	}
@@ -44,6 +46,8 @@ namespace gameEngine {
 			throwException("texture is null", SDL_GetError);
 
 		type = spriteType;
+		movementVelocityX = 0;
+		movementVelocityY = 0;
 
 		//SDL_FreeSurface(surface);
 		SDL_FreeSurface(dstSurface);
@@ -53,6 +57,8 @@ namespace gameEngine {
 		rect(x, y, w, h)
 	{
 		type = spriteType;
+		movementVelocityX = 0;
+		movementVelocityY = 0;
 		texture = SDL_CreateTextureFromSurface(currentGameEngine().getRenderer(), surface);
 		SDL_FreeSurface(surface);
 	}
@@ -68,6 +74,11 @@ namespace gameEngine {
 		SDL_RenderCopy(currentGameEngine().getRenderer(), texture, NULL, &rect);
 	}
 
+	void Sprite::applyMotion()
+	{
+		rect.x += movementVelocityX;
+		rect.y += movementVelocityY;
+	}
 
 	Sprite::~Sprite()
 	{

@@ -42,6 +42,8 @@ namespace gameEngine {
 		virtual int getPosX();
 		virtual int getPosY();
 		virtual std::string getType();
+
+		virtual void applyMotion();
 	protected:
 		virtual ~Sprite();
 
@@ -50,6 +52,9 @@ namespace gameEngine {
 		SDL_Texture* texture;
 		
 		std::string type;
+
+		//The velocity of the sprite
+		float movementVelocityX, movementVelocityY;
 
 		// Creates a Sprite from an image path, and uses the flag transp to 
 		// determine if the background should be transparent of not
