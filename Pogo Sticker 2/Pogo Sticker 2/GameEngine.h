@@ -2,7 +2,6 @@
 #define GAMEENGINE_H
 #include "Sprite.h"
 #include "Camera.h"
-#include "Viewport.h"
 #include "Tile.h"
 #include "CollisionHandling.h"
 #include <list>
@@ -14,7 +13,6 @@ namespace gameEngine {
 	public:
 		GameEngine();
 		~GameEngine();
-		void run();
 		void add(Sprite* sprite);
 		void remove(Sprite* sprite);
 		void setBackground(const char* path);
@@ -24,6 +22,7 @@ namespace gameEngine {
 		void load(SDL_Texture* background, std::list<Sprite*> sprites);
 		void delay(int ticks);
 		void setEndstate(bool state);
+		void run();
 		std::list<Sprite*> getSprites() const;
 		std::list<Tile*> getTiles() const;
 		SDL_Renderer* getRenderer();

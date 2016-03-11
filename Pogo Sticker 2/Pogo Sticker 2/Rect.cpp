@@ -1,5 +1,4 @@
 #include "Rect.h"
-#include <math.h>
 
 namespace gameEngine {
 	Rect::Rect() {

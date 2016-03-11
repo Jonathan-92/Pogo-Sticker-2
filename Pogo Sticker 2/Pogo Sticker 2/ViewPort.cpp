@@ -1,5 +1,4 @@
 #include "ViewPort.h"
-#include "SDL_image.h"
 #include "GameEngine.h"
 
 using namespace gameEngine;

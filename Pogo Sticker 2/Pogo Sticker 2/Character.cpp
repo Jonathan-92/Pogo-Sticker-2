@@ -52,10 +52,10 @@ void Character::draw()
 	if (surface == nullptr)
 		throw std::runtime_error("surface is null");
 
-	texture = SDL_CreateTextureFromSurface(currentGameEngine().getRenderer(), surface);
-	for (std::list<Hitbox*>::iterator hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); hitboxIterator++)
+	SDL_Texture* textureTemp = SDL_CreateTextureFromSurface(currentGameEngine().getRenderer(), surface);
+	for (std::list<Hitbox*>::iterator hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); ++hitboxIterator)
 	{
-		SDL_RenderCopyEx(currentGameEngine().getRenderer(), texture, nullptr, hitboxIterator._Ptr->_Myval, spriteAxisAngle, NULL, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(currentGameEngine().getRenderer(), textureTemp, nullptr, hitboxIterator._Ptr->_Myval, spriteAxisAngle, NULL, SDL_FLIP_NONE);
 	}
 }
 
@@ -64,7 +64,7 @@ void Character::tick()
 	handleCollision();
 
 	//TODO: Apply gravity here
-	movementVelocityY += 0.05f;
+	//movementVelocityY += 0.05f;
 
 	//straightenUp();
 	applyMotion();
@@ -74,12 +74,11 @@ void Character::tick()
 void Character::syncHitboxes()
 {
 	for (std::list<Hitbox*>::iterator hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); hitboxIterator++)
-	{
+	{	
 		Hitbox* hitbox = hitboxIterator._Ptr->_Myval;
-
-		hitbox->x = rect.x + cos(rect.angle * M_PI / 180);
-		hitbox->y = rect.y + sin(rect.angle * M_PI / 180);
-		hitbox->angle = spriteAxisAngle;
+		hitbox->x += movementVelocityX;
+		hitbox->y += movementVelocityY;
+		hitbox->applyRotation(rect.centeredX(), rect.centeredY(), rect.angle);
 	}
 }
 
@@ -90,7 +89,7 @@ void Character::handleCollision()
 	{
 		for (std::list<Hitbox*>::iterator hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); hitboxIterator++)
 		{
-			if (currentGameEngine().getCollider()->overlapsWithAngles(hitboxIterator._Ptr->_Myval, &(*tileIterator)->rect) && (*tileIterator)->getType() == "Tile")
+			if (currentGameEngine().getCollider()->overlaps(hitboxIterator._Ptr->_Myval, &(*tileIterator)->rect) && (*tileIterator)->getType() == "Tile")
 			{
 				SDL_Rect* movingObject = hitboxIterator._Ptr->_Myval;
 				SDL_Rect* stationaryObject = &(*tileIterator)->rect;

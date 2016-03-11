@@ -2,7 +2,7 @@
 #include <SDL.h>
 #include <string>
 #include <iostream>
-#include "G_Button.h"
+#include <gl/freeglut.h>
 
 using namespace std;
 
@@ -17,6 +17,52 @@ namespace gameEngine {
 		static GameEngine* gameEngine = new GameEngine();
 		return *gameEngine;
 	}
+
+	bool initGL()
+	{
+		//Set the viewport
+		glViewport(0.f, 0.f, 800, 640);
+
+		//Initialize Projection Matrix
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0.0, 800, 640, 0.0, 1.0, -1.0);
+
+		//Initialize Modelview Matrix
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+
+		//Initialize clear colors
+		glClearColor(0.f, 0.f, 0.f, 1.f);
+
+		//Check for error
+		GLenum error = glGetError();
+		if (error != GL_NO_ERROR)
+		{
+			printf("Error initializing OpenGL! %p\n", gluErrorString(error));
+			return false;
+		}
+
+		return true;
+	}
+
+	void display(void)
+	{
+		//  Clear the window or more specifically the frame buffer...
+		//  This happens by replacing all the contents of the frame
+		//  buffer by the clear color (black in our case)
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		//  Swap contents of backward and forward frame buffers
+		glutSwapBuffers();
+	}
+
+	void init()
+	{
+		//  Set the frame buffer clear color to black. 
+		glClearColor(0.0, 0.0, 0.0, 0.0);
+	}	
+
 
 	GameEngine::GameEngine() : fps(60) {		// l�gg till fler null checkar
 		if (SDL_Init(SDL_INIT_EVERYTHING) == -1)

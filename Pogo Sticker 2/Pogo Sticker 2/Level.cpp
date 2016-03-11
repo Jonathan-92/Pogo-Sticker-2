@@ -11,7 +11,7 @@ using namespace gameEngine;
 
 Level::Level()
 {
-	fileReader = new ReadFile("../Pogo Sticker 2/Text.txt");
+	fileReader = new ReadFile("../Pogo Sticker 2/Text2.txt");
 	fileReader->readData();
 
 	levelHeight = fileReader->dataContext["height"]*32;
@@ -58,7 +58,7 @@ void Level::init()
 	SDL_Surface* surface = IMG_Load("../images/white.png");
 	setBackground(surface);
 
-	Character* character = new Character(100, 50, 30, 60, "../images/character.png");
+	Character* character = new Character(250, 250, 30, 60, "../images/character.png");
 	sprites.push_back(character);
 
 	SDL_Surface* surface2 = IMG_Load("../images/tiletemplate.png");
@@ -90,9 +90,9 @@ void Level::init()
 				a = tilePosition - 1;
 			else
 			{
-				a = (int)tilePosition % tileMapWidth;
+				a = int(tilePosition) % tileMapWidth;
 			}
-			int b = (int)tilePosition / tileMapHeight;
+			int b = int(tilePosition) / tileMapHeight;
 			//xy = Starting point on the tilemap
 			//wh = How big the tile is
 			SDL_Rect srcRect = { a*32, b*32, tileHeight, tileWidth };
@@ -102,30 +102,6 @@ void Level::init()
 		}
 		x += tileWidth;
 	}
-
-	/*
-	//Floor
-	for (int i = 0; i < 15; ++i)
-	{
-		Tile* tile = new Tile(100 + 32 * i, 500, 32, 32, &srcRect, "../images/tiletemplate.png", 1);
-		sprites.push_back(tile);
-	}
-	//Roof
-	for (int i = 0; i < 15; ++i)
-	{
-		Tile* tile = new Tile(100 + 32 * i, 0, 32, 32, &srcRect, "../images/tiletemplate.png", 1);
-		sprites.push_back(tile);
-	}	
-	//Left wall
-	srcRect.x = 32; srcRect.y = 32;
-	for (int i = 0; i < 10; ++i)
-	{
-		Tile* tile = new Tile(100, 0 + 32 * i, 32, 32, &srcRect, "../images/tiletemplate.png", 1);
-		sprites.push_back(tile);
-	}
-
-	Tile* tile = new Tile(900, 500, 100, 100, &srcRect, "../images/Goal.png", 2);
-	sprites.push_back(tile);*/
 
 	currentGameEngine().getCamera().setCharacter(character);
 	currentGameEngine().getCamera().setLevel(this);

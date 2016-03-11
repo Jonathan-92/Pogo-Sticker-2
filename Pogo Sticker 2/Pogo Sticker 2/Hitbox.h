@@ -8,6 +8,7 @@ namespace gameEngine {
 	public:
 		Hitbox(int x, int y, int w, int h, HitboxEnum::HitboxEnums hitboxEnum);
 		HitboxEnum hitboxType;
+		void applyRotation(int centerX, int centerY, int newAngle);
 	private:		
 	};
 }

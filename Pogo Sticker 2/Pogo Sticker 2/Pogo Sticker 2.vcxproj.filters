@@ -46,6 +46,12 @@
     <Filter Include="Source Files\Shapes">
       <UniqueIdentifier>{c163607f-c444-4d07-9904-93a36843c7af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Graphic elements">
+      <UniqueIdentifier>{33e09ef7-0c34-4e33-a623-0728a4ca3b82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphic elements">
+      <UniqueIdentifier>{fd64a2b0-9ad8-4eb6-989a-2da0cec30aeb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -114,6 +120,9 @@
     <ClCompile Include="Vector2D.cpp">
       <Filter>Source Files\Shapes</Filter>
     </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Graphic elements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -173,6 +182,9 @@
     <ClInclude Include="Vector2D.h">
       <Filter>Header Files\Shapes</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files\Graphic elements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\images\black.png">
@@ -208,6 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="TODO.txt" />
