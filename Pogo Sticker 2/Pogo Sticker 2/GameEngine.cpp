@@ -76,9 +76,11 @@ namespace gameEngine {
 			throwException("Failed to open font.", TTF_GetError);
 
 		screen = SDL_CreateWindow("My Game", SDL_WINDOWPOS_CENTERED,
-			20, 800, 640, SDL_WINDOW_OPENGL);
+			SDL_WINDOWPOS_CENTERED, 800, 640, SDL_WINDOW_OPENGL);
 		if (screen == nullptr)
-			throwException("Failed creating window.", SDL_GetError);
+			throwException("Failed creating window.", SDL_GetError);	
+
+		maincontext = SDL_GL_CreateContext(screen);
 
 		renderer = SDL_CreateRenderer(screen, -1, SDL_RENDERER_ACCELERATED);
 		if (renderer == nullptr)
@@ -95,6 +97,7 @@ namespace gameEngine {
 		TTF_Quit();
 		SDL_DestroyRenderer(renderer);
 		SDL_DestroyWindow(screen);
+		SDL_GL_DeleteContext(maincontext);
 		SDL_Quit();
 	}
 	

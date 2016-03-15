@@ -31,9 +31,11 @@ namespace gameEngine {
 		SDL_Window* getScreen();
 		Level* getLevel();
 		CollisionHandling* getCollider();
+		SDL_GLContext getMaincontext();
 		bool switched;
 	private:
 		SDL_Window* screen;
+		SDL_GLContext maincontext;
 		SDL_Renderer* renderer;
 		TTF_Font* font;
 		Camera* camera;

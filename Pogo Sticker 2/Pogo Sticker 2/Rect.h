@@ -8,8 +8,8 @@ namespace gameEngine {
 	Extends SDL_Rect and provides additional operations. */
 	struct Rect : public SDL_Rect {
 	public:
-		Rect();
-
+		Rect();		
+		
 		/*
 		param "xx" = x coordinate position in pixels
 		param "yy" = y coordinate position in pixels

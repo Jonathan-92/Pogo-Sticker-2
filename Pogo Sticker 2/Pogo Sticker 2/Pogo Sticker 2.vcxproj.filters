@@ -37,9 +37,6 @@
     <Filter Include="Source Files\Enums">
       <UniqueIdentifier>{137fadc7-7f5d-4b11-8a0e-cacd74c75119}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\SubRects">
-      <UniqueIdentifier>{e474e7f1-03c9-4188-94fd-7cee36f60114}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Shapes">
       <UniqueIdentifier>{80856a65-1a47-4725-bf14-557494935684}</UniqueIdentifier>
     </Filter>
@@ -51,6 +48,15 @@
     </Filter>
     <Filter Include="Source Files\Graphic elements">
       <UniqueIdentifier>{fd64a2b0-9ad8-4eb6-989a-2da0cec30aeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SubPolygons">
+      <UniqueIdentifier>{e474e7f1-03c9-4188-94fd-7cee36f60114}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GeometryHelpers">
+      <UniqueIdentifier>{0ca42b85-7196-4f39-8395-2f2ee8fec332}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GeometryHelpers">
+      <UniqueIdentifier>{ac70515e-4605-4f3f-8992-d95d720d853b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +129,24 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files\Graphic elements</Filter>
     </ClCompile>
+    <ClCompile Include="Polygon.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="predicates.cpp">
+      <Filter>Source Files\GeometryHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Linebase.cpp">
+      <Filter>Source Files\GeometryHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Pointbase.cpp">
+      <Filter>Source Files\GeometryHelpers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -171,7 +195,7 @@
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
     <ClInclude Include="Hitbox.h">
-      <Filter>Header Files\SubRects</Filter>
+      <Filter>Header Files\SubPolygons</Filter>
     </ClInclude>
     <ClInclude Include="HitboxEnum.h">
       <Filter>Header Files\Enums</Filter>
@@ -184,6 +208,27 @@
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Header Files\Graphic elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Header Files\SubPolygons</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldObject.h">
+      <Filter>Header Files\SubPolygons</Filter>
+    </ClInclude>
+    <ClInclude Include="Pointbase.h">
+      <Filter>Header Files\GeometryHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Linebase.h">
+      <Filter>Header Files\GeometryHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="defs.h">
+      <Filter>Header Files\GeometryHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="splay.h">
+      <Filter>Header Files\GeometryHelpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

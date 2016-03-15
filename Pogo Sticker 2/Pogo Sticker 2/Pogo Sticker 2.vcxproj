@@ -84,22 +84,29 @@
     <ClCompile Include="HitboxEnum.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="Linebase.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mainmenu.cpp" />
     <ClCompile Include="OverlapSourceEnum.cpp" />
+    <ClCompile Include="Pointbase.cpp" />
+    <ClCompile Include="Polygon.cpp" />
+    <ClCompile Include="predicates.cpp" />
     <ClCompile Include="ReadFile.cpp" />
     <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="ViewPort.cpp" />
+    <ClCompile Include="WorldObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CollisionHandling.h" />
+    <ClInclude Include="defs.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Gravity.h" />
     <ClInclude Include="G_Button.h" />
@@ -107,16 +114,22 @@
     <ClInclude Include="HitboxEnum.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="Linebase.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="OverlapSourceEnum.h" />
+    <ClInclude Include="Pointbase.h" />
+    <ClInclude Include="Polygon.h" />
     <ClInclude Include="ReadFile.h" />
     <ClInclude Include="Rect.h" />
+    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="splay.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="ViewPort.h" />
+    <ClInclude Include="WorldObject.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\images\body.png" />
