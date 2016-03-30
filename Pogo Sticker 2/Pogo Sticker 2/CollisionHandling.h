@@ -13,7 +13,8 @@ namespace gameEngine {
 		CollisionHandling();
 		~CollisionHandling();
 		bool overlaps(Rect* myRect, Rect* other);
-		bool intersect(Polygon myRect, Polygon other);
+		bool overlaps(Triangle* myTriangle, Triangle* other);
+		bool intersect(WorldObject myWorldobject, WorldObject other);
 		void generateHitboxes(WorldObject worldObject);
 	};
 }

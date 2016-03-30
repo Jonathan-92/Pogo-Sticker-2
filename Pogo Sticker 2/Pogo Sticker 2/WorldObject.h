@@ -15,7 +15,7 @@ namespace gameEngine {
 		void searchMonotones();
 
 		//return all triangles
-		Triangles    triangles() { return _triangles; }
+		Triangles triangles() { return _triangles; }
 		
 	private:
 
