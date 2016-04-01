@@ -13,7 +13,8 @@ protected:
 	std::list<gameEngine::Vector2D*> vectors;
 public:
 	Polygon(float x, float y);
-	gameEngine::Rect rectangle;
+	Polygon(float x, float y, float width, float height);
+	gameEngine::Rect* rectangle;
 	virtual void addVector(float x, float y);
 	std::list<gameEngine::Vector2D*> getVectors() const;
 };

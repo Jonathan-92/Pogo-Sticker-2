@@ -12,8 +12,8 @@ namespace gameEngine {
 	public:
 		CollisionHandling();
 		~CollisionHandling();
-		bool overlaps(Rect* myRect, Rect* other);
-		bool overlaps(Triangle* myTriangle, Triangle* other);
+		bool rectanglesOverlaps(Rect* myRect, Rect* other);
+		bool trianglesOverlaps(Triangle* myTriangle, Triangle* other);
 		bool intersect(WorldObject myWorldobject, WorldObject other);
 		void generateHitboxes(WorldObject worldObject);
 	};

@@ -6,7 +6,7 @@ namespace gameEngine {
 	{
 	}
 
-	bool CollisionHandling::overlaps(Rect* myRect, Rect* other)
+	bool CollisionHandling::rectanglesOverlaps(Rect* myRect, Rect* other)
 	{
 		int left = myRect->x;					// left side of the rect
 		int other_left = other->x;				// other rect's left side
@@ -61,7 +61,7 @@ namespace gameEngine {
 		return u >= 0 && v >= 0 && (u + v) <= d;
 	}
 
-	bool CollisionHandling::overlaps(Triangle* myTriangle, Triangle* other)
+	bool CollisionHandling::trianglesOverlaps(Triangle* myTriangle, Triangle* other)
 	{
 		if (line_intersect2(myTriangle[0], myTriangle[1], other[0], other[1])) return true;
 		if (line_intersect2(myTriangle[0], myTriangle[1], other[0], other[2])) return true;
@@ -94,7 +94,7 @@ namespace gameEngine {
 	{
 		//Check outer rectangle before inner triangles for optimisation reasons
 
-		if (overlaps(&myRect.rectangle, &other.rectangle))
+		if (rectanglesOverlaps(myRect.rectangle, other.rectangle))
 		{
 			for (int i = 0; i < other.triangles().size(); ++i)
 			{

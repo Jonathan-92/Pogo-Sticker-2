@@ -47,6 +47,14 @@ void Character::draw()
 	SDL_Rect drawingRect = { rect.x - currentGameEngine().getCamera().rect.x, rect.y - currentGameEngine().getCamera().rect.y, rect.w, rect.h };
 	SDL_RenderCopyEx(currentGameEngine().getRenderer(), texture, nullptr, &drawingRect, spriteAxisAngle, NULL, SDL_FLIP_NONE);
 
+	//glBegin(GL_POINTS);
+	//glVertex2f(0.0, 0.0);
+	//glVertex2f(1.0, 0.0);
+	//glVertex2f(0.0, 1.0);
+	//glVertex2f(1.0, 1.0);
+	//glVertex2f(0.5, 0.5);
+	//glEnd();
+
 	//Draw hitboxes for debugging
 	SDL_Surface* surface = IMG_Load("../images/hitbox.png");
 	if (surface == nullptr)
