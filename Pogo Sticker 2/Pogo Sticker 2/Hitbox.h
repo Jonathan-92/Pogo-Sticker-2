@@ -5,8 +5,13 @@
 
 namespace gameEngine {
 	class Hitbox : public Polygon {
+	protected:
+		~Hitbox()
+		{
+		}
+
 	public:
-		Hitbox(int x, int y, HitboxEnum::HitboxEnums hitboxEnum);
+		Hitbox(float x, float y, float width, float height, HitboxEnum::HitboxEnums hitboxEnum);
 		HitboxEnum hitboxType;
 	private:		
 	};

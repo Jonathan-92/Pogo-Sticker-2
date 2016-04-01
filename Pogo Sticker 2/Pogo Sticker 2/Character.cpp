@@ -14,9 +14,9 @@ Character::Character(int x, int y, int w, int h, std::string imgPath) : Sprite(x
 	spriteAxisAngle = 0;
 	cursorDistanceFromCharacter = 0;
 
-	hitboxes.push_back(new Hitbox(x, y, HitboxEnum::HitboxEnums::characterHead));
-	hitboxes.push_back(new Hitbox(x, y+10, HitboxEnum::HitboxEnums::characterBody));
-	hitboxes.push_back(new Hitbox(x, y+50, HitboxEnum::HitboxEnums::characterFoot));
+	hitboxes.push_back(new Hitbox(x, y, w, h, HitboxEnum::HitboxEnums::characterHead));
+	hitboxes.push_back(new Hitbox(x, y+10, w, h, HitboxEnum::HitboxEnums::characterBody));
+	hitboxes.push_back(new Hitbox(x, y+50, w, h, HitboxEnum::HitboxEnums::characterFoot));
 
 	chargeMeter = 0.2;
 	chargeMeterTick = 0;
@@ -47,14 +47,6 @@ void Character::draw()
 	SDL_Rect drawingRect = { rect.x - currentGameEngine().getCamera().rect.x, rect.y - currentGameEngine().getCamera().rect.y, rect.w, rect.h };
 	SDL_RenderCopyEx(currentGameEngine().getRenderer(), texture, nullptr, &drawingRect, spriteAxisAngle, NULL, SDL_FLIP_NONE);
 
-	//glBegin(GL_POINTS);
-	//glVertex2f(0.0, 0.0);
-	//glVertex2f(1.0, 0.0);
-	//glVertex2f(0.0, 1.0);
-	//glVertex2f(1.0, 1.0);
-	//glVertex2f(0.5, 0.5);
-	//glEnd();
-
 	//Draw hitboxes for debugging
 	SDL_Surface* surface = IMG_Load("../images/hitbox.png");
 	if (surface == nullptr)
@@ -63,7 +55,7 @@ void Character::draw()
 	SDL_Texture* textureTemp = SDL_CreateTextureFromSurface(currentGameEngine().getRenderer(), surface);
 	for (std::list<Hitbox*>::iterator hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); ++hitboxIterator)
 	{
-		//SDL_RenderCopyEx(currentGameEngine().getRenderer(), textureTemp, nullptr, hitboxIterator._Ptr->_Myval, spriteAxisAngle, NULL, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(currentGameEngine().getRenderer(), textureTemp, nullptr, hitboxIterator._Ptr->_Myval->rectangle, spriteAxisAngle, NULL, SDL_FLIP_NONE);
 	}
 }
 
