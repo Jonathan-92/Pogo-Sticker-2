@@ -25,6 +25,7 @@ namespace gameEngine {
 		void run();
 		std::list<Sprite*> getSprites() const;
 		std::list<Tile*> getTiles() const;
+		std::list<WorldObject*> getWorldObjects() const;
 		SDL_Renderer* getRenderer();
 		TTF_Font* getFont();
 		Camera& getCamera();
@@ -48,11 +49,13 @@ namespace gameEngine {
 		SDL_Texture* background;
 		std::list<Sprite*> sprites;
 		std::list<Tile*> tiles;
+		std::list<WorldObject*> worldObjects;
 		std::list<Sprite*>::iterator it2;
 		std::list<Sprite*>::iterator itTick;
 		void forAll(void (Sprite::*membrPtr)(int, int), int x, int y);
 		void checkPause();
 		void drawSprites();
+		void drawWorldObjects();
 		void handleEvents();
 		void handleTicks();
 	};

@@ -141,6 +141,10 @@ namespace gameEngine {
 		return sprites;
 	}
 
+	std::list<WorldObject*> GameEngine::getWorldObjects() const {
+		return worldObjects;
+	}
+
 	std::list<Tile*> GameEngine::getTiles() const {
 		return tiles;
 	}
@@ -180,6 +184,7 @@ namespace gameEngine {
 			SDL_RenderClear(renderer);
 			SDL_RenderCopy(renderer, background, nullptr, nullptr);
 			
+			drawWorldObjects();
 			drawSprites();
 			checkPause();
 			if (!paused)
@@ -226,6 +231,15 @@ namespace gameEngine {
 			(*it)->draw();
 		}
 	}
+
+	void GameEngine::drawWorldObjects()
+	{
+		for (std::list<WorldObject*>::iterator it = worldObjects.begin(); it != worldObjects.end(); it++)
+		{
+			(*it)->draw();
+		}
+	}
+
 	void GameEngine::handleEvents()
 	{
 		SDL_Event event;

@@ -94,7 +94,7 @@ namespace gameEngine {
 	{
 		//Check outer rectangle before inner triangles for optimisation reasons
 
-		if (rectanglesOverlaps(myRect.rectangle, other.rectangle))
+		if (rectanglesOverlaps(myRect.boundaryRectangle, other.boundaryRectangle))
 		{
 			for (int i = 0; i < other.triangles().size(); ++i)
 			{

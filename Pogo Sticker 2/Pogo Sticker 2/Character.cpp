@@ -55,7 +55,7 @@ void Character::draw()
 	SDL_Texture* textureTemp = SDL_CreateTextureFromSurface(currentGameEngine().getRenderer(), surface);
 	for (std::list<Hitbox*>::iterator hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); ++hitboxIterator)
 	{
-		SDL_RenderCopyEx(currentGameEngine().getRenderer(), textureTemp, nullptr, hitboxIterator._Ptr->_Myval->rectangle, spriteAxisAngle, NULL, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(currentGameEngine().getRenderer(), textureTemp, nullptr, hitboxIterator._Ptr->_Myval->boundaryRectangle, spriteAxisAngle, NULL, SDL_FLIP_NONE);
 	}
 }
 

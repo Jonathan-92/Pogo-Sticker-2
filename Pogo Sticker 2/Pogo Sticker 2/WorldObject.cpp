@@ -1,4 +1,5 @@
 #include "WorldObject.h"
+#include "GL\glut.h"
 #include <stack>
 
 using namespace gameEngine;
@@ -407,6 +408,17 @@ void WorldObject::rotate(double theta)
 	PointbaseMap::iterator it = _points.begin();
 	for (; it != _points.end(); it++)
 		it->second->rotate(theta);
+}
+
+void WorldObject::draw()
+{
+	glBegin(GL_POINTS);
+	glVertex2f(0.0, 0.0);
+	glVertex2f(1.0, 0.0);
+	glVertex2f(0.0, 1.0);
+	glVertex2f(1.0, 1.0);
+	glVertex2f(0.5, 0.5);
+	glEnd();
 }
 
 

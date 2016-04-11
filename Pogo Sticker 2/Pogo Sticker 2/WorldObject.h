@@ -14,6 +14,8 @@ namespace gameEngine {
 		void partition2Monotone();
 		void searchMonotones();
 
+		void draw();
+
 		//return all triangles
 		Triangles triangles() { return _triangles; }
 		
@@ -50,7 +52,7 @@ namespace gameEngine {
 		vector<unsigned int>    _nVertices;   //
 		PointbaseMap            _points;      //all vertices
 		LineMap                 _edges;       //all edges 
-		double                  _xmin, _xmax, _ymin, _ymax; //boundary box for polygon
+		//double                  _xmin, _xmax, _ymin, _ymax; boundary box for polygon
 
 		PQueue      _qpoints;                            //priority queue for event points
 		EdgeBST     _edgebst;                            //edge binary searching tree (splaytree) 

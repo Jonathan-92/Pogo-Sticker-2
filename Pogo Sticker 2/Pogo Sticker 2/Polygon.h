@@ -14,7 +14,7 @@ protected:
 public:
 	Polygon(float x, float y);
 	Polygon(float x, float y, float width, float height);
-	gameEngine::Rect* rectangle;
+	gameEngine::Rect* boundaryRectangle;
 	virtual void addVector(float x, float y);
 	std::list<gameEngine::Vector2D*> getVectors() const;
 };

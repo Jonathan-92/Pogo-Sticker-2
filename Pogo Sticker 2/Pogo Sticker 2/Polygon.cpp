@@ -13,7 +13,7 @@ Polygon::Polygon(float x, float y, float width, float height)
 	Polygon::addVector(x + width, y);
 	Polygon::addVector(x, y + height);
 	Polygon::addVector(x + width, y + height);
-	rectangle = new Rect(x, y, width, height);
+	boundaryRectangle = new Rect(x, y, width, height);
 }
 
 void Polygon::addVector(float x, float y)
