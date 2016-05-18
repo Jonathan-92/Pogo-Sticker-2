@@ -64,6 +64,9 @@ void Level::init()
 	SDL_Surface* surface2 = IMG_Load("../images/tiletemplate.png");
 	if (surface2 == nullptr)
 		throwException("surface2 is null ", SDL_GetError);
+
+	WorldObject* worldObject = new WorldObject(2, 2);
+	worldObjects.push_back(worldObject);
 		
 	int x = 0;
 	int y = 0;

@@ -2,7 +2,8 @@
 #include <SDL.h>
 #include <string>
 #include <iostream>
-#include <gl/freeglut.h>
+#include <GL/glew.h>
+#include <GL/gl.h>
 
 using namespace std;
 
@@ -51,10 +52,10 @@ namespace gameEngine {
 		//  Clear the window or more specifically the frame buffer...
 		//  This happens by replacing all the contents of the frame
 		//  buffer by the clear color (black in our case)
-		glClear(GL_COLOR_BUFFER_BIT);
+		//glClear(GL_COLOR_BUFFER_BIT);
 
 		//  Swap contents of backward and forward frame buffers
-		glutSwapBuffers();
+		//glutSwapBuffers();
 	}
 
 	void init()
@@ -86,6 +87,7 @@ namespace gameEngine {
 		if (renderer == nullptr)
 			throwException("Failed creating renderer.", SDL_GetError);
 
+		initGL();
 		camera = new Camera();
 		collision = new CollisionHandling();
 		exited = false;
@@ -149,12 +151,13 @@ namespace gameEngine {
 		return tiles;
 	}
 
-	void GameEngine::load(SDL_Texture* background2, list<Sprite*> sprites2, list<Tile*> tiles2, Level* level2)
+	void GameEngine::load(SDL_Texture* background2, list<Sprite*> sprites2, list<Tile*> tiles2, Level* level2, list<WorldObject*> worldObjectsArg)
 	{
 		level = level2;
 		background = background2;
 		sprites = sprites2;
 		tiles = tiles2;
+		worldObjects = worldObjectsArg;
 		it2 = sprites.begin();
 		switched = true;
 		paused = false;
@@ -197,6 +200,9 @@ namespace gameEngine {
 			}
 
 			SDL_RenderPresent(renderer);
+
+			//TODO: http://lazyfoo.net/tutorials/SDL/50_SDL_and_opengl_2/
+			//SDL_GL_SwapWindow(screen);
 
 			delay = nextTick - SDL_GetTicks();
 

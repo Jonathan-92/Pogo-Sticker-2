@@ -32,7 +32,7 @@ void switchToLevel()
 
 void Level::load()
 {
-	currentGameEngine().load(background, sprites, tiles, this);
+	currentGameEngine().load(background, sprites, tiles, this, worldObjects);
 }
 
 void Level::setBackground(SDL_Surface* surface)

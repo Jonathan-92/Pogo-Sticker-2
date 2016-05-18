@@ -18,7 +18,7 @@ namespace gameEngine {
 		void setBackground(const char* path);
 		void setVideoMode(int w, int h);
 		void setFps(int i);
-		void load(SDL_Texture* background, std::list<Sprite*> sprites, std::list<Tile*> tiles, Level* level);
+		void load(SDL_Texture* background, std::list<Sprite*> sprites, std::list<Tile*> tiles, Level* level, std::list<WorldObject*> worldObjectsArg);
 		void load(SDL_Texture* background, std::list<Sprite*> sprites);
 		void delay(int ticks);
 		void setEndstate(bool state);

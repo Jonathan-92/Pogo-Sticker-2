@@ -412,13 +412,13 @@ void WorldObject::rotate(double theta)
 
 void WorldObject::draw()
 {
-	glBegin(GL_POINTS);
-	glVertex2f(0.0, 0.0);
-	glVertex2f(1.0, 0.0);
-	glVertex2f(0.0, 1.0);
-	glVertex2f(1.0, 1.0);
-	glVertex2f(0.5, 0.5);
-	glEnd();
+	//glClear(GL_COLOR_BUFFER_BIT); 
+	//glBegin( GL_QUADS ); 
+	//glVertex2f( 5, 5 ); 
+	//glVertex2f( 0.5f, -0.5f ); 
+	//glVertex2f( 0.5f, 0.5f ); 
+	//glVertex2f( -0.5f, 0.5f ); 
+	//glEnd();
 }
 
 

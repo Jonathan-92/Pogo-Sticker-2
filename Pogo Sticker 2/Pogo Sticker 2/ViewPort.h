@@ -2,6 +2,7 @@
 #define VIEWPORT_H
 #include "Sprite.h"
 #include "Tile.h"
+#include "WorldObject.h"
 #include <list>
 
 class ViewPort
@@ -14,6 +15,7 @@ public:
 	virtual void setBackground(SDL_Surface* surface);
 protected:
 	std::list<gameEngine::Sprite*> sprites;
+	std::list<gameEngine::WorldObject*> worldObjects;
 	std::list<Tile*> tiles;
 	SDL_Texture* background;
 private:
