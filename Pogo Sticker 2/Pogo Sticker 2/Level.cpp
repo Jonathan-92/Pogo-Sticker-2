@@ -65,8 +65,13 @@ void Level::init()
 	if (surface2 == nullptr)
 		throwException("surface2 is null ", SDL_GetError);
 
+	//TEST CODE
 	WorldObject* worldObject = new WorldObject(2, 2);
+	worldObject->addPoint(1, 50, 50);
+	worldObject->addPoint(2, 222, 222);
+	worldObject->addPoint(3, 123, 321);
 	worldObjects.push_back(worldObject);
+	//TEST CODE
 		
 	int x = 0;
 	int y = 0;

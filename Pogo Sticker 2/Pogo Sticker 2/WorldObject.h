@@ -1,7 +1,6 @@
 #ifndef WORLDOBJECT_H
 #define WORLDOBJECT_H
 #include "Hitbox.h"
-#include "Pointbase.h"
 #include "Linebase.h"
 
 namespace gameEngine {
@@ -50,7 +49,6 @@ namespace gameEngine {
 
 		unsigned int            _ncontours;   //number of contours
 		vector<unsigned int>    _nVertices;   //
-		PointbaseMap            _points;      //all vertices
 		LineMap                 _edges;       //all edges 
 		//double                  _xmin, _xmax, _ymin, _ymax; boundary box for polygon
 

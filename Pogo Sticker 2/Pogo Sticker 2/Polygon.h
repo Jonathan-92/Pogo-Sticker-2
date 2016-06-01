@@ -3,6 +3,7 @@
 #include "Vector2D.h"
 #include <list>
 #include "Rect.h"
+#include "Pointbase.h"
 
 //
 class Polygon {
@@ -10,12 +11,12 @@ protected:
 	~Polygon()
 	{
 	}
-	std::list<gameEngine::Vector2D*> vectors;
+	PointbaseMap points; //all vertices
 public:
 	Polygon(float x, float y);
 	Polygon(float x, float y, float width, float height);
 	gameEngine::Rect* boundaryRectangle;
-	virtual void addVector(float x, float y);
-	std::list<gameEngine::Vector2D*> getVectors() const;
+	virtual void addPoint(int id, float x, float y);
+	PointbaseMap getPoints() const;
 };
 #endif

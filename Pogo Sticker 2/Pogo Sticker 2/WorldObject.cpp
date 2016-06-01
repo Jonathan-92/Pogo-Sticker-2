@@ -154,7 +154,7 @@ void  WorldObject::triangulateMonotone(Monopoly& mpoly)
 	{
 		itnext++;
 		if (itnext == mpoly.end()) itnext = mpoly.begin();
-		Pointbase point = *_points[*it], pointnext = *_points[*itnext];
+		Pointbase point = *points[*it], pointnext = *points[*itnext];
 		point.left = (point > pointnext) ? true : false;
 		qvertex.push(point);
 	}
@@ -238,7 +238,7 @@ void  WorldObject::triangulateMonotone(Monopoly& mpoly)
 void WorldObject::addDiagonal(unsigned int i, unsigned int j)
 {
 	Type type = INSERT;
-	Linebase* diag = new Linebase(_points[i], _points[j], type);
+	Linebase* diag = new Linebase(points[i], points[j], type);
 	_edges[diag->id()] = diag;
 
 	_startAdjEdgeMap[i].insert(diag->id());
@@ -252,7 +252,7 @@ void WorldObject::addDiagonal(unsigned int i, unsigned int j)
 //----------------------------------------------------------------------------
 void WorldObject::handleStartVertex(unsigned int i)
 {
-	double y = _points[i]->y;
+	double y = points[i]->y;
 	_edgebst.InOrder(UpdateKey, y);
 
 	_edges[i]->setHelper(i);
@@ -265,7 +265,7 @@ void WorldObject::handleStartVertex(unsigned int i)
 //----------------------------------------------------------------------------
 void WorldObject::handleEndVertex(unsigned int i)
 {
-	double y = _points[i]->y;
+	double y = points[i]->y;
 	_edgebst.InOrder(UpdateKey, y);
 
 	unsigned int previ = prev(i);
@@ -273,7 +273,7 @@ void WorldObject::handleEndVertex(unsigned int i)
 	unsigned int helper = _edges[previ]->helper();
 
 
-	if (_points[helper]->type == MERGE) addDiagonal(i, helper);
+	if (points[helper]->type == MERGE) addDiagonal(i, helper);
 	_edgebst.Delete(edge->keyValue());
 }
 
@@ -282,7 +282,7 @@ void WorldObject::handleEndVertex(unsigned int i)
 //----------------------------------------------------------------------------
 void WorldObject::handleSplitVertex(unsigned int i)
 {
-	double x = _points[i]->x, y = _points[i]->y;
+	double x = points[i]->x, y = points[i]->y;
 	_edgebst.InOrder(UpdateKey, y);
 
 	BTreeNode<Linebase*, double>*  leftnode;
@@ -304,12 +304,12 @@ void WorldObject::handleSplitVertex(unsigned int i)
 //----------------------------------------------------------------------------
 void WorldObject::handleMergeVertex(unsigned int i)
 {
-	double x = _points[i]->x, y = _points[i]->y;
+	double x = points[i]->x, y = points[i]->y;
 	_edgebst.InOrder(UpdateKey, y);
 
 	unsigned int previ = prev(i);
 	unsigned int helper = _edges[previ]->helper();
-	if (_points[helper]->type == MERGE) addDiagonal(i, helper);
+	if (points[helper]->type == MERGE) addDiagonal(i, helper);
 	_edgebst.Delete(_edges[previ]->keyValue());
 	
 	BTreeNode<Linebase*, double>*  leftnode;
@@ -317,7 +317,7 @@ void WorldObject::handleMergeVertex(unsigned int i)
 	Linebase* leftedge = leftnode->data();
 
 	helper = leftedge->helper();
-	if (_points[helper]->type == MERGE) addDiagonal(i, helper);
+	if (points[helper]->type == MERGE) addDiagonal(i, helper);
 
 	leftedge->setHelper(i);
 
@@ -328,12 +328,12 @@ void WorldObject::handleMergeVertex(unsigned int i)
 //----------------------------------------------------------------------------
 void WorldObject::handleRegularVertexDown(unsigned int i)
 {
-	double y = _points[i]->y;
+	double y = points[i]->y;
 	_edgebst.InOrder(UpdateKey, y);
 
 	unsigned int previ = prev(i);
 	unsigned int helper = _edges[previ]->helper();
-	if (_points[helper]->type == MERGE) addDiagonal(i, helper);
+	if (points[helper]->type == MERGE) addDiagonal(i, helper);
 
 	_edgebst.Delete(_edges[previ]->keyValue());
 	_edges[i]->setHelper(i);
@@ -347,7 +347,7 @@ void WorldObject::handleRegularVertexDown(unsigned int i)
 //----------------------------------------------------------------------------
 void WorldObject::handleRegularVertexUp(unsigned int i)
 {
-	double x = _points[i]->x, y = _points[i]->y;
+	double x = points[i]->x, y = points[i]->y;
 	_edgebst.InOrder(UpdateKey, y);
 
 	BTreeNode<Linebase*, double>*  leftnode;
@@ -356,7 +356,7 @@ void WorldObject::handleRegularVertexUp(unsigned int i)
 	Linebase* leftedge = leftnode->data();
 
 	unsigned int helper = leftedge->helper();
-	if (_points[helper]->type == MERGE) addDiagonal(i, helper);
+	if (points[helper]->type == MERGE) addDiagonal(i, helper);
 	leftedge->setHelper(i);
 }
 
@@ -405,20 +405,23 @@ unsigned int WorldObject::next(unsigned int i)
 //----------------------------------------------------------------------------
 void WorldObject::rotate(double theta)
 {
-	PointbaseMap::iterator it = _points.begin();
-	for (; it != _points.end(); it++)
+	PointbaseMap::iterator it = points.begin();
+	for (; it != points.end(); it++)
 		it->second->rotate(theta);
 }
 
 void WorldObject::draw()
 {
-	//glClear(GL_COLOR_BUFFER_BIT); 
-	//glBegin( GL_QUADS ); 
-	//glVertex2f( 5, 5 ); 
-	//glVertex2f( 0.5f, -0.5f ); 
-	//glVertex2f( 0.5f, 0.5f ); 
-	//glVertex2f( -0.5f, 0.5f ); 
-	//glEnd();
+	glClear(GL_COLOR_BUFFER_BIT); 
+	glLineWidth(2.5);
+	glBegin( GL_LINES ); 
+	PointbaseMap::iterator it = points.begin();
+	for (; it != points.end(); it++)
+	{
+		glVertex2f(it->second->x, it->second->y);
+		glColor3f(1.0, 0.0, 0.0);
+	}
+	glEnd();
 }
 
 
@@ -431,35 +434,35 @@ void WorldObject::draw()
 //----------------------------------------------------------------------------
 void WorldObject::initializate()
 {
-	PointbaseMap::iterator it = _points.begin();
-	for (; it != _points.end(); it++)
+	PointbaseMap::iterator it = points.begin();
+	for (; it != points.end(); it++)
 	{
 		int id = it->first;
 		int idp = prev(id);
 		int idn = next(id);
-		Pointbase p = *_points[id], pnext = *_points[idn], pprev = *_points[idp];
+		Pointbase p = *points[id], pnext = *points[idn], pprev = *points[idp];
 
 		if (p > pnext && pprev > p)
-			_points[id]->type = REGULAR_DOWN;
+			points[id]->type = REGULAR_DOWN;
 		else if (p > pprev && pnext > p)
-			_points[id]->type = REGULAR_UP;
+			points[id]->type = REGULAR_UP;
 		else
 		{
 			double pa[2], pb[2], pc[2];
 
-			pa[0] = _points[idp]->x;
-			pa[1] = _points[idp]->y;
+			pa[0] = points[idp]->x;
+			pa[1] = points[idp]->y;
 
-			pb[0] = _points[id]->x;
-			pb[1] = _points[id]->y;
+			pb[0] = points[id]->x;
+			pb[1] = points[id]->y;
 
-			pc[0] = _points[idn]->x;
-			pc[1] = _points[idn]->y;
+			pc[0] = points[idn]->x;
+			pc[1] = points[idn]->y;
 
 			double area = orient2d(pa, pb, pc);
 
-			if (pprev > p && pnext > p) _points[id]->type = (area >0) ? END : MERGE;
-			if (pprev < p && pnext < p) _points[id]->type = (area >0) ? START : SPLIT;
+			if (pprev > p && pnext > p) points[id]->type = (area >0) ? END : MERGE;
+			if (pprev < p && pnext < p) points[id]->type = (area >0) ? START : SPLIT;
 
 		}
 

@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoogleTestLibrary", "Google
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests\UnitTests.vcxproj", "{3873628D-3C6D-4D6C-8651-F6D0327E4AD9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pogo2LevelEditor", "Pogo2LevelEditor\Pogo2LevelEditor.vcxproj", "{BE9F1659-803A-4F67-BB3B-E299DEC63FC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -39,6 +41,14 @@ Global
 		{3873628D-3C6D-4D6C-8651-F6D0327E4AD9}.Release|Win32.Build.0 = Release|Win32
 		{3873628D-3C6D-4D6C-8651-F6D0327E4AD9}.Release|x64.ActiveCfg = Release|x64
 		{3873628D-3C6D-4D6C-8651-F6D0327E4AD9}.Release|x64.Build.0 = Release|x64
+		{BE9F1659-803A-4F67-BB3B-E299DEC63FC1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BE9F1659-803A-4F67-BB3B-E299DEC63FC1}.Debug|Win32.Build.0 = Debug|Win32
+		{BE9F1659-803A-4F67-BB3B-E299DEC63FC1}.Debug|x64.ActiveCfg = Debug|x64
+		{BE9F1659-803A-4F67-BB3B-E299DEC63FC1}.Debug|x64.Build.0 = Debug|x64
+		{BE9F1659-803A-4F67-BB3B-E299DEC63FC1}.Release|Win32.ActiveCfg = Release|Win32
+		{BE9F1659-803A-4F67-BB3B-E299DEC63FC1}.Release|Win32.Build.0 = Release|Win32
+		{BE9F1659-803A-4F67-BB3B-E299DEC63FC1}.Release|x64.ActiveCfg = Release|x64
+		{BE9F1659-803A-4F67-BB3B-E299DEC63FC1}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

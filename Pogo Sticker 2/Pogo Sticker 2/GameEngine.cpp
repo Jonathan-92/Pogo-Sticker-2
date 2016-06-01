@@ -202,7 +202,7 @@ namespace gameEngine {
 			SDL_RenderPresent(renderer);
 
 			//TODO: http://lazyfoo.net/tutorials/SDL/50_SDL_and_opengl_2/
-			//SDL_GL_SwapWindow(screen);
+			SDL_GL_SwapWindow(screen);
 
 			delay = nextTick - SDL_GetTicks();
 

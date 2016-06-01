@@ -4,23 +4,23 @@ using namespace gameEngine;
 
 Polygon::Polygon(float x, float y)
 {
-	vectors.push_back(new Vector2D(x, y));
+	points[0] = new Pointbase(x, y);
 }
 
 Polygon::Polygon(float x, float y, float width, float height)
 {
-	vectors.push_back(new Vector2D(x, y));
-	Polygon::addVector(x + width, y);
-	Polygon::addVector(x, y + height);
-	Polygon::addVector(x + width, y + height);
+	points[0] = new Pointbase(x, y);
+	points[1] = new Pointbase(x + width, y);
+	points[2] = new Pointbase(x, y + height);
+	points[3] = new Pointbase(x + width, y + height);
 	boundaryRectangle = new Rect(x, y, width, height);
 }
 
-void Polygon::addVector(float x, float y)
+void Polygon::addPoint(int id, float x, float y) 
 {
-	vectors.push_back(new Vector2D(x, y));
+	points[id] = new Pointbase(x, y);
 }
 
-std::list<Vector2D*> Polygon::getVectors() const {
-	return vectors;
+PointbaseMap Polygon::getPoints() const {
+	return points;
 }
