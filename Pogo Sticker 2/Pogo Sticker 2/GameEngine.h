@@ -6,6 +6,8 @@
 #include "CollisionHandling.h"
 #include <list>
 #include "SDL_ttf.h"
+#include <GL/glew.h>
+#include <GL/gl.h>
 
 namespace gameEngine {
 

@@ -58,7 +58,7 @@ void Level::init()
 	SDL_Surface* surface = IMG_Load("../images/white.png");
 	setBackground(surface);
 
-	Character* character = new Character(250, 250, 30, 60, "../images/character.png");
+	Character* character = new Character(250, 150, 30, 60, "../images/character.png");
 	sprites.push_back(character);
 
 	SDL_Surface* surface2 = IMG_Load("../images/tiletemplate.png");
@@ -66,10 +66,9 @@ void Level::init()
 		throwException("surface2 is null ", SDL_GetError);
 
 	//TEST CODE
-	WorldObject* worldObject = new WorldObject(2, 2);
-	worldObject->addPoint(1, 50, 50);
-	worldObject->addPoint(2, 222, 222);
-	worldObject->addPoint(3, 123, 321);
+	WorldObject* worldObject = new WorldObject();
+	worldObject->ReadPoints(4);
+	worldObject->generateHitboxes();
 	worldObjects.push_back(worldObject);
 	//TEST CODE
 		

@@ -2,8 +2,6 @@
 #include <SDL.h>
 #include <string>
 #include <iostream>
-#include <GL/glew.h>
-#include <GL/gl.h>
 
 using namespace std;
 
@@ -35,6 +33,8 @@ namespace gameEngine {
 
 		//Initialize clear colors
 		glClearColor(0.f, 0.f, 0.f, 1.f);
+
+		glEnable(GL_BLEND);
 
 		//Check for error
 		GLenum error = glGetError();
@@ -199,7 +199,7 @@ namespace gameEngine {
 				}
 			}
 
-			SDL_RenderPresent(renderer);
+			//SDL_RenderPresent(renderer);
 
 			//TODO: http://lazyfoo.net/tutorials/SDL/50_SDL_and_opengl_2/
 			SDL_GL_SwapWindow(screen);

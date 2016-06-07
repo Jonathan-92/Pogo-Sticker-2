@@ -4,7 +4,7 @@
 
 using namespace gameEngine;
 
-WorldObject::WorldObject(float x, float y) : Polygon(x, y)
+WorldObject::WorldObject() : Polygon()
 {
 
 }
@@ -18,11 +18,13 @@ void UpdateKey(BTreeNode<Linebase*, double>* node, double y)
 
 void WorldObject::generateHitboxes()
 {
+	initialize();
 	partition2Monotone();
 	searchMonotones();
 	Monopolys::iterator it = _mpolys.begin();
 	for (; it != _mpolys.end(); it++)
 		triangulateMonotone(*it);
+	_triangles.size();
 }
 
 void WorldObject::partition2Monotone()
@@ -413,8 +415,7 @@ void WorldObject::rotate(double theta)
 void WorldObject::draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT); 
-	glLineWidth(2.5);
-	glBegin( GL_LINES ); 
+	glBegin( GL_QUADS ); 
 	PointbaseMap::iterator it = points.begin();
 	for (; it != points.end(); it++)
 	{
@@ -424,6 +425,63 @@ void WorldObject::draw()
 	glEnd();
 }
 
+void WorldObject::ReadPoints(int numberOfPoints)
+{
+	unsigned int i = 1, first, last;
+	double x, y;
+	Type type;
+
+	_ncontours = 0;
+	_nVertices.push_back(numberOfPoints);
+
+	for (;;)
+	{
+		if (_nVertices.size() == _ncontours) break;
+
+		if (_nVertices[_ncontours] == 0) break;
+		first = i;
+		last = first + _nVertices[_ncontours] - 1;
+		for (unsigned int j = 0; j < _nVertices[_ncontours]; j++, i++)
+		{
+			x = 200+j*2;
+			y = 200+j*2*i;
+			type = INPUTS;
+
+			Pointbase* point = new Pointbase(i, x, y, type);
+			//if (x > _xmax) _xmax = x;
+			//if (x < _xmin) _xmin = x;
+			//if (y > _ymax) _ymax = y;
+			//if (y < _ymin) _ymin = y;
+			//point->rotate(PI/2.0);
+			points[i] = point;
+		}
+
+		_ncontours++;
+	}
+
+	int sid, eid;
+	int num = 0;
+
+	for (unsigned int j = 0; j<_ncontours; j++)
+	{
+		for (i = 1; i <= _nVertices[j]; i++)
+		{
+			sid = num + i;
+			eid = (i == _nVertices[j]) ? num + 1 : num + i + 1;
+			type = INPUTS;
+			Linebase* line = new Linebase(points[sid], points[eid], type);
+			_edges[line->l_id] = line;
+		}
+		num += _nVertices[j];
+	}
+
+	int sum = 0;
+	for (unsigned int i = 0; i<_ncontours; i++)
+	{
+		sum += _nVertices[i];
+		_nVertices[i] = sum;
+	}
+}
 
 //----------------------------------------------------------------------------
 //polygon initialization;
@@ -432,7 +490,7 @@ void WorldObject::draw()
 //construct an edge set for each vertex (the set holds all edges starting from 
 //the vertex, only for loop searching purpose). 
 //----------------------------------------------------------------------------
-void WorldObject::initializate()
+void WorldObject::initialize()
 {
 	PointbaseMap::iterator it = points.begin();
 	for (; it != points.end(); it++)

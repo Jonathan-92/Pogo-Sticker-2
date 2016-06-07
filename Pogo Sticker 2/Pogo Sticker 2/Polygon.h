@@ -13,6 +13,7 @@ protected:
 	}
 	PointbaseMap points; //all vertices
 public:
+	Polygon();
 	Polygon(float x, float y);
 	Polygon(float x, float y, float width, float height);
 	gameEngine::Rect* boundaryRectangle;

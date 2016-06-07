@@ -14,6 +14,9 @@ public:
 
 	unsigned int id() const { return _id; }
 
+	static long l_id;
+	static long p_id;
+
 	//two end points 
 	Pointbase*   endPoint(int i) const { return _endp[i]; }
 	Type         type() const { return _type; }

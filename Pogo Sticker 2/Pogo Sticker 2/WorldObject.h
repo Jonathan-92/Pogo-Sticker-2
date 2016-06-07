@@ -6,12 +6,17 @@
 namespace gameEngine {
 	class WorldObject : public Polygon {
 	public:
-		WorldObject(float x, float y);
+		virtual ~WorldObject()
+		{
+		}
+
+		WorldObject();
 		std::list<gameEngine::Hitbox*> hitboxes;
 
 		void generateHitboxes();
 		void partition2Monotone();
 		void searchMonotones();
+		void ReadPoints(int numberOfPoints);
 
 		void draw();
 
@@ -21,7 +26,7 @@ namespace gameEngine {
 	private:
 
 		void rotate(double theta);
-		void initializate();
+		void initialize();
 
 		//prev or next point/edge id for a given ith point/edge; 	
 		unsigned int prev(unsigned int i);

@@ -1,7 +1,8 @@
 #include "Linebase.h"
 #include "Pointbase.h"
 
-long l_id = 0, p_id = 0;
+long Linebase::l_id = 0;
+long Linebase::p_id = 0;
 //----------------------------------------------------------------------------
 //Linebase construct
 //----------------------------------------------------------------------------

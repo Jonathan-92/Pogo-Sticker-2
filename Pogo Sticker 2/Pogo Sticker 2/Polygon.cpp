@@ -2,6 +2,11 @@
 
 using namespace gameEngine;
 
+Polygon::Polygon()
+{
+
+}
+
 Polygon::Polygon(float x, float y)
 {
 	points[0] = new Pointbase(x, y);

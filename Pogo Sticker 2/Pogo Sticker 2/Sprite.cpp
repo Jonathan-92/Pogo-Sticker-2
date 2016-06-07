@@ -1,7 +1,7 @@
 #include "Sprite.h"
-#include "GameEngine.h"
 #include "SDL_image.h"
 #include "SDL.h"
+#include "GameEngine.h"
 
 namespace gameEngine {
 
@@ -71,7 +71,37 @@ namespace gameEngine {
 
 	void Sprite::draw() 
 	{
-		SDL_RenderCopy(currentGameEngine().getRenderer(), texture, NULL, &rect);
+		float w = rect.w;
+		float h = rect.h;
+		
+		SDL_GL_BindTexture(texture, &w, &h);
+
+		glEnable(GL_BLEND);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+		glColor3ub(255, 255, 255);
+
+		glBegin(GL_QUADS);
+
+		// Top Left
+		glTexCoord2f(0, 1);
+		glVertex2f(rect.x, rect.y);
+
+		// Top Right
+		glTexCoord2f(1, 1);
+		glVertex2f(rect.x + rect.w, rect.y);
+
+		// Bottom Right
+		glTexCoord2f(1, 0);
+		glVertex2f(rect.x + rect.w, rect.y + rect.h);
+
+		// Bottom Left
+		glTexCoord2f(0, 0);
+		glVertex2f(rect.x, rect.y + rect.h);
+
+		glEnd();
+		//SDL_RenderCopy(currentGameEngine().getRenderer(), texture, NULL, &rect);
 	}
 
 	void Sprite::applyMotion()
