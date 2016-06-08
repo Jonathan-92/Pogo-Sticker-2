@@ -1,6 +1,5 @@
 #include "Character.h"
 #include "GameEngine.h"
-#include <vector>
 #include "Hitbox.h"
 #include <SDL_image.h>
 
@@ -80,7 +79,7 @@ void Character::draw()
 	SDL_Texture* textureTemp = SDL_CreateTextureFromSurface(currentGameEngine().getRenderer(), surface);
 	for (std::list<Hitbox*>::iterator hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); ++hitboxIterator)
 	{
-		SDL_RenderCopyEx(currentGameEngine().getRenderer(), textureTemp, nullptr, hitboxIterator._Ptr->_Myval->boundaryRectangle, spriteAxisAngle, NULL, SDL_FLIP_NONE);
+		//SDL_RenderCopyEx(currentGameEngine().getRenderer(), textureTemp, nullptr, hitboxIterator._Ptr->_Myval, spriteAxisAngle, NULL, SDL_FLIP_NONE);
 	}
 }
 
@@ -101,80 +100,81 @@ void Character::syncHitboxes()
 	for (std::list<Hitbox*>::iterator hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); hitboxIterator++)
 	{	
 		Hitbox* hitbox = hitboxIterator._Ptr->_Myval;
-		//hitbox->x += movementVelocityX;
-		//hitbox->y += movementVelocityY;
+		hitbox->x += movementVelocityX;
+		hitbox->y += movementVelocityY;
 		//hitbox->applyRotation(rect.centeredX(), rect.centeredY(), rect.angle);
 	}
 }
 
 void Character::handleCollision()
 {
-	std::list<Tile*> tiles = currentGameEngine().getTiles();
-	for (std::list<Tile*>::iterator tileIterator = tiles.begin(); tileIterator != tiles.end(); tileIterator++)
+	std:list<WorldObject*> worldObjects = currentGameEngine().getWorldObjects();
+	for (std::list<WorldObject*>::iterator worldObjectIterator = worldObjects.begin(); worldObjectIterator != worldObjects.end(); worldObjectIterator++)
 	{
 		for (std::list<Hitbox*>::iterator hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); hitboxIterator++)
 		{
-			//if (currentGameEngine().getCollider()->overlaps(hitboxIterator._Ptr->_Myval, &(*tileIterator)->rect) && (*tileIterator)->getType() == "Tile")
-			//{
-			//	SDL_Rect* movingObject = hitboxIterator._Ptr->_Myval;
-			//	SDL_Rect* stationaryObject = &(*tileIterator)->rect;
-			//	// what side of the stationaryObject does the movingObject collide on?
-			//	bool intersectsTop = false;
-			//	bool intersectsRight = false;
+			if (currentGameEngine().getCollider()->intersect(hitboxIterator._Ptr->_Myval, worldObjectIterator._Ptr->_Myval))
+			{
+				Rect* movingObject = hitboxIterator._Ptr->_Myval;
+				Rect* stationaryObject = (*worldObjectIterator)->boundaryRectangle;
+				
+				// what side of the stationaryObject does the movingObject collide on?
+				bool intersectsTop = false;
+				bool intersectsRight = false;
 
-			//	if (&movingObject->x > &stationaryObject->x)
-			//		intersectsRight = true;
-			//	// y up is neg
-			//	if (&movingObject->y < &stationaryObject->y)
-			//		intersectsTop = true;
+				if (&movingObject->x > &stationaryObject->x)
+					intersectsRight = true;
+				// y up is neg
+				if (&movingObject->y < &stationaryObject->y)
+					intersectsTop = true;
 
-			//	// the height & width of the intersection rectangle
-			//	short int height, width;
+				// the height & width of the intersection rectangle
+				short int height, width;
 
-			//	if (intersectsTop)
-			//		height = abs(stationaryObject->y - (movingObject->y + movingObject->h));
-			//	else
-			//		height = abs(stationaryObject->y + stationaryObject->h - movingObject->y);
-			//	if (intersectsRight)
-			//		width = abs(stationaryObject->x + stationaryObject->w - movingObject->x);
-			//	else
-			//		width = abs(stationaryObject->x - (movingObject->x + movingObject->w));
+				if (intersectsTop)
+					height = abs(stationaryObject->y - (movingObject->y + movingObject->h));
+				else
+					height = abs(stationaryObject->y + stationaryObject->h - movingObject->y);
+				if (intersectsRight)
+					width = abs(stationaryObject->x + stationaryObject->w - movingObject->x);
+				else
+					width = abs(stationaryObject->x - (movingObject->x + movingObject->w));
 
-			//	bool moveInXDirection = height > width ? true : false;
+				bool moveInXDirection = height > width ? true : false;
 
-			//	// adjust moving object's position accordingly
-			//	if (moveInXDirection)
-			//	{
-			//		if (intersectsRight)
-			//		{
-			//			movementVelocityX += width;
-			//		}
-			//		else
-			//		{
-			//			movementVelocityX -= width;
-			//		}
-			//	}
-			//	else
-			//	{
-			//		if (intersectsTop)
-			//		{
-			//			movementVelocityY -= height;
-			//		}
-			//		else
-			//		{
-			//			movementVelocityY += height;
-			//		}
-			//	}
+				// adjust moving object's position accordingly
+				if (moveInXDirection)
+				{
+					if (intersectsRight)
+					{
+						movementVelocityX += width;
+					}
+					else
+					{
+						movementVelocityX -= width;
+					}
+				}
+				else
+				{
+					if (intersectsTop)
+					{
+						movementVelocityY -= height;
+					}
+					else
+					{
+						movementVelocityY += height;
+					}
+				}
 
-			//	if ((*tileIterator)->getTileType() == 28)
-			//	{
-			//		currentGameEngine().getLevel()->levelCompleted();
-			//	}
+				//if ((*worldObjectIterator)->getTileType() == 28)
+				//{
+				//	currentGameEngine().getLevel()->levelCompleted();
+				//}
 
-			//	//Sinus and cosinus
-			//	movementVelocityX += sin(spriteAxisAngle * M_PI / 180) + cursorDistanceFromCharacter;
-			//	movementVelocityY += cos(spriteAxisAngle * M_PI / 180) + chargeMeter;
-			//}
+				//Sinus and cosinus
+				movementVelocityX += sin(spriteAxisAngle * M_PI / 180) + cursorDistanceFromCharacter;
+				movementVelocityY += cos(spriteAxisAngle * M_PI / 180) + chargeMeter;
+			}
 		}
 	}
 }

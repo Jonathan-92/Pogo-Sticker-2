@@ -1,9 +1,7 @@
 #ifndef POLYGON_H
 #define POLYGON_H
-#include "Vector2D.h"
-#include <list>
-#include "Rect.h"
 #include "Pointbase.h"
+#include "Rect.h"
 
 //
 class Polygon {

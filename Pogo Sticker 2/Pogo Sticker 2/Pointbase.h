@@ -39,6 +39,10 @@ public:
 	friend  bool operator>(const Pointbase&, const Pointbase&);
 	friend  bool operator<(const Pointbase&, const Pointbase&);
 	friend  bool operator!=(const Pointbase&, const Pointbase&);
+	Pointbase operator * (double  s)	const { return Pointbase(x*s, y*s); }
+	Pointbase operator / (double  s)	const { return Pointbase(x / s, y / s); }
+	Pointbase operator + (const Pointbase &V)	const { return Pointbase(x + V.x, y + V.y); }
+	Pointbase operator - (const Pointbase &V)	const { return Pointbase(x - V.x, y - V.y); }
 
 	//public data
 	unsigned int    id;              //id of point;

@@ -27,12 +27,6 @@ namespace gameEngine {
 		return Vector2D(x + w / 2, y + h / 2);
 	}
 
-	//TODO: /2 är temporärlösning för att få kollisions algoritmen att funka
-	Vector2D Rect::sizePoint()
-	{
-		return Vector2D(w/2, h/2);
-	}
-
 	Rect Rect::centeredRect(int width, int height) const {
 		return Rect(x + w / 2 - width / 2, y + h / 2 - height / 2, width, height);
 	}

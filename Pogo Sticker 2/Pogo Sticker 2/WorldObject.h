@@ -2,6 +2,7 @@
 #define WORLDOBJECT_H
 #include "Hitbox.h"
 #include "Linebase.h"
+#include "Polygon.h"
 
 namespace gameEngine {
 	class WorldObject : public Polygon {

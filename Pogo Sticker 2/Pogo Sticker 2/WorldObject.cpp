@@ -6,7 +6,7 @@ using namespace gameEngine;
 
 WorldObject::WorldObject() : Polygon()
 {
-
+	boundaryRectangle = new Rect();
 }
 
 extern double orient2d(double* pa, double* pb, double* pc);
@@ -177,9 +177,9 @@ void  WorldObject::triangulateMonotone(Monopoly& mpoly)
 				spoint.pop();
 				Pointbase p2 = spoint.top();
 				Triangle v(3);
-				v[0] = topQueuePoint.id;
-				v[1] = p1.id;
-				v[2] = p2.id;
+				v[0] = &topQueuePoint;
+				v[1] = &p1;
+				v[2] = &p2;
 				_triangles.push_back(v);
 
 			}
@@ -205,9 +205,9 @@ void  WorldObject::triangulateMonotone(Monopoly& mpoly)
 				if ((area > 0 && left) || (area < 0 && !left))
 				{
 					Triangle v(3);
-					v[0] = topQueuePoint.id;
-					v[1] = stack2Point.id;
-					v[2] = stack1Point.id;
+					v[0] = &topQueuePoint;
+					v[1] = &stack2Point;
+					v[2] = &stack1Point;
 					_triangles.push_back(v);
 					spoint.pop();
 				}
@@ -230,9 +230,9 @@ void  WorldObject::triangulateMonotone(Monopoly& mpoly)
 		Pointbase top2Point = spoint.top();
 
 		Triangle v(3);
-		v[0] = lastQueuePoint.id;
-		v[1] = topPoint.id;
-		v[2] = top2Point.id;
+		v[0] = &lastQueuePoint;
+		v[1] = &topPoint;
+		v[2] = &top2Point;
 		_triangles.push_back(v);
 	}
 }
@@ -443,15 +443,15 @@ void WorldObject::ReadPoints(int numberOfPoints)
 		last = first + _nVertices[_ncontours] - 1;
 		for (unsigned int j = 0; j < _nVertices[_ncontours]; j++, i++)
 		{
-			x = 200+j*2;
-			y = 200+j*2*i;
+			x = 250+j*5;
+			y = 250+j*5*i;
 			type = INPUTS;
 
 			Pointbase* point = new Pointbase(i, x, y, type);
-			//if (x > _xmax) _xmax = x;
-			//if (x < _xmin) _xmin = x;
-			//if (y > _ymax) _ymax = y;
-			//if (y < _ymin) _ymin = y;
+			if (x > boundaryRectangle->w) boundaryRectangle->w = x;
+			if (x < boundaryRectangle->x) boundaryRectangle->x = x;
+			if (y > boundaryRectangle->h) boundaryRectangle->h = y;
+			if (y < boundaryRectangle->y) boundaryRectangle->y = y;
 			//point->rotate(PI/2.0);
 			points[i] = point;
 		}

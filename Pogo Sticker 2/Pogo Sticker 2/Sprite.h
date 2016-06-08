@@ -2,6 +2,7 @@
 #define SPRITE_H
 #include "Rect.h"
 #include <string>
+#include <SDL.h>
 
 namespace gameEngine {
 

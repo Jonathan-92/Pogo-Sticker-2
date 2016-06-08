@@ -26,11 +26,11 @@ namespace gameEngine {
 		return true;
 	}
 
-	bool line_intersect2(vector<unsigned> v1, vector<unsigned> v2, vector<unsigned> v3, vector<unsigned> v4)
+	bool line_intersect2(Pointbase* v1, Pointbase* v2, Pointbase* v3, Pointbase* v4)
 	{
-		float d = (v4[1] - v3[1])*(v2[0] - v1[0]) - (v4[0] - v3[0])*(v2[1] - v1[1]);
-		float u = (v4[0] - v3[0])*(v1[1] - v3[1]) - (v4[1] - v3[1])*(v1[0] - v3[0]);
-		float v = (v2[0] - v1[0])*(v1[1] - v3[1]) - (v2[1] - v1[1])*(v1[0] - v3[0]);
+		float d = (v4 - v3)*(v2 - v1) - (v4 - v3)*(v2 - v1);
+		float u = (v4 - v3)*(v1 - v3) - (v4 - v3)*(v1 - v3);
+		float v = (v2 - v1)*(v1 - v3) - (v2 - v1)*(v1 - v3);
 		if (d < 0)
 		{
 			u, v, d = -u, -v, -d;
@@ -43,14 +43,14 @@ namespace gameEngine {
 		return v1[0] * v2[1] - v1[1] * v2[0];
 	}
 
-	bool point_in_triangle2(vector<unsigned> A, vector<unsigned> B, vector<unsigned> C, vector<unsigned> P)
+	bool point_in_triangle2(Pointbase* A, Pointbase* B, Pointbase* C, Pointbase* P)
 	{
 		vector<unsigned> v0;
-		v0[0] = C[0] - A[0]; v0[1] = C[1] - A[1];
+		v0[0] = C - A; v0[1] = C - A;
 		vector<unsigned> v1;
-		v1[0] = B[0] - A[0]; v1[1] = B[1] - A[1];
+		v1[0] = B - A; v1[1] = B - A;
 		vector<unsigned> v2;
-		v2[0] = P[0] - A[0]; v2[1] = P[1] - A[1];
+		v2[0] = P - A; v2[1] = P - A;
 		int u = cross(v2, v0);
 		int v = cross(v1, v2);
 		int d = cross(v1, v0);
@@ -63,30 +63,55 @@ namespace gameEngine {
 
 	bool CollisionHandling::trianglesOverlaps(Triangle* myTriangle, Triangle* other)
 	{
-		if (line_intersect2(myTriangle[0], myTriangle[1], other[0], other[1])) return true;
-		if (line_intersect2(myTriangle[0], myTriangle[1], other[0], other[2])) return true;
-		if (line_intersect2(myTriangle[0], myTriangle[1], other[1], other[2])) return true;
-		if (line_intersect2(myTriangle[0], myTriangle[2], other[0], other[1])) return true;
-		if (line_intersect2(myTriangle[0], myTriangle[2], other[0], other[2])) return true;
-		if (line_intersect2(myTriangle[0], myTriangle[2], other[1], other[2])) return true;
-		if (line_intersect2(myTriangle[1], myTriangle[2], other[0], other[1])) return true;
-		if (line_intersect2(myTriangle[1], myTriangle[2], other[0], other[2])) return true;
-		if (line_intersect2(myTriangle[1], myTriangle[2], other[1], other[2])) return true;
+		if (line_intersect2(myTriangle->at(0), myTriangle->at(1), other->at(0), other->at(0))) return true;
+		//if (line_intersect2(myTriangle[0], myTriangle[1], other[0], other[2])) return true;
+		//if (line_intersect2(myTriangle[0], myTriangle[1], other[1], other[2])) return true;
+		//if (line_intersect2(myTriangle[0], myTriangle[2], other[0], other[1])) return true;
+		//if (line_intersect2(myTriangle[0], myTriangle[2], other[0], other[2])) return true;
+		//if (line_intersect2(myTriangle[0], myTriangle[2], other[1], other[2])) return true;
+		//if (line_intersect2(myTriangle[1], myTriangle[2], other[0], other[1])) return true;
+		//if (line_intersect2(myTriangle[1], myTriangle[2], other[0], other[2])) return true;
+		//if (line_intersect2(myTriangle[1], myTriangle[2], other[1], other[2])) return true;
 
 		bool inTri = true;
 		
-		inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[0]);
-		inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[1]);
-		inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[2]);
+		inTri = inTri && point_in_triangle2(myTriangle->at(0), myTriangle->at(1), myTriangle->at(2), other->at(0));
+		//inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[1]);
+		//inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[2]);
 		if (inTri == true) return true;
 				
 		inTri = true;
-		inTri = inTri && point_in_triangle2(other[0], other[1], other[2], myTriangle[0]);
-		inTri = inTri && point_in_triangle2(other[0], other[1], other[2], myTriangle[1]);
-		inTri = inTri && point_in_triangle2(other[0], other[1], other[2], myTriangle[2]);
+		inTri = inTri && point_in_triangle2(other->at(0), other->at(1), other->at(2), myTriangle->at(0));
+		//inTri = inTri && point_in_triangle2(other[0], other[1], other[2], myTriangle[1]);
+		//inTri = inTri && point_in_triangle2(other[0], other[1], other[2], myTriangle[2]);
 		
 		if (inTri == true) return true;
 				
+		return false;
+	}
+
+	bool CollisionHandling::triangleRectangleOverlaps(Rect* rectangle, vector<Pointbase*> triangle)
+	{
+		Pointbase* rectPoint1 = new Pointbase(rectangle->x, rectangle->y);
+		Pointbase* rectPoint2 = new Pointbase(rectangle->x + rectangle->w, rectangle->y);
+		Pointbase* rectPoint3 = new Pointbase(rectangle->x, rectangle->y + rectangle->h);
+		Pointbase* rectPoint4 = new Pointbase(rectangle->x + rectangle->w, rectangle->y + rectangle->h);
+
+		bool inTri = true;
+
+		inTri = inTri && point_in_triangle2(triangle[0], triangle[1], triangle[2], rectPoint1);
+		//inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[1]);
+		//inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[2]);
+		//inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[2]);
+		if (inTri == true) return true;
+
+		inTri = true;
+		//inTri = inTri && point_in_triangle2(rectangle->at(0), rectangle->at(1), rectangle->at(2), triangle->at(0));
+		//inTri = inTri && point_in_triangle2(other[0], other[1], other[2], myTriangle[1]);
+		//inTri = inTri && point_in_triangle2(other[0], other[1], other[2], myTriangle[2]);
+
+		if (inTri == true) return true;
+
 		return false;
 	}
 
@@ -102,6 +127,24 @@ namespace gameEngine {
 			}
 		}
 		return true;
+	}
+
+	bool CollisionHandling::intersect(Hitbox* rectangle, WorldObject* other)
+	{
+		//Check outer rectangle before inner triangles for optimisation reasons
+		list<Triangle> triangles = other->triangles();
+
+		if (rectanglesOverlaps(rectangle, other->boundaryRectangle))
+		{
+			for (std::list<Triangle>::iterator triangleIterator = triangles.begin(); triangleIterator != triangles.end(); ++triangleIterator)
+			{
+				if(triangleRectangleOverlaps(rectangle, triangleIterator._Ptr->_Myval))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	void CollisionHandling::generateHitboxes(WorldObject worldObject)
