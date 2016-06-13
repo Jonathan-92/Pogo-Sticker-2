@@ -44,13 +44,16 @@ namespace gameEngine {
 	}
 
 	bool point_in_triangle2(Pointbase* A, Pointbase* B, Pointbase* C, Pointbase* P)
-	{
-		vector<unsigned> v0;
-		v0[0] = C - A; v0[1] = C - A;
-		vector<unsigned> v1;
-		v1[0] = B - A; v1[1] = B - A;
-		vector<unsigned> v2;
-		v2[0] = P - A; v2[1] = P - A;
+	{ 
+		vector<unsigned> v0(2);
+		v0[0] = C->x - A->x;
+		v0[1] = C->y - A->y;
+		vector<unsigned> v1(2);
+		v1[0] = B->x - A->x; 
+		v1[1] = B->y - A->y;
+		vector<unsigned> v2(2);
+		v2[0] = P->x - A->x; 
+		v2[1] = P->y - A->y;
 		int u = cross(v2, v0);
 		int v = cross(v1, v2);
 		int d = cross(v1, v0);
@@ -145,10 +148,5 @@ namespace gameEngine {
 			}
 		}
 		return false;
-	}
-
-	void CollisionHandling::generateHitboxes(WorldObject worldObject)
-	{
-		worldObject.generateHitboxes();
 	}
 }

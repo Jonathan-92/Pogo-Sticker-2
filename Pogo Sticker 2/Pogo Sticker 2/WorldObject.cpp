@@ -84,23 +84,33 @@ unsigned int WorldObject::selectNextEdge(Linebase* edge)
 		unsigned int nexte_ccw(0), nexte_cw(0);
 		double max = -2.0, min = 2.0;
 
-
 		set<unsigned int>::iterator it = edges.begin();
 		for (; it != edges.end(); it++)
 		{
 			if (*it == edge->id()) continue;
 			double A[2], B[2], C[2];
-			A[0] = edge->endPoint(0)->x;        A[1] = edge->endPoint(0)->y;
-			B[0] = edge->endPoint(1)->x;        B[1] = edge->endPoint(1)->y;
+			A[0] = edge->endPoint(0)->x;        
+			A[1] = edge->endPoint(0)->y;
+			B[0] = edge->endPoint(1)->x;        
+			B[1] = edge->endPoint(1)->y;
 
-			if (edge->endPoint(1) != _edges[*it]->endPoint(0)) _edges[*it]->reverse();
+			if (edge->endPoint(1) != _edges[*it]->endPoint(0))
+			{
+				_edges[*it]->reverse();
+			}
 			C[0] = _edges[*it]->endPoint(1)->x; C[1] = _edges[*it]->endPoint(1)->y;
 
 			double area = orient2d(A, B, C);
 			double cosb = angleCosb(A, B, C);
 
-			if (area > 0 && max < cosb) { nexte_ccw = *it; max = cosb; }
-			else if (min > cosb) { nexte_cw = *it; min = cosb; }
+			if (area > 0 && max < cosb)
+			{
+				nexte_ccw = *it; max = cosb;
+			}
+			else if (min > cosb)
+			{
+				nexte_cw = *it; min = cosb;
+			}
 		}
 
 		nexte = (nexte_ccw != 0) ? nexte_ccw : nexte_cw;

@@ -15,8 +15,7 @@ namespace gameEngine {
 		bool rectanglesOverlaps(Rect* myRect, Rect* other);
 		bool trianglesOverlaps(Triangle* myTriangle, Triangle* other);
 		bool intersect(WorldObject myWorldobject, WorldObject other);
-		bool intersect(Hitbox* rectangle, WorldObject* other);
-		void generateHitboxes(WorldObject worldObject);
+		bool intersect(Hitbox* rectangle, WorldObject* other);		
 
 	private:
 		bool triangleRectangleOverlaps(Rect* rectangle, vector<Pointbase*> triangle);
