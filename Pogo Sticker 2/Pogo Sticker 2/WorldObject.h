@@ -3,6 +3,7 @@
 #include "Hitbox.h"
 #include "Linebase.h"
 #include "Polygon.h"
+#include "Monotonepolygon.h"
 
 namespace gameEngine {
 	class WorldObject : public Polygon {
@@ -14,6 +15,14 @@ namespace gameEngine {
 		WorldObject();
 		std::list<gameEngine::Hitbox*> hitboxes;
 
+		map<unsigned int, Pointbase*> PointbaseMap;
+		map<unsigned int, Linebase*> LineMap;
+		priority_queue<Pointbase> PQueue;
+		SplayTree<Linebase*, double> EdgeBST;
+		list<Monotonepolygon> Monopolys;
+		list<gameEngine::Triangle>  Triangles;
+		map<unsigned int, set<unsigned int>> AdjEdgeMap;
+
 		void generateHitboxes();
 		void partition2Monotone();
 		void searchMonotones();
@@ -22,7 +31,7 @@ namespace gameEngine {
 		void draw();
 
 		//return all triangles
-		Triangles triangles() { return _triangles; }
+		list<gameEngine::Triangle> triangles() { return Triangles; }
 		
 	private:
 
@@ -51,20 +60,11 @@ namespace gameEngine {
 		unsigned int selectNextEdge(Linebase* edge);
 
 		//triangulate a monotone polygon piece;                        
-		void    triangulateMonotone(Monopoly& mpoly);
+		void    triangulateMonotone(Monotonepolygon* mpoly);
 
 		unsigned int            _ncontours;   //number of contours
 		vector<unsigned int>    _nVertices;   //
-		LineMap                 _edges;       //all edges 
 		//double                  _xmin, _xmax, _ymin, _ymax; boundary box for polygon
-
-		PQueue      _qpoints;                            //priority queue for event points
-		EdgeBST     _edgebst;                            //edge binary searching tree (splaytree) 
-		Monopolys   _mpolys;                             //all monotone polygon piece list;
-		Triangles   _triangles;                          //all triangle list;
-													 //data for monotone piece searching purpose;
-		AdjEdgeMap  _startAdjEdgeMap;                    //all edges starting from given points (map)   
-		LineMap     _diagonals;
 	};
 }
 

@@ -40,9 +40,6 @@
     <Filter Include="Header Files\Shapes">
       <UniqueIdentifier>{80856a65-1a47-4725-bf14-557494935684}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Shapes">
-      <UniqueIdentifier>{c163607f-c444-4d07-9904-93a36843c7af}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Graphic elements">
       <UniqueIdentifier>{33e09ef7-0c34-4e33-a623-0728a4ca3b82}</UniqueIdentifier>
     </Filter>
@@ -57,6 +54,9 @@
     </Filter>
     <Filter Include="Source Files\GeometryHelpers">
       <UniqueIdentifier>{ac70515e-4605-4f3f-8992-d95d720d853b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Geometry">
+      <UniqueIdentifier>{c163607f-c444-4d07-9904-93a36843c7af}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -121,16 +121,16 @@
       <Filter>Source Files\Enums</Filter>
     </ClCompile>
     <ClCompile Include="Rect.cpp">
-      <Filter>Source Files\Shapes</Filter>
+      <Filter>Source Files\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="Vector2D.cpp">
-      <Filter>Source Files\Shapes</Filter>
+      <Filter>Source Files\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files\Graphic elements</Filter>
     </ClCompile>
     <ClCompile Include="Polygon.cpp">
-      <Filter>Source Files\Shapes</Filter>
+      <Filter>Source Files\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="WorldObject.cpp">
       <Filter>Source Files</Filter>
@@ -143,6 +143,12 @@
     </ClCompile>
     <ClCompile Include="Pointbase.cpp">
       <Filter>Source Files\GeometryHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Monotonepolygon.cpp">
+      <Filter>Source Files\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +229,15 @@
     </ClInclude>
     <ClInclude Include="splay.h">
       <Filter>Header Files\GeometryHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Header Files\SubPolygons</Filter>
+    </ClInclude>
+    <ClInclude Include="Helperbase.h">
+      <Filter>Header Files\GeometryHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Monotonepolygon.h">
+      <Filter>Header Files\SubPolygons</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

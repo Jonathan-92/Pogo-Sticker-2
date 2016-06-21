@@ -1,10 +1,9 @@
 #ifndef POINTBASE_H
 #define POINTBASE_H
-#include "defs.h"
-#include "splay.h"
+#include "Helperbase.h"
 
 //base class for points;
-class Pointbase
+class Pointbase : Helperbase
 {
 public:
 	//constructors and destructor	   

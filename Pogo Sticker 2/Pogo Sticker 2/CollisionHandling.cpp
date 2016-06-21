@@ -6,6 +6,10 @@ namespace gameEngine {
 	{
 	}
 
+	CollisionHandling::~CollisionHandling()
+	{
+	}
+
 	bool CollisionHandling::rectanglesOverlaps(Rect* myRect, Rect* other)
 	{
 		int left = myRect->x;					// left side of the rect
@@ -66,7 +70,7 @@ namespace gameEngine {
 
 	bool CollisionHandling::trianglesOverlaps(Triangle* myTriangle, Triangle* other)
 	{
-		if (line_intersect2(myTriangle->at(0), myTriangle->at(1), other->at(0), other->at(0))) return true;
+		if (line_intersect2(myTriangle->getPoints()[0], myTriangle->getPoints()[1], other->getPoints()[0], other->getPoints()[0])) return true;
 		//if (line_intersect2(myTriangle[0], myTriangle[1], other[0], other[2])) return true;
 		//if (line_intersect2(myTriangle[0], myTriangle[1], other[1], other[2])) return true;
 		//if (line_intersect2(myTriangle[0], myTriangle[2], other[0], other[1])) return true;
@@ -78,13 +82,13 @@ namespace gameEngine {
 
 		bool inTri = true;
 		
-		inTri = inTri && point_in_triangle2(myTriangle->at(0), myTriangle->at(1), myTriangle->at(2), other->at(0));
+		inTri = inTri && point_in_triangle2(myTriangle->getPoints()[0], myTriangle->getPoints()[1], myTriangle->getPoints()[2], other->getPoints()[0]);
 		//inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[1]);
 		//inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[2]);
 		if (inTri == true) return true;
 				
 		inTri = true;
-		inTri = inTri && point_in_triangle2(other->at(0), other->at(1), other->at(2), myTriangle->at(0));
+		inTri = inTri && point_in_triangle2(other->getPoints()[0], other->getPoints()[1], other->getPoints()[2], myTriangle->getPoints()[0]);
 		//inTri = inTri && point_in_triangle2(other[0], other[1], other[2], myTriangle[1]);
 		//inTri = inTri && point_in_triangle2(other[0], other[1], other[2], myTriangle[2]);
 		
@@ -93,7 +97,7 @@ namespace gameEngine {
 		return false;
 	}
 
-	bool CollisionHandling::triangleRectangleOverlaps(Rect* rectangle, vector<Pointbase*> triangle)
+	bool CollisionHandling::triangleRectangleOverlaps(Rect* rectangle, Triangle* triangle)
 	{
 		Pointbase* rectPoint1 = new Pointbase(rectangle->x, rectangle->y);
 		Pointbase* rectPoint2 = new Pointbase(rectangle->x + rectangle->w, rectangle->y);
@@ -102,7 +106,7 @@ namespace gameEngine {
 
 		bool inTri = true;
 
-		inTri = inTri && point_in_triangle2(triangle[0], triangle[1], triangle[2], rectPoint1);
+		inTri = inTri && point_in_triangle2(triangle->getPoints()[0], triangle->getPoints()[1], triangle->getPoints()[2], rectPoint1);
 		//inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[1]);
 		//inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[2]);
 		//inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[2]);
@@ -139,9 +143,9 @@ namespace gameEngine {
 
 		if (rectanglesOverlaps(rectangle, other->boundaryRectangle))
 		{
-			for (std::list<Triangle>::iterator triangleIterator = triangles.begin(); triangleIterator != triangles.end(); ++triangleIterator)
+			for (auto triangleIterator = triangles.begin(); triangleIterator != triangles.end(); ++triangleIterator)
 			{
-				if(triangleRectangleOverlaps(rectangle, triangleIterator._Ptr->_Myval))
+				if(triangleRectangleOverlaps(rectangle, &triangleIterator._Ptr->_Myval))
 				{
 					return true;
 				}

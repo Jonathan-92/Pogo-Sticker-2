@@ -109,9 +109,9 @@ void Character::syncHitboxes()
 void Character::handleCollision()
 {
 	std:list<WorldObject*> worldObjects = currentGameEngine().getWorldObjects();
-	for (std::list<WorldObject*>::iterator worldObjectIterator = worldObjects.begin(); worldObjectIterator != worldObjects.end(); ++worldObjectIterator)
+	for (auto worldObjectIterator = worldObjects.begin(); worldObjectIterator != worldObjects.end(); ++worldObjectIterator)
 	{
-		for (std::list<Hitbox*>::iterator hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); ++hitboxIterator)
+		for (auto hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); ++hitboxIterator)
 		{
 			if (currentGameEngine().getCollider()->intersect(hitboxIterator._Ptr->_Myval, worldObjectIterator._Ptr->_Myval))
 			{

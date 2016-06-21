@@ -2,8 +2,9 @@
 #define LINEBASE_H
 #include "defs.h"
 #include "splay.h"
+#include "Helperbase.h"
 
-class Linebase
+class Linebase : Helperbase
 {
 public:
 	//constructors and destructor	  

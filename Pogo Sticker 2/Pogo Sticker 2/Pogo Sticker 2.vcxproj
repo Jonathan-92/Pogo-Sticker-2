@@ -87,6 +87,7 @@
     <ClCompile Include="Linebase.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mainmenu.cpp" />
+    <ClCompile Include="Monotonepolygon.cpp" />
     <ClCompile Include="OverlapSourceEnum.cpp" />
     <ClCompile Include="Pointbase.cpp" />
     <ClCompile Include="Polygon.cpp" />
@@ -97,6 +98,7 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="ViewPort.cpp" />
     <ClCompile Include="WorldObject.cpp" />
@@ -109,12 +111,14 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Gravity.h" />
     <ClInclude Include="G_Button.h" />
+    <ClInclude Include="Helperbase.h" />
     <ClInclude Include="Hitbox.h" />
     <ClInclude Include="HitboxEnum.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Linebase.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Monotonepolygon.h" />
     <ClInclude Include="OverlapSourceEnum.h" />
     <ClInclude Include="Pointbase.h" />
     <ClInclude Include="Polygon.h" />
@@ -125,6 +129,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="ViewPort.h" />
     <ClInclude Include="WorldObject.h" />
