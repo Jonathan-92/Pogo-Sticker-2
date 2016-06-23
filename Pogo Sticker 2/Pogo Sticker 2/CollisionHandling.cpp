@@ -139,7 +139,7 @@ namespace gameEngine {
 	bool CollisionHandling::intersect(Hitbox* rectangle, WorldObject* other)
 	{
 		//Check outer rectangle before inner triangles for optimisation reasons
-		list<Triangle> triangles = other->triangles();
+		auto triangles = other->triangles();
 
 		if (rectanglesOverlaps(rectangle, other->boundaryRectangle))
 		{

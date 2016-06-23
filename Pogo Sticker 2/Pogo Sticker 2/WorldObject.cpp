@@ -21,7 +21,7 @@ void WorldObject::generateHitboxes()
 	initialize();
 	partition2Monotone();
 	searchMonotones();
-	std::list<Monotonepolygon>::iterator it = Monopolys.begin();
+	auto it = Monopolys.begin();
 	for (; it != Monopolys.end(); it++)
 		triangulateMonotone(&it._Ptr->_Myval);
 	Triangles.size();
@@ -94,11 +94,11 @@ unsigned int WorldObject::selectNextEdge(Linebase* edge)
 			B[0] = edge->endPoint(1)->x;        
 			B[1] = edge->endPoint(1)->y;
 
-			if (edge->endPoint(1) != LineMap[*it]->endPoint(0))
+			if (edge->endPoint(1) != Edges[*it]->endPoint(0))
 			{
-				LineMap[*it]->reverse();
+				Edges[*it]->reverse();
 			}
-			C[0] = LineMap[*it]->endPoint(1)->x; C[1] = LineMap[*it]->endPoint(1)->y;
+			C[0] = Edges[*it]->endPoint(1)->x; C[1] = Edges[*it]->endPoint(1)->y;
 
 			double area = orient2d(A, B, C);
 			double cosb = angleCosb(A, B, C);
@@ -123,9 +123,9 @@ void WorldObject::searchMonotones()
 {
 	int loop = 0;
 
-	auto edges = LineMap;
+	auto edges = Edges;
 
-	while (edges.size() > LineMap.size())
+	while (edges.size() > Diagonals.size())
 	{
 		loop++;
 		Monotonepolygon poly = Monotonepolygon();
@@ -243,12 +243,12 @@ void WorldObject::addDiagonal(unsigned int i, unsigned int j)
 {
 	Helperbase::Type type = Helperbase::INSERT;
 	Linebase* diag = new Linebase(points[i], points[j], type);
-	LineMap[diag->id()] = diag;
+	Edges[diag->id()] = diag;
 
 	AdjEdgeMap[i].insert(diag->id());
 	AdjEdgeMap[j].insert(diag->id());
 
-	LineMap[diag->id()] = diag;
+	Diagonals[diag->id()] = diag;
 }
 
 //----------------------------------------------------------------------------
@@ -259,9 +259,9 @@ void WorldObject::handleStartVertex(unsigned int i)
 	double y = points[i]->y;
 	EdgeBST.InOrder(UpdateKey, y);
 
-	LineMap[i]->setHelper(i);
-	LineMap[i]->setKeyValue(y);
-	EdgeBST.Insert(LineMap[i]);
+	Edges[i]->setHelper(i);
+	Edges[i]->setKeyValue(y);
+	EdgeBST.Insert(Edges[i]);
 }
 
 //----------------------------------------------------------------------------
@@ -273,8 +273,8 @@ void WorldObject::handleEndVertex(unsigned int i)
 	EdgeBST.InOrder(UpdateKey, y);
 
 	unsigned int previ = prev(i);
-	Linebase* edge = LineMap[previ];
-	unsigned int helper = LineMap[previ]->helper();
+	Linebase* edge = Edges[previ];
+	unsigned int helper = Edges[previ]->helper();
 
 
 	if (points[helper]->type == Helperbase::MERGE) addDiagonal(i, helper);
@@ -297,9 +297,9 @@ void WorldObject::handleSplitVertex(unsigned int i)
 	addDiagonal(i, helper);
 
 	leftedge->setHelper(i);
-	LineMap[i]->setHelper(i);
-	LineMap[i]->setKeyValue(y);
-	EdgeBST.Insert(LineMap[i]);
+	Edges[i]->setHelper(i);
+	Edges[i]->setKeyValue(y);
+	EdgeBST.Insert(Edges[i]);
 }
 
 
@@ -312,9 +312,9 @@ void WorldObject::handleMergeVertex(unsigned int i)
 	EdgeBST.InOrder(UpdateKey, y);
 
 	unsigned int previ = prev(i);
-	unsigned int helper = LineMap[previ]->helper();
+	unsigned int helper = Edges[previ]->helper();
 	if (points[helper]->type == Helperbase::MERGE) addDiagonal(i, helper);
-	EdgeBST.Delete(LineMap[previ]->keyValue());
+	EdgeBST.Delete(Edges[previ]->keyValue());
 	
 	BTreeNode<Linebase*, double>*  leftnode;
 	EdgeBST.FindMaxSmallerThan(x, leftnode);
@@ -336,13 +336,13 @@ void WorldObject::handleRegularVertexDown(unsigned int i)
 	EdgeBST.InOrder(UpdateKey, y);
 
 	unsigned int previ = prev(i);
-	unsigned int helper = LineMap[previ]->helper();
+	unsigned int helper = Edges[previ]->helper();
 	if (points[helper]->type == Helperbase::MERGE) addDiagonal(i, helper);
 
-	EdgeBST.Delete(LineMap[previ]->keyValue());
-	LineMap[i]->setHelper(i);
-	LineMap[i]->setKeyValue(y);
-	EdgeBST.Insert(LineMap[i]);
+	EdgeBST.Delete(Edges[previ]->keyValue());
+	Edges[i]->setHelper(i);
+	Edges[i]->setKeyValue(y);
+	EdgeBST.Insert(Edges[i]);
 }
 
 
@@ -471,7 +471,7 @@ void WorldObject::ReadPoints(int numberOfPoints)
 			eid = (i == _nVertices[j] - 1) ? num : num + i + 1;
 			type = Helperbase::INPUTS;
 			Linebase* line = new Linebase(points[sid], points[eid], type);
-			LineMap[line->l_id - 1] = line;
+			Edges[line->l_id - 1] = line;
 		}
 		num += _nVertices[j];
 	}

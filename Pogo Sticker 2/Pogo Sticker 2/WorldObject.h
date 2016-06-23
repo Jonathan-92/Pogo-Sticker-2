@@ -23,7 +23,8 @@ namespace gameEngine {
 		std::list<gameEngine::Hitbox*> hitboxes;
 
 		map<unsigned int, Pointbase*> PointbaseMap;
-		map<unsigned int, Linebase*> LineMap;
+		map<unsigned int, Linebase*> Edges;
+		map<unsigned int, Linebase*> Diagonals;
 		priority_queue<Pointbase> PQueue;
 		SplayTree<Linebase*, double> EdgeBST;
 		list<Monotonepolygon> Monopolys;
