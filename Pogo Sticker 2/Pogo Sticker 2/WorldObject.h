@@ -4,6 +4,13 @@
 #include "Linebase.h"
 #include "Polygon.h"
 #include "Monotonepolygon.h"
+#include <map>
+#include <list>
+#include <queue>
+#include <set>
+#include "Triangle.h"
+
+using namespace std;
 
 namespace gameEngine {
 	class WorldObject : public Polygon {

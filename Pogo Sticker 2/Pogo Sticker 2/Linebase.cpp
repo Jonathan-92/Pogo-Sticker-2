@@ -20,7 +20,7 @@ Linebase::Linebase(Pointbase* sp, Pointbase* ep, Type type) :_type(type)
 	_endp[0] = sp;
 	_endp[1] = ep;
 	//_key=_endp[0]->x < _endp[1]->x ? _endp[0]->x:_endp[1]->x;
-	_id = ++l_id;
+	_id = l_id++;
 }
 
 //----------------------------------------------------------------------------

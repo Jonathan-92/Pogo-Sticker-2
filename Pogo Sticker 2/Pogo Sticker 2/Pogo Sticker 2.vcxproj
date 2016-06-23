@@ -107,7 +107,6 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CollisionHandling.h" />
-    <ClInclude Include="defs.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Gravity.h" />
     <ClInclude Include="G_Button.h" />

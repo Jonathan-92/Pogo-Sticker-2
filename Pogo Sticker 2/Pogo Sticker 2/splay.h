@@ -21,6 +21,8 @@
 #include <iomanip>
 #include <assert.h>
 
+using namespace std;
+
 template <class T, class KeyType>
 class SplayTree;
 

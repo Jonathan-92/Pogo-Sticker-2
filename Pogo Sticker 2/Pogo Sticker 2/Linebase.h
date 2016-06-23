@@ -1,8 +1,10 @@
 #ifndef LINEBASE_H
 #define LINEBASE_H
-#include "defs.h"
+#include "Pointbase.h"
 #include "splay.h"
 #include "Helperbase.h"
+
+
 
 class Linebase : Helperbase
 {
@@ -33,7 +35,7 @@ public:
 	unsigned int helper() { return _helper; }
 
 	//operator overloading             
-	friend ostream &operator<<(ostream &os, const Linebase& line);
+	friend std::ostream &operator<<(std::ostream &os, const Linebase& line);
 
 protected:
 	unsigned int _id;           //id of a line segment;

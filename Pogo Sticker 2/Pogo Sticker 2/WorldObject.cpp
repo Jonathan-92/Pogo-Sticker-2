@@ -132,7 +132,7 @@ void WorldObject::searchMonotones()
 		map<unsigned int, Linebase*>::iterator it = edges.begin();
 		Pointbase* startp = startp = it->second->endPoint(0);
 		Pointbase* endp = 0;
-		Linebase*  next = it->second;
+		Linebase* next = it->second;
 
 		poly.addPoint(startp);
 
@@ -351,7 +351,8 @@ void WorldObject::handleRegularVertexDown(unsigned int i)
 //----------------------------------------------------------------------------
 void WorldObject::handleRegularVertexUp(unsigned int i)
 {
-	double x = points[i]->x, y = points[i]->y;
+	double x = points[i]->x;
+	double y = points[i]->y;
 	EdgeBST.InOrder(UpdateKey, y);
 
 	BTreeNode<Linebase*, double>*  leftnode;
@@ -370,11 +371,11 @@ unsigned int WorldObject::prev(unsigned int i)
 
 	while (i > _nVertices[currentLoop])
 	{
-		prevLoop = currentLoop;
+		prevLoop = currentLoop;	
 		currentLoop++;
 	}
 
-	if (i == 1 || (i == _nVertices[prevLoop] + 1)) j = _nVertices[currentLoop];
+	if (i == 0 || (i == _nVertices[prevLoop] + 1)) j = _nVertices[currentLoop] - 1;
 	else if (i <= _nVertices[currentLoop]) j = i - 1;
 
 	return j;
@@ -393,7 +394,7 @@ unsigned int WorldObject::next(unsigned int i)
 		currentLoop++;
 	}
 
-	if (i < _nVertices[currentLoop]) j = i + 1;
+	if (i + 1 < _nVertices[currentLoop]) j = i + 1;
 	else if (i == _nVertices[currentLoop])
 	{
 		if (currentLoop == 0) j = 1;
@@ -439,7 +440,7 @@ void WorldObject::ReadPoints(int numberOfPoints)
 		if (_nVertices.size() == _ncontours) break;
 
 		if (_nVertices[_ncontours] == 0) break;
-		first = i;
+		first = i - 1;
 		last = first + _nVertices[_ncontours] - 1;
 		for (unsigned int j = 0; j < _nVertices[_ncontours]; j++, i++)
 		{
@@ -447,13 +448,13 @@ void WorldObject::ReadPoints(int numberOfPoints)
 			y = 250+j*5*i;
 			type = Helperbase::INPUTS;
 
-			Pointbase* point = new Pointbase(i, x, y, type);
+			Pointbase* point = new Pointbase(i - 1, x, y, type);
 			if (x > boundaryRectangle->w) boundaryRectangle->w = x;
 			if (x < boundaryRectangle->x) boundaryRectangle->x = x;
 			if (y > boundaryRectangle->h) boundaryRectangle->h = y;
 			if (y < boundaryRectangle->y) boundaryRectangle->y = y;
 			//point->rotate(PI/2.0);
-			points[i] = point;
+			points.push_back(point);
 		}
 
 		_ncontours++;
@@ -464,13 +465,13 @@ void WorldObject::ReadPoints(int numberOfPoints)
 
 	for (unsigned int j = 0; j<_ncontours; j++)
 	{
-		for (i = 1; i <= _nVertices[j]; i++)
+		for (i = 0; i <= _nVertices[j] - 1; i++)
 		{
 			sid = num + i;
-			eid = (i == _nVertices[j]) ? num + 1 : num + i + 1;
+			eid = (i == _nVertices[j] - 1) ? num : num + i + 1;
 			type = Helperbase::INPUTS;
 			Linebase* line = new Linebase(points[sid], points[eid], type);
-			LineMap[line->l_id] = line;
+			LineMap[line->l_id - 1] = line;
 		}
 		num += _nVertices[j];
 	}

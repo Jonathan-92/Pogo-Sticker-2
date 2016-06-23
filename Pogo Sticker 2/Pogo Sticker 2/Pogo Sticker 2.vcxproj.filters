@@ -224,9 +224,6 @@
     <ClInclude Include="Linebase.h">
       <Filter>Header Files\GeometryHelpers</Filter>
     </ClInclude>
-    <ClInclude Include="defs.h">
-      <Filter>Header Files\GeometryHelpers</Filter>
-    </ClInclude>
     <ClInclude Include="splay.h">
       <Filter>Header Files\GeometryHelpers</Filter>
     </ClInclude>
