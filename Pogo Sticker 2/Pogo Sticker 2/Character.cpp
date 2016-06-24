@@ -28,11 +28,11 @@ Character::~Character(void)
 
 void Character::mouseMotion(int x, int y)
 {
-	SDL_Point point = { rect.x / 2, rect.y / 2 };
+	SDL_Point point = { rect.centeredX(), rect.centeredY()};
 	int deltaY = y - point.x;
 	int deltaX = x - point.y;
 	spriteAxisAngle = atan2(deltaY, deltaX) * 180 / M_PI;
-	rect.angle = spriteAxisAngle;
+	//rect.angle = spriteAxisAngle;
 	cursorDistanceFromCharacter = setCursorDistanceFromCharacter(x, y);
 }
 
@@ -43,33 +43,15 @@ void Character::mouseDown(int x, int y)
 
 void Character::draw()
 {
-	SDL_Rect drawingRect = { rect.x - currentGameEngine().getCamera().rect.x, rect.y - currentGameEngine().getCamera().rect.y, rect.w, rect.h };
+	SDL_Rect drawingRect = { rect.getX() - currentGameEngine().getCamera().rect.getX(), rect.getY() - currentGameEngine().getCamera().rect.getY(), rect.getWidth(), rect.getHeight() };
 	//SDL_RenderCopyEx(currentGameEngine().getRenderer(), texture, nullptr, &drawingRect, spriteAxisAngle, NULL, SDL_FLIP_NONE);
 
-	float w = rect.w;
-	float h = rect.h;
+	float w = rect.getWidth();
+	float h = rect.getHeight();
 
 	SDL_GL_BindTexture(texture, &w, &h);
 
-	glBegin(GL_QUADS);
-
-	// Top Left
-	glTexCoord2f(0, 1);
-	glVertex2f(rect.x, rect.y);
-
-	// Top Right
-	glTexCoord2f(1, 1);
-	glVertex2f(rect.x + rect.w, rect.y);
-
-	// Bottom Right
-	glTexCoord2f(1, 0);
-	glVertex2f(rect.x + rect.w, rect.y + rect.h);
-
-	// Bottom Left
-	glTexCoord2f(0, 0);
-	glVertex2f(rect.x, rect.y + rect.h);
-
-	glEnd();
+	rect.draw();
 
 	//Draw hitboxes for debugging
 	SDL_Surface* surface = IMG_Load("../images/hitbox.png");
@@ -100,8 +82,7 @@ void Character::syncHitboxes()
 	for (std::list<Hitbox*>::iterator hitboxIterator = hitboxes.begin(); hitboxIterator != hitboxes.end(); hitboxIterator++)
 	{	
 		Hitbox* hitbox = hitboxIterator._Ptr->_Myval;
-		hitbox->x += movementVelocityX;
-		hitbox->y += movementVelocityY;
+		hitbox->applyMotion(movementVelocityX, movementVelocityY);
 		//hitbox->applyRotation(rect.centeredX(), rect.centeredY(), rect.angle);
 	}
 }
@@ -122,23 +103,23 @@ void Character::handleCollision()
 				bool intersectsTop = false;
 				bool intersectsRight = false;
 
-				if (&movingObject->x > &stationaryObject->x)
+				if (movingObject->getX() > stationaryObject->getX())
 					intersectsRight = true;
 				// y up is neg
-				if (&movingObject->y < &stationaryObject->y)
+				if (movingObject->getY() < stationaryObject->getY())
 					intersectsTop = true;
 
 				// the height & width of the intersection rectangle
 				short int height, width;
 
 				if (intersectsTop)
-					height = abs(stationaryObject->y - (movingObject->y + movingObject->h));
+					height = abs(stationaryObject->getY() - (movingObject->getY() + movingObject->getHeight()));
 				else
-					height = abs(stationaryObject->y + stationaryObject->h - movingObject->y);
+					height = abs(stationaryObject->getY() + stationaryObject->getHeight() - movingObject->getY());
 				if (intersectsRight)
-					width = abs(stationaryObject->x + stationaryObject->w - movingObject->x);
+					width = abs(stationaryObject->getX() + stationaryObject->getWidth() - movingObject->getX());
 				else
-					width = abs(stationaryObject->x - (movingObject->x + movingObject->w));
+					width = abs(stationaryObject->getX() - (movingObject->getX() + movingObject->getWidth()));
 
 				bool moveInXDirection = height > width ? true : false;
 
@@ -181,7 +162,7 @@ void Character::handleCollision()
 
 int Character::setCursorDistanceFromCharacter(int x, int y)
 {
-	SDL_Point point = { rect.x / 2, rect.y / 2 };
+	SDL_Point point = { rect.centeredX(), rect.centeredY() };
 	int cursorDistanceFromCharacter = (x - point.x) / 200;
 	return cursorDistanceFromCharacter;
 }

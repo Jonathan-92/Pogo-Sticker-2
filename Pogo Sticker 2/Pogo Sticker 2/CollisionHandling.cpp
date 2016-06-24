@@ -12,14 +12,14 @@ namespace gameEngine {
 
 	bool CollisionHandling::rectanglesOverlaps(Rect* myRect, Rect* other)
 	{
-		int left = myRect->x;					// left side of the rect
-		int other_left = other->x;				// other rect's left side
-		int right = myRect->x + myRect->w;				// etc...
-		int other_right = other->x + other->w;
-		int top = myRect->y;
-		int other_top = other->y;
-		int bottom = myRect->y + myRect->h;
-		int other_bottom = other->y + other->h;
+		int left = myRect->getX();					// left side of the rect
+		int other_left = other->getX();				// other rect's left side
+		int right = myRect->maxXvalue();				// etc...
+		int other_right = other->maxXvalue();
+		int top = myRect->getY();
+		int other_top = other->getY();
+		int bottom = myRect->maxYvalue();
+		int other_bottom = other->maxYvalue();
 
 		if (bottom < other_top) return false;
 		if (top > other_bottom) return false;
@@ -99,14 +99,14 @@ namespace gameEngine {
 
 	bool CollisionHandling::triangleRectangleOverlaps(Rect* rectangle, Triangle* triangle)
 	{
-		Pointbase* rectPoint1 = new Pointbase(rectangle->x, rectangle->y);
-		Pointbase* rectPoint2 = new Pointbase(rectangle->x + rectangle->w, rectangle->y);
-		Pointbase* rectPoint3 = new Pointbase(rectangle->x, rectangle->y + rectangle->h);
-		Pointbase* rectPoint4 = new Pointbase(rectangle->x + rectangle->w, rectangle->y + rectangle->h);
+		Pointbase rectPoint1(rectangle->getX(), rectangle->getY());
+		Pointbase rectPoint2(rectangle->maxXvalue(), rectangle->getHeight());
+		Pointbase rectPoint3(rectangle->getX(), rectangle->maxYvalue());
+		Pointbase rectPoint4(rectangle->maxXvalue(), rectangle->maxYvalue());
 
 		bool inTri = true;
 
-		inTri = inTri && point_in_triangle2(triangle->getPoints()[0], triangle->getPoints()[1], triangle->getPoints()[2], rectPoint1);
+		inTri = inTri && point_in_triangle2(triangle->getPoints()[0], triangle->getPoints()[1], triangle->getPoints()[2], &rectPoint1);
 		//inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[1]);
 		//inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[2]);
 		//inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[2]);
@@ -145,7 +145,7 @@ namespace gameEngine {
 		{
 			for (auto triangleIterator = triangles.begin(); triangleIterator != triangles.end(); ++triangleIterator)
 			{
-				if(triangleRectangleOverlaps(rectangle, &triangleIterator._Ptr->_Myval))
+				if(triangleRectangleOverlaps(rectangle, triangleIterator._Ptr->_Myval))
 				{
 					return true;
 				}

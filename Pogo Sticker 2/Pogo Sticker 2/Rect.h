@@ -6,6 +6,11 @@ namespace gameEngine {
 	/* Acts as the bounds and position which Sprites will be displayed on.
 	Extends SDL_Rect and provides additional operations. */
 	class Rect {
+	private:
+		double x, y, width, height;
+
+		/* The angle of the rectangles rotation */
+		float angle;
 	public:
 		Rect();		
 		
@@ -14,7 +19,7 @@ namespace gameEngine {
 		param "yy" = y coordinate position in pixels
 		param "ww" = width in pixels
 		param "hh" = height in pixels */
-		Rect(int xx, int yy, int ww, int hh);
+		Rect(double xParameter, double yParameter, double widthParameter, double heightParameter);
 
 		int RotRectsCollision(Rect * rr1, Rect * rr2);
 
@@ -27,6 +32,32 @@ namespace gameEngine {
 		/* Returns the y coordinate in the middle of this instance */
 		int centeredY();
 
+		double maxXvalue();
+		double maxYvalue();
+
+		double getX()
+		{
+			return x;
+		};
+		double getY()
+		{
+			return y;
+		};
+		double getWidth()
+		{
+			return width;
+		}
+		double getHeight()
+		{
+			return height;
+		}
+
+		void applyMotion(double xMotion, double yMotion);
+
+		void updateXYvalues(double xx, double yy);
+
+		void draw();
+
 		Vector2D centerPoint();
 
 		/* Creates a new rectangle that is centered on this instance */
@@ -37,12 +68,7 @@ namespace gameEngine {
 
 		/* Changes the location and size of this instance according to the
 		arguments supplied. */
-		void setRect(int x, int y, int w, int h);
-
-		double x, y, w, h;
-
-		/* The angle of the rectangles rotation */
-		float angle;
+		void setRect(double xParameter, double yParameter, double widthParameter, double heightParameter);
 	};
 }
 

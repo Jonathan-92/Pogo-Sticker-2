@@ -28,24 +28,23 @@ void Camera::tick()
 	if (character == nullptr || level == nullptr)
 		return;
 	//TODO: Change screensize to variables
-	rect.x = character->rect.centeredX() - 800 / 2;
-	rect.y = character->rect.centeredY() - 640 / 2;
+	rect.updateXYvalues(character->rect.centeredX() - 800 / 2, character->rect.centeredY() - 640 / 2);
 
 	//Keep the camera in bounds
-	if (rect.x < 0)
+	if (rect.getX() < 0)
 	{
-		rect.x = 0;
+		rect.updateXYvalues(0, rect.getY());
 	}
-	if (rect.y < 0)
+	if (rect.getY() < 0)
 	{
-		rect.y = 0;
+		rect.updateXYvalues(rect.getX(), 0);
 	}
-	if (rect.x > level->getWidth() - rect.w)
+	if (rect.getX() > level->getWidth() - rect.getWidth())
 	{
-		rect.x = level->getWidth() - rect.w;
+		rect.updateXYvalues(level->getWidth() - rect.getWidth(), rect.getY());
 	}
-	if (rect.y > level->getHeight() - rect.h)
+	if (rect.getY() > level->getHeight() - rect.getHeight())
 	{
-		rect.y = level->getHeight() - rect.h;
+		rect.updateXYvalues(rect.getX(), level->getHeight() - rect.getHeight());
 	}
 }

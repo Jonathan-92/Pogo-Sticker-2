@@ -187,7 +187,7 @@ void  WorldObject::triangulateMonotone(Monotonepolygon* mpoly)
 				Pointbase p1 = spoint.top();
 				spoint.pop();
 				Pointbase p2 = spoint.top();
-				Triangle v(&topQueuePoint, &p1, &p2);
+				Triangle* v = new Triangle(points[topQueuePoint.id], points[p1.id], points[p2.id]);
 				Triangles.push_back(v);
 
 			}
@@ -212,8 +212,8 @@ void  WorldObject::triangulateMonotone(Monotonepolygon* mpoly)
 				bool   left = stack1Point.left;
 				if ((area > 0 && left) || (area < 0 && !left))
 				{
-					Triangle* v = new Triangle(&topQueuePoint, &stack2Point, &stack1Point);
-					Triangles.push_back(*v);
+					Triangle* v = new Triangle(points[topQueuePoint.id], points[stack2Point.id], points[stack1Point.id]);
+					Triangles.push_back(v);
 					spoint.pop();
 				}
 				else break;
@@ -234,8 +234,8 @@ void  WorldObject::triangulateMonotone(Monotonepolygon* mpoly)
 		spoint.pop();
 		Pointbase top2Point = spoint.top();
 
-		Triangle* v = new Triangle(&lastQueuePoint, &topPoint, &top2Point);
-		Triangles.push_back(*v);
+		Triangle* v = new Triangle(points[lastQueuePoint.id], points[topPoint.id], points[top2Point.id]);
+		Triangles.push_back(v);
 	}
 }
 
@@ -423,13 +423,14 @@ void WorldObject::draw()
 		glVertex2f((*it)->x, (*it)->y);
 		glColor3f(1.0, 0.0, 0.0);
 	}
+	glColor3f(0.0, 1.0, 0.0);
 	glEnd();
 }
 
 void WorldObject::ReadPoints(int numberOfPoints)
 {
 	unsigned int i = 1, first, last;
-	double x, y;
+	double x, y, xmin = 100000, ymin = 100000, xmax = -999999, ymax = -999999;
 	Helperbase::Type type;
 
 	_ncontours = 0;
@@ -445,17 +446,19 @@ void WorldObject::ReadPoints(int numberOfPoints)
 		for (unsigned int j = 0; j < _nVertices[_ncontours]; j++, i++)
 		{
 			x = 250+j*5;
-			y = 250+j*5*i;
+			y = 350+j*5*i;
 			type = Helperbase::INPUTS;
 
 			Pointbase* point = new Pointbase(i - 1, x, y, type);
-			if (x > boundaryRectangle->w) boundaryRectangle->w = x;
-			if (x < boundaryRectangle->x) boundaryRectangle->x = x;
-			if (y > boundaryRectangle->h) boundaryRectangle->h = y;
-			if (y < boundaryRectangle->y) boundaryRectangle->y = y;
+			if (x > xmax) xmax = x;
+			if (x < xmin) xmin = x;
+			if (y > ymax) ymax = y;
+			if (y < ymin) ymin = y;
 			//point->rotate(PI/2.0);
 			points.push_back(point);
 		}
+
+		boundaryRectangle->setRect(xmin, ymin, xmax - xmin, ymax - ymin);
 
 		_ncontours++;
 	}

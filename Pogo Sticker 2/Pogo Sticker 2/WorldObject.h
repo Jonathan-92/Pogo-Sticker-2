@@ -28,7 +28,7 @@ namespace gameEngine {
 		priority_queue<Pointbase> PQueue;
 		SplayTree<Linebase*, double> EdgeBST;
 		list<Monotonepolygon> Monopolys;
-		list<gameEngine::Triangle>  Triangles;
+		list<gameEngine::Triangle*>  Triangles;
 		map<unsigned int, set<unsigned int>> AdjEdgeMap;
 
 		void generateHitboxes();
@@ -39,7 +39,7 @@ namespace gameEngine {
 		void draw();
 
 		//return all triangles
-		list<gameEngine::Triangle> triangles() { return Triangles; }
+		list<gameEngine::Triangle*> triangles() { return Triangles; }
 		
 	private:
 
