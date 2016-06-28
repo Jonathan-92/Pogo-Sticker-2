@@ -8,6 +8,7 @@
 #include "SDL_ttf.h"
 #include <GL/glew.h>
 #include <GL/gl.h>
+#include <future>
 
 namespace gameEngine {
 
@@ -28,6 +29,8 @@ namespace gameEngine {
 		std::list<Sprite*> getSprites() const;
 		std::list<Tile*> getTiles() const;
 		std::list<WorldObject*> getWorldObjects() const;
+		std::deque<std::packaged_task<void()>> tasks;
+		std::mutex tasks_mutex;
 		SDL_Renderer* getRenderer();
 		TTF_Font* getFont();
 		Camera& getCamera();
@@ -58,8 +61,12 @@ namespace gameEngine {
 		void checkPause();
 		void drawSprites();
 		void drawWorldObjects();
+		void executeTasks();
 		void handleEvents();
 		void handleTicks();
+		void runDrawCalls();
+		void runPhysicsCalls();
+		void runEventCalls();
 	};
 
 	GameEngine& currentGameEngine();

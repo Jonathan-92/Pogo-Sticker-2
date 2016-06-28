@@ -10,8 +10,8 @@ namespace gameEngine {
 
 		G_Button(int x, int y, int w, int h, std::string imgPath, FuncPtr fp);
 		~G_Button(void);
-		void tick();
-		void mouseDown(int x, int y);
+		void tick() override;
+		void mouseDown(int x, int y) override;
 		void disable();
 	private:
 		FuncPtr funcPtr;

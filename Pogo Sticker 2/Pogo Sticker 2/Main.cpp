@@ -4,13 +4,11 @@
 
 using namespace gameEngine;
 
-MainMenu* mainMenu = MainMenu::getInstance();
-
-
 int main(int argc, char** argv) 
 {
 	glutInit(&argc, argv);
 
+	MainMenu* mainMenu = MainMenu::getInstance();
 	mainMenu->init();
 	mainMenu->load();
 

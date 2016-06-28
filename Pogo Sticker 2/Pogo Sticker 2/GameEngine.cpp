@@ -1,7 +1,5 @@
 #include "GameEngine.h"
 #include <SDL.h>
-#include <string>
-#include <iostream>
 
 using namespace std;
 
@@ -68,7 +66,7 @@ namespace gameEngine {
 	GameEngine::GameEngine() : fps(60) {		// l�gg till fler null checkar
 		if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
 			throwException("Failed initialize SDL", SDL_GetError);
-
+			
 		if (TTF_Init() == -1)
 			throwException("Failed initialize TTF", TTF_GetError);
 
@@ -174,41 +172,73 @@ namespace gameEngine {
 		endstate = false;
 	}
 
+	void GameEngine::runDrawCalls()
+	{
+		SDL_RenderClear(renderer);
+		SDL_RenderCopy(renderer, background, nullptr, nullptr);
+
+		drawWorldObjects();
+		drawSprites();
+		SDL_GL_SwapWindow(screen);		
+	}
+
+	void GameEngine::runPhysicsCalls()
+	{
+		std::packaged_task<void()> task(std::bind(&GameEngine::handleTicks, this));
+		std::future<void> result = task.get_future();
+		{
+			std::lock_guard<std::mutex> lock(tasks_mutex);
+			tasks.push_back(std::move(task));
+		}
+
+		// wait on result
+	}
+
+	void GameEngine::runEventCalls()
+	{
+		std::packaged_task<void()> task(std::bind(&GameEngine::handleEvents, this));
+		std::future<void> result = task.get_future();
+		{
+			std::lock_guard<std::mutex> lock(tasks_mutex);
+			tasks.push_back(std::move(task));
+		}
+	}
+
+	void GameEngine::executeTasks()
+	{
+		std::unique_lock<std::mutex> lock(tasks_mutex);
+		while (!tasks.empty()) 
+		{
+			auto task(std::move(tasks.front()));
+			tasks.pop_front();
+
+			// unlock during the task
+			lock.unlock();
+			task();
+			lock.lock();
+		}			
+	}
+
 	void GameEngine::run() {
-		//TODO: Dela upp koden i funktioner
 		const int tickInterval = 1000 / fps;
 		Uint32 nextTick;
 		int delay;
 
 		while (!exited) {
-			switched = false;
+
 			nextTick = SDL_GetTicks() + tickInterval;
-
-			SDL_RenderClear(renderer);
-			SDL_RenderCopy(renderer, background, nullptr, nullptr);
-			
-			drawWorldObjects();
-			drawSprites();
-			checkPause();
-			if (!paused)
-			{
-				handleEvents();
-				if (!endstate)
-				{
-					handleTicks();
-				}
-			}
-
-			//SDL_RenderPresent(renderer);
-
-			//TODO: http://lazyfoo.net/tutorials/SDL/50_SDL_and_opengl_2/
-			SDL_GL_SwapWindow(screen);
-
 			delay = nextTick - SDL_GetTicks();
+
+			auto aaa = std::async(std::launch::async, &GameEngine::runPhysicsCalls, this);
+			runDrawCalls();
+			auto ccc = std::async(std::launch::async, &GameEngine::runEventCalls, this);
+			executeTasks();
 
 			if (delay > 0)
 				SDL_Delay(delay);
-		} 
+
+			// maybe do something with result if it is not void
+		}
 	}
 
 	void GameEngine::setEndstate(bool state)
@@ -294,7 +324,7 @@ namespace gameEngine {
 	}
 	
 	void GameEngine::forAll(void (Sprite::*membrPtr)(int, int), int x, int y) {
-		for (it2 = sprites.begin(); it2 != sprites.end(); it2++) {
+		for (it2 = sprites.begin(); it2 != sprites.end(); ++it2) {
 			((*it2)->*membrPtr)(x, y);
 			if (switched)
 			{

@@ -11,23 +11,8 @@ namespace gameEngine {
 	}
 
 	bool CollisionHandling::rectanglesOverlaps(Rect* myRect, Rect* other)
-	{
-		int left = myRect->getX();					// left side of the rect
-		int other_left = other->getX();				// other rect's left side
-		int right = myRect->maxXvalue();				// etc...
-		int other_right = other->maxXvalue();
-		int top = myRect->getY();
-		int other_top = other->getY();
-		int bottom = myRect->maxYvalue();
-		int other_bottom = other->maxYvalue();
-
-		if (bottom < other_top) return false;
-		if (top > other_bottom) return false;
-
-		if (right < other_left) return false;
-		if (left > other_right) return false;
-
-		return true;
+	{		
+		return myRect->overlaps(*other);
 	}
 
 	bool line_intersect2(Pointbase* v1, Pointbase* v2, Pointbase* v3, Pointbase* v4)
@@ -112,14 +97,12 @@ namespace gameEngine {
 		//inTri = inTri && point_in_triangle2(myTriangle[0], myTriangle[1], myTriangle[2], other[2]);
 		if (inTri == true) return true;
 
-		inTri = true;
+		//inTri = true;
 		//inTri = inTri && point_in_triangle2(rectangle->at(0), rectangle->at(1), rectangle->at(2), triangle->at(0));
 		//inTri = inTri && point_in_triangle2(other[0], other[1], other[2], myTriangle[1]);
 		//inTri = inTri && point_in_triangle2(other[0], other[1], other[2], myTriangle[2]);
 
-		if (inTri == true) return true;
-
-		return false;
+		return inTri;
 	}
 
 	bool CollisionHandling::intersect(WorldObject myRect, WorldObject other)
