@@ -62,6 +62,8 @@ namespace gameEngine {
 		void drawSprites();
 		void drawWorldObjects();
 		void executeTasks();
+		void queueTask(void(GameEngine::*function)(), int sleepTime);
+		void handleDrawing();
 		void handleEvents();
 		void handleTicks();
 		void runDrawCalls();

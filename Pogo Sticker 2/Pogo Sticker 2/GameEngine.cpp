@@ -172,37 +172,38 @@ namespace gameEngine {
 		endstate = false;
 	}
 
+	void GameEngine::queueTask(void(GameEngine::*function)(), int sleepTime)
+	{
+		std::packaged_task<void()> task(std::bind(function, this));
+		std::future<void> result = task.get_future();
+		{
+			std::lock_guard<std::mutex> lock(tasks_mutex);
+			tasks.push_back(std::move(task));
+		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(sleepTime));
+	}
+
 	void GameEngine::runDrawCalls()
 	{
-		SDL_RenderClear(renderer);
-		SDL_RenderCopy(renderer, background, nullptr, nullptr);
-
-		drawWorldObjects();
-		drawSprites();
-		SDL_GL_SwapWindow(screen);		
+		while (!exited)
+		{
+			queueTask(&GameEngine::handleDrawing, 1000/fps);
+		}
 	}
 
 	void GameEngine::runPhysicsCalls()
 	{
 		while (!exited)
 		{
-			std::packaged_task<void()> task(std::bind(&GameEngine::handleTicks, this));
-			std::future<void> result = task.get_future();
-			{
-				std::lock_guard<std::mutex> lock(tasks_mutex);
-				tasks.push_back(std::move(task));
-			}
-			std::this_thread::sleep_for(std::chrono::milliseconds(15));
+			queueTask(&GameEngine::handleTicks, 15);
 		}
 	}
 
 	void GameEngine::runEventCalls()
 	{
-		std::packaged_task<void()> task(std::bind(&GameEngine::handleEvents, this));
-		std::future<void> result = task.get_future();
+		while (!exited)
 		{
-			std::lock_guard<std::mutex> lock(tasks_mutex);
-			tasks.push_back(std::move(task));
+			queueTask(&GameEngine::handleEvents, 15);
 		}
 	}
 
@@ -222,25 +223,12 @@ namespace gameEngine {
 	}
 
 	void GameEngine::run() {
-		const int tickInterval = 1000 / fps;
-		Uint32 nextTick;
-		int delay;
-
-		//SDL_CreateThread(GameEngine::executeTasks, "executeTasks", (void*)NULL);
 		auto physicsResult = std::async(std::launch::async, &GameEngine::runPhysicsCalls, this);
+		auto eventResult = std::async(std::launch::async, &GameEngine::runEventCalls, this);
+		auto drawingResult = std::async(std::launch::async, &GameEngine::runDrawCalls, this);
 
 		while (!exited) {
-
-			nextTick = SDL_GetTicks() + tickInterval;
-			delay = nextTick - SDL_GetTicks();
-
-			runDrawCalls();
-			runEventCalls();
 			executeTasks();
-
-			if (delay > 0)
-				SDL_Delay(delay);
-
 		}
 	}
 
@@ -277,6 +265,16 @@ namespace gameEngine {
 		{
 			(*it)->draw();
 		}
+	}
+
+	void GameEngine::handleDrawing()
+	{
+		SDL_RenderClear(renderer);
+		SDL_RenderCopy(renderer, background, nullptr, nullptr);
+
+		drawWorldObjects();
+		drawSprites();
+		SDL_GL_SwapWindow(screen);
 	}
 
 	void GameEngine::handleEvents()
