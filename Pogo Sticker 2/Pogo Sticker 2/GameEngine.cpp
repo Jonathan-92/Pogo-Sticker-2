@@ -184,14 +184,16 @@ namespace gameEngine {
 
 	void GameEngine::runPhysicsCalls()
 	{
-		std::packaged_task<void()> task(std::bind(&GameEngine::handleTicks, this));
-		std::future<void> result = task.get_future();
+		while (!exited)
 		{
-			std::lock_guard<std::mutex> lock(tasks_mutex);
-			tasks.push_back(std::move(task));
+			std::packaged_task<void()> task(std::bind(&GameEngine::handleTicks, this));
+			std::future<void> result = task.get_future();
+			{
+				std::lock_guard<std::mutex> lock(tasks_mutex);
+				tasks.push_back(std::move(task));
+			}
+			std::this_thread::sleep_for(std::chrono::milliseconds(15));
 		}
-
-		// wait on result
 	}
 
 	void GameEngine::runEventCalls()
@@ -224,20 +226,21 @@ namespace gameEngine {
 		Uint32 nextTick;
 		int delay;
 
+		//SDL_CreateThread(GameEngine::executeTasks, "executeTasks", (void*)NULL);
+		auto physicsResult = std::async(std::launch::async, &GameEngine::runPhysicsCalls, this);
+
 		while (!exited) {
 
 			nextTick = SDL_GetTicks() + tickInterval;
 			delay = nextTick - SDL_GetTicks();
 
-			auto aaa = std::async(std::launch::async, &GameEngine::runPhysicsCalls, this);
 			runDrawCalls();
-			auto ccc = std::async(std::launch::async, &GameEngine::runEventCalls, this);
+			runEventCalls();
 			executeTasks();
 
 			if (delay > 0)
 				SDL_Delay(delay);
 
-			// maybe do something with result if it is not void
 		}
 	}
 
