@@ -34,6 +34,8 @@ namespace gameEngine {
 
 		glEnable(GL_BLEND);
 
+		glewInit();
+
 		//Check for error
 		GLenum error = glGetError();
 		if (error != GL_NO_ERROR)
@@ -195,7 +197,7 @@ namespace gameEngine {
 	{
 		while (!exited)
 		{
-			queueTask(&GameEngine::handleTicks, 15);
+			queueTask(&GameEngine::handleTicks, 16.6);
 		}
 	}
 

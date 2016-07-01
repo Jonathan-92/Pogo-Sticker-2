@@ -58,7 +58,7 @@ void Level::init()
 	SDL_Surface* surface = IMG_Load("../images/white.png");
 	setBackground(surface);
 
-	Character* character = new Character(250, 150, 30, 60, "../images/character.png");
+	Character* character = new Character(350, 150, 30, 60, "../images/character.png");
 	sprites.push_back(character);
 
 	SDL_Surface* surface2 = IMG_Load("../images/tiletemplate.png");

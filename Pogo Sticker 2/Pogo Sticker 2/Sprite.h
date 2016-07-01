@@ -1,6 +1,6 @@
 #ifndef SPRITE_H
 #define SPRITE_H
-#include "Rect.h"
+#include "Rectangle.h"
 #include <string>
 #include <SDL.h>
 
@@ -13,7 +13,7 @@ namespace gameEngine {
 	public:
 		/* This is a rectangle specifying the width, height, x, and y coordinate
 		of the Sprite. */
-		Rect rect;
+		Rectangle rect;
 
 		/* Draws the Sprite on the window. This function can be overridden
 		if special behaviour is desired. */

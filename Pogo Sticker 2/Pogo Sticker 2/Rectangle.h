@@ -1,27 +1,26 @@
 #ifndef RECT_H
 #define RECT_H
-#include "Vector2D.h"
+#include "Polygon.h"
 
 namespace gameEngine {
 	/* Acts as the bounds and position which Sprites will be displayed on.
 	Extends SDL_Rect and provides additional operations. */
-	class Rect {
+	class Rectangle : public Polygon {
 	private:
 		double x, y, width, height;
-
 		/* The angle of the rectangles rotation */
 		float angle;
 	public:
-		Rect();		
+		Rectangle();
 		
 		/*
 		param "xx" = x coordinate position in pixels
 		param "yy" = y coordinate position in pixels
 		param "ww" = width in pixels
 		param "hh" = height in pixels */
-		Rect(double xParameter, double yParameter, double widthParameter, double heightParameter);
+		Rectangle(double xParameter, double yParameter, double widthParameter, double heightParameter);
 
-		int RotRectsCollision(Rect * rr1, Rect * rr2);
+		int RotRectsCollision(Rectangle * rr1, Rectangle * rr2);
 
 		/* Checks whether another Rect is within this Rect's bounds. */
 		bool contains(int xx, int yy) const;
@@ -35,13 +34,13 @@ namespace gameEngine {
 		double maxXvalue();
 		double maxYvalue();
 
-		double getX()
+		double getX() const
 		{
-			return x;
+			return points.front()->x;
 		};
-		double getY()
+		double getY() const
 		{
-			return y;
+			return points.front()->y;
 		};
 		double getWidth()
 		{
@@ -51,6 +50,20 @@ namespace gameEngine {
 		{
 			return height;
 		}
+		double getAngle()
+		{
+			return angle;
+		}
+
+		void rotate(double theta)
+		{
+			double cosa = cos(theta), sina = sin(theta), newx, newy;
+
+			newx = x*cosa - y*sina;
+			newy = x*sina + y*cosa;
+			x = newx;
+			y = newy;
+		}
 
 		void applyMotion(double xMotion, double yMotion);
 
@@ -58,13 +71,11 @@ namespace gameEngine {
 
 		void draw();
 
-		Vector2D centerPoint();
-
 		/* Creates a new rectangle that is centered on this instance */
-		Rect centeredRect(int width, int height) const;
+		Rectangle centeredRect(int width, int height) const;
 
 		/* Returns true if the other rectangle overlaps this instance */
-		bool overlaps(const Rect& other) const;
+		bool overlaps(const Rectangle& other) const;
 
 		/* Changes the location and size of this instance according to the
 		arguments supplied. */

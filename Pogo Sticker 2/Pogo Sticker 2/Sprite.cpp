@@ -76,6 +76,7 @@ namespace gameEngine {
 		
 		SDL_GL_BindTexture(texture, &w, &h);
 
+
 		glEnable(GL_BLEND);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

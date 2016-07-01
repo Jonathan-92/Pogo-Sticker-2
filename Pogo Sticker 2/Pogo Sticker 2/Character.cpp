@@ -83,7 +83,7 @@ void Character::syncHitboxes()
 	{	
 		Hitbox* hitbox = hitboxIterator._Ptr->_Myval;
 		hitbox->applyMotion(movementVelocityX, movementVelocityY);
-		//hitbox->applyRotation(rect.centeredX(), rect.centeredY(), rect.angle);
+		hitbox->rotate(rect.getAngle());
 	}
 }
 
@@ -96,8 +96,8 @@ void Character::handleCollision()
 		{
 			if (currentGameEngine().getCollider()->intersect(hitboxIterator._Ptr->_Myval, worldObjectIterator._Ptr->_Myval))
 			{
-				Rect* movingObject = hitboxIterator._Ptr->_Myval;
-				Rect* stationaryObject = (*worldObjectIterator)->boundaryRectangle;
+				Rectangle* movingObject = hitboxIterator._Ptr->_Myval;
+				Rectangle* stationaryObject = (*worldObjectIterator)->boundaryRectangle;
 				
 				// what side of the stationaryObject does the movingObject collide on?
 				bool intersectsTop = false;

@@ -31,6 +31,8 @@ namespace gameEngine {
 		list<gameEngine::Triangle*>  Triangles;
 		map<unsigned int, set<unsigned int>> AdjEdgeMap;
 
+		gameEngine::Rectangle* boundaryRectangle;
+
 		void generateHitboxes();
 		void partition2Monotone();
 		void searchMonotones();

@@ -1,5 +1,5 @@
 #include "Polygon.h"
-#include "Rect.h"
+#include "Rectangle.h"
 
 using namespace gameEngine;
 

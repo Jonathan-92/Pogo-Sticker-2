@@ -6,7 +6,7 @@ using namespace gameEngine;
 
 WorldObject::WorldObject() : Polygon()
 {
-	boundaryRectangle = new Rect();
+	boundaryRectangle = new Rectangle();
 }
 
 extern double orient2d(double* pa, double* pb, double* pc);
@@ -445,8 +445,8 @@ void WorldObject::ReadPoints(int numberOfPoints)
 		last = first + _nVertices[_ncontours] - 1;
 		for (unsigned int j = 0; j < _nVertices[_ncontours]; j++, i++)
 		{
-			x = 250+j*5;
-			y = 350+j*5*i;
+			x = 250+j*250;
+			y = 350+j*25*i;
 			type = Helperbase::INPUTS;
 
 			Pointbase* point = new Pointbase(i - 1, x, y, type);
@@ -458,7 +458,7 @@ void WorldObject::ReadPoints(int numberOfPoints)
 			points.push_back(point);
 		}
 
-		boundaryRectangle->setRect(xmin, ymin, xmax - xmin, ymax - ymin);
+		boundaryRectangle = new Rectangle(xmin, ymin, xmax - xmin, ymax - ymin);
 
 		_ncontours++;
 	}

@@ -120,9 +120,6 @@
     <ClCompile Include="HitboxEnum.cpp">
       <Filter>Source Files\Enums</Filter>
     </ClCompile>
-    <ClCompile Include="Rect.cpp">
-      <Filter>Source Files\Geometry</Filter>
-    </ClCompile>
     <ClCompile Include="Vector2D.cpp">
       <Filter>Source Files\Geometry</Filter>
     </ClCompile>
@@ -148,6 +145,9 @@
       <Filter>Source Files\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="Monotonepolygon.cpp">
+      <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
       <Filter>Source Files\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
@@ -203,9 +203,6 @@
     <ClInclude Include="HitboxEnum.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
-    <ClInclude Include="Rect.h">
-      <Filter>Header Files\Shapes</Filter>
-    </ClInclude>
     <ClInclude Include="Vector2D.h">
       <Filter>Header Files\Shapes</Filter>
     </ClInclude>
@@ -235,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="Monotonepolygon.h">
       <Filter>Header Files\SubPolygons</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Header Files\Shapes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

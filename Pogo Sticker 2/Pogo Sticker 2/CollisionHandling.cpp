@@ -10,7 +10,7 @@ namespace gameEngine {
 	{
 	}
 
-	bool CollisionHandling::rectanglesOverlaps(Rect* myRect, Rect* other)
+	bool CollisionHandling::rectanglesOverlaps(Rectangle* myRect, Rectangle* other)
 	{		
 		return myRect->overlaps(*other);
 	}
@@ -82,7 +82,7 @@ namespace gameEngine {
 		return false;
 	}
 
-	bool CollisionHandling::triangleRectangleOverlaps(Rect* rectangle, Triangle* triangle)
+	bool CollisionHandling::triangleRectangleOverlaps(Rectangle* rectangle, Triangle* triangle)
 	{
 		Pointbase rectPoint1(rectangle->getX(), rectangle->getY());
 		Pointbase rectPoint2(rectangle->maxXvalue(), rectangle->getHeight());

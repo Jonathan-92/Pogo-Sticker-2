@@ -4,7 +4,7 @@
 namespace gameEngine {
 
 	Hitbox::Hitbox(float x, float y, float width, float height, HitboxEnum::HitboxEnums hitboxEnum) :
-		Rect(x, y, width, height)
+		Rectangle(x, y, width, height)
 	{
 		hitboxType.setHitboxEnum(hitboxEnum);
 	}

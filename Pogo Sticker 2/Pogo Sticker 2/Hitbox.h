@@ -1,10 +1,10 @@
 #ifndef HITBOX_H
 #define HITBOX_H
 #include "HitboxEnum.h"
-#include "Rect.h"
+#include "Rectangle.h"
 
 namespace gameEngine {
-	class Hitbox : public Rect {
+	class Hitbox : public Rectangle {
 	protected:
 		~Hitbox()
 		{

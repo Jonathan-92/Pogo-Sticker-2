@@ -1,6 +1,6 @@
 #ifndef COLLISIONHANDLING_H
 #define COLLISIONHANDLING_H
-#include "Rect.h"
+#include "Rectangle.h"
 #include "WorldObject.h"
 #include "Character.h"
 
@@ -12,13 +12,13 @@ namespace gameEngine {
 	public:
 		CollisionHandling();
 		~CollisionHandling();
-		bool rectanglesOverlaps(Rect* myRect, Rect* other);
+		bool rectanglesOverlaps(Rectangle* myRect, Rectangle* other);
 		bool trianglesOverlaps(Triangle* myTriangle, Triangle* other);
 		bool intersect(WorldObject myWorldobject, WorldObject other);
 		bool intersect(Hitbox* rectangle, WorldObject* other);		
 
 	private:
-		bool triangleRectangleOverlaps(Rect* rectangle, Triangle* triangle);
+		bool triangleRectangleOverlaps(Rectangle* rectangle, Triangle* triangle);
 	};
 }
 #endif
